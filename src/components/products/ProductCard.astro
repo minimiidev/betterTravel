@@ -5,15 +5,16 @@ import Icon from "astro-iconify";
 import { urlForImage } from "@/lib/urlForImage";
 
 interface Props {
-  imgSrc?: string;
-  name?: string;
-  country?: string;
-  price?: number;
+  imgSrc: string;
+  name: string;
+  slug: string;
+  country: string;
+  price: number;
   grade?: string;
-  description?: string;
+  description: string;
 }
 
-const { name, grade, imgSrc, country, price, description } = Astro.props;
+const { name, slug, grade, imgSrc, country, price, description } = Astro.props;
 ---
 
 <article
@@ -32,20 +33,23 @@ const { name, grade, imgSrc, country, price, description } = Astro.props;
     <div
       class="border-t border-b border-gray-300 mt-2 py-2 flex items-center justify-between"
     >
-      <span class="flex items-center justify-start gap-1 font-medium">
+      <a
+        href=`/pais/${country} `
+        class="flex items-center hover:underline justify-start gap-1 font-medium"
+      >
         <Icon
           name="material-symbols:location-on-outline"
           size="24px"
           class=""
         />
-        {country}
-      </span>
+        {country}</a
+      >
       <span class="font-bold text-xl">${price}</span>
     </div>
     <p class="text-sm text-gray-600 min-h-[140px]">{description}</p>
   </div>
   <a
-    href={`/destinations/${name}`}
+    href={`/destinos/${slug}`}
     class="min-w-[140px] mt-2 self-start ml-4 bg-blue-500 hover:bg-blue-800 transition-all duration-300 ease-in-out rounded-3xl text-white font-bold py-2 px-5"
   >
     Mas detalles

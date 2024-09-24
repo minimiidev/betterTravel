@@ -7,6 +7,19 @@ export default {
             name: 'name',
             title: 'Name',
             type: 'string'
+        }, {
+            name: 'slug',
+            title: 'Slug',
+            type: 'slug',
+            options: {
+                source: 'name',
+                maxLength: 200,
+                slugify: input => input
+                    .toLowerCase()
+                    .replace(/\s+/g, '-')
+                    .slice(0, 200)
+            },
+            validation: Rule => Rule.required(),
         },
         {
             name: 'country',

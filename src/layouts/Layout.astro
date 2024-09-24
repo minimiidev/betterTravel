@@ -1,6 +1,6 @@
 ---
-// import NavBar from "@/sections/NavBar.astro";
-// import SideMenu from "@/sections/SideMenu.astro";
+import { NavBar, SideMenu } from "@/components/sections";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -25,10 +25,11 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body>
-    <!-- <SideMenu /> -->
-    <!-- <NavBar /> -->
+    <SideMenu />
+    <NavBar />
     <main>
       <slot />
     </main>
@@ -40,7 +41,7 @@ const { title, description } = Astro.props;
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-[#d8f3ff] dark:bg-myBlack dark:text-myWhite;
+    @apply bg-[#d8f3ff] text-white;
   }
   .h1 {
     @apply text-2xl md:text-3xl  lg:text-4xl  font-bold;
