@@ -1,0 +1,58 @@
+---
+// import { ButtonCTA } from "@/components";
+import { links } from "@/data";
+import Icon from "astro-iconify";
+---
+
+<div
+  id="sideMenu"
+  class="transition-all duration-300 ease-in-out top-[2000px] fixed w-full h-full z-[100] opacity-0"
+>
+  <div id="sideMenuBg" class="w-full h-full">
+    <ul
+      class="flex-col relative flex w-[320px] mx-auto bg-white shadow-2]xl rounded-2xl h-[60%] items-center justify-center"
+    >
+      <Icon
+        id="closeBtn"
+        name="ic:baseline-close"
+        size="42px"
+        class="absolute right-[20px] top-[20px] p-2 bg-blue-500 rounded-full text-white"
+      />
+      {
+        links.map((link) => (
+          <li class="font-medium ">
+            <a
+              href={link.path}
+              class="px-5 min-w-[150px] text-center py-3 block hover:bg-sky-500 "
+            >
+              {link.text}
+            </a>
+          </li>
+        ))
+      }
+      <!-- <ButtonCTA
+        class:list={`bg-gradient-to-r text-white from-blue-300 via-blue-500 to-blue-800 `}
+        >Contactanos</ButtonCTA
+      > -->
+    </ul>
+  </div>
+</div>
+
+<script>
+  import { isMenuOpen } from "@/stores";
+
+  const sideMenu = document.querySelector("#sideMenu") as Element;
+  const closeBtn = document.querySelector("#closeBtn") as Element;
+
+  isMenuOpen.subscribe((open) => {
+    if (open) {
+      sideMenu.classList.remove("top-[2000px]", "opacity-0");
+      sideMenu.classList.add("top-[100px]");
+    } else {
+      sideMenu.classList.add("top-[2000px]", "opacity-1");
+      sideMenu.classList.remove("top-[100px]");
+    }
+  });
+
+  closeBtn.addEventListener("click", () => isMenuOpen.set(!isMenuOpen.value));
+</script>

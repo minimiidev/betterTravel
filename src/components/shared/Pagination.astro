@@ -1,0 +1,16 @@
+---
+import ButtonLink from "./ButtonLink.astro";
+
+interface Props {
+  currentPage: number;
+}
+
+const { currentPage } = Astro.props;
+
+const url = Astro.url;
+---
+
+<div class="flex justify-between items-center py-10w-full">
+  <a href={`${url}`}>Anterior</a>
+  <span>Pagina {currentPage} de {currentPage}</span>
+</div>

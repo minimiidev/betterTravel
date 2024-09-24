@@ -1,0 +1,51 @@
+---
+import ProductCard from "@/components/products/ProductCard.astro";
+import Icon from "astro-iconify";
+import { Image } from "astro:assets";
+
+import type { SanityDocument } from "@sanity/client";
+import { loadQuery } from "@/lib/loadQuery";
+
+interface Props {
+  imgSrc?: string;
+  name?: string;
+  country?: string;
+  price?: number;
+  grade?: string;
+  description?: string;
+}
+
+interface SanityDestination extends SanityDocument {
+  name: string;
+  imgSrc: string;
+  country: string;
+  price: number;
+  grade: string;
+  description: string;
+}
+// VERIFICAR TIPADOS
+const destinations = await loadQuery<SanityDestination[]>({
+  query: `*[_type == "destination"]
+  {name, "country":country->name, price,
+  description,
+  "imgSrc": image.asset->url
+  }
+  `,
+});
+const { data } = destinations;
+console.log("🚀 ~ country:", destinations);
+---
+
+<section id="content" class="w-full py-10 mb-10">
+  <div class="container mt-[60px] flex flex-col justify-center items-center">
+    <h2 class="h2 mb-10">Destacados</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {data.map((d: Props) => <ProductCard {...d} />)}
+      <!-- {
+        data.map((d) => (
+          <img src={urlForImage(d.imageUrl)} width="200" height="150" />
+        ))
+      } -->
+    </div>
+  </div>
+</section>

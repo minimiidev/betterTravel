@@ -1,0 +1,105 @@
+---
+// import { SlideShow } from "@/components";
+// import "swiper/css";
+// import "swiper/css/pagination";
+
+// import { beachBg } from "@/assets/videos";
+// import Icon from "astro-iconify";
+---
+
+<section
+  id="#home"
+  class="w-full h-screen relative flex items-center justify-center m-auto"
+>
+  <div
+    class="bg-[rgb(47,106,127)] w-full absolute top-0 bottom-0 mix-blend-hard-light z-[1]"
+  >
+  </div>
+
+  <!-- <video
+    src={beachBg}
+    autoplay
+    loop
+    muted
+    class="w-full absolute h-full top-0 bottom-0 object-cover"></video> -->
+
+  <div
+    class="text-white h-max w-full container flex flex-col gap-y-12 items-stretch justify-center m-auto
+    z-50"
+  >
+    <article class="py-8">
+      <span class="text-sm uppercase">Nuestros Paquetes</span>
+      <h1 class="h2 w-full inline-block">Planea tus Vacaciones</h1>
+
+      <div class="mt-10">
+        <form
+          action=""
+          class="relative h-[320px] lg:h-max pb-10 flex flex-col lg:flex-row lg:justify-around w-full items-start justify-start bg-white p-4 rounded-md shadow-md"
+        >
+          <div>
+            <label for="city">Busca tu destino: </label>
+            <div>
+              <input
+                type="text"
+                name="city"
+                id="city"
+                placeholder="Escribe la ciudad"
+              />
+              <!-- 
+              <Icon
+                name="material-symbols:location-on-outline"
+                size="32px"
+                class="mr-2"
+              /> -->
+            </div>
+          </div>
+          <div>
+            <label for="date">Selecciona la fecha: </label>
+
+            <div>
+              <input type="date" name="date" id="date" />
+            </div>
+          </div>
+          <div>
+            <label for="price">Precio Maximo: </label>
+
+            <div>
+              <input type="text" name="price" id="price" placeholder="$10000" />
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="px-5 inset-x-0 m-auto absolute -bottom-6 shadow-md tracking-wide rounded-xl mt-5 py-3 bg-sky-500 flex items-center justify-center w-[140px] gap-2"
+          >
+            Buscar
+            <!-- <Icon name="mdi:filter-outline" size="24px" /> -->
+          </button>
+        </form>
+      </div>
+    </article>
+  </div>
+
+  <!-- <div class="container flex-col mt-[50px] flex items-center justify-center">
+    <article class="mb-20">
+      <h1 class="h1 font-poppins">Better Travel</h1>
+      <h3 class="h3">Tu agencia de viajes</h3>
+    </article> -->
+
+  <!-- Slider main container -->
+  <!-- <SlideShow /> -->
+</section>
+
+<style>
+  form div div {
+    @apply flex lg:w-[320px] rounded-xl  items-center justify-center  w-full bg-sky-500;
+  }
+  form label {
+    @apply text-gray-500 py-2  block;
+  }
+  input {
+    @apply px-4 text-sm py-3 border-none w-full flex-1 text-black bg-transparent outline-none;
+  }
+  input::placeholder {
+    @apply text-black;
+  }
+</style>
