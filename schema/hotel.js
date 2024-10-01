@@ -1,7 +1,7 @@
 
 
 export default {
-    name: 'hotels',
+    name: 'hotel',
     title: 'Hotel',
     type: 'document',
     fields: [

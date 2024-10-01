@@ -1,8 +1,8 @@
 
 
 export default {
-    name: 'tours',
-    title: 'Tours',
+    name: 'tour',
+    title: 'Tour',
     type: 'document',
     fields: [
         {
