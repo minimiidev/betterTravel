@@ -9,10 +9,9 @@ const { slug } = Astro.params;
 // console.log("🚀 ~ slug:", modSlug);
 
 const destino = await loadQuery<Destination>({
-  query: `*[_type == "destination" && slug.current == "${slug}"][0]
+  query: `*[_type == "hotels" && slug.current == "${slug}"][0]
   {name,
   "slug" : slug.current,
-  "country": country->name,
   price,
   description,
   "imgSrc": image.asset->url
@@ -28,11 +27,11 @@ const { country, description, imgSrc, name, price } = data;
 <Layout title={`Viaja por ${name}`}>
   <section class="mt-24 text-black">
     <div class="container">
-      <button onclick="history.back()" class="opacity-70 mb-2 pb-3"
+      <button onclick="history.back()" class="pb-3 mb-2 opacity-70"
         >{`<--- Volver atras`}</button
       >
-      <div class="w-full h-96 overflow-hidden">
-        <img src={imgSrc} class="w-full h-full rounded-3xl object-contain" />
+      <div class="w-full overflow-hidden h-96">
+        <img src={imgSrc} class="object-contain w-full h-full rounded-3xl" />
       </div>
       <article>
         <div class="flex items-center justify-between mt-2">

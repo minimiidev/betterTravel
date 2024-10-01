@@ -1,11 +1,13 @@
+
+
 export default {
-    name: 'destination',
-    title: 'Destination',
+    name: 'tours',
+    title: 'Tours',
     type: 'document',
     fields: [
         {
             name: 'name',
-            title: 'Name',
+            title: 'Nombre',
             type: 'string'
         }, {
             name: 'slug',
@@ -23,26 +25,51 @@ export default {
         },
         {
             name: 'country',
-            title: 'Country',
+            title: 'Pais',
             type: 'reference',
             to: [{ type: 'country' }],
             description: 'Select the country where the destination is located'
         },
         {
             name: 'image',
-            title: 'Image',
+            title: 'Imagen',
             type: 'image'
         },
         {
             name: 'description',
-            title: 'Description',
+            title: 'Descripcion',
             type: 'text'
         },
         {
             name: 'price',
-            title: 'Price',
+            title: 'Precio',
             type: 'number',
-            description: 'Cost of the trip in USD'
+            description: 'Coste'
+        },
+        {
+            name: 'currency',
+            title: 'Moneda',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'DOP', value: 'DOP' },
+                    { title: 'USD', value: 'USD' },
+                    { title: 'EUR', value: 'EUR' },
+                ],
+            },
+            validation: Rule => Rule.required(),
+        }
+        , {
+            name: "initialDate",
+            title: "Fecha Inicial",
+            type: "date",
+            description: "Fecha de inicio"
+        }
+        , {
+            name: "finalDate",
+            title: "Fecha Final",
+            type: "date",
+            description: "Fecha de regreso"
         }
     ]
 };

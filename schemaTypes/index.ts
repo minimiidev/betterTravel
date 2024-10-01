@@ -1,4 +1,6 @@
 import country from "./country";
-import destination from "./destination";
+import hotels from "./hotels";
+import resort from "./resort";
+import tour from "./tour";
 
-export const schemaTypes = [country, destination];
+export const schemaTypes = [resort, hotels, tour, country];

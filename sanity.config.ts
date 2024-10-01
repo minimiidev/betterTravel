@@ -7,7 +7,7 @@ export default defineConfig({
   name: "default",
   title: "betterTravel-Sanity-Studio",
 
-  projectId: "zk4cfpzd",
+  projectId: "oajovp2j",
   dataset: "production",
 
   plugins: [structureTool(), visionTool()],

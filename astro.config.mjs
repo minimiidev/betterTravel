@@ -13,10 +13,10 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   integrations: [sanity(
     {
-      projectId: 'zk4cfpzd',
+      projectId: 'oajovp2j',
       dataset: 'production',
       // Set useCdn to false if you're building statically.
-      useCdn: false,
+      useCdn: true, // VER???
       studioBasePath: "/admin"
     }
   ), react(), tailwind()],

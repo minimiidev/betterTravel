@@ -1,0 +1,28 @@
+---
+import { loadQuery } from "@/lib/loadQuery";
+import ResortCard from "../products/ResortCard.astro";
+import type Destinations from "@/inferfaces/Destinations";
+
+const hotels = await loadQuery<Destinations[]>({
+  query: `*[_type == "resort"]
+  {name,
+  "slug": slug.current,
+  location,
+  price,
+  currency,
+  "imgSrc": image.asset->url,
+  }
+  `,
+});
+const { data } = hotels;
+console.log("🚀 ~ data:", data);
+---
+
+<section id="content" class="w-full py-10 mb-10 text-black">
+  <div class="container mt-[60px] flex flex-col justify-center items-center">
+    <h2 class="mb-10 h2">Hoteles en Ofertas</h2>
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+      {data.map((d) => <ResortCard {...d} />)}
+    </div>
+  </div>
+</section>

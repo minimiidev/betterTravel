@@ -10,11 +10,25 @@ interface Props {
   slug: string;
   country: string;
   price: number;
+  currency: string;
+  initialDate?: string;
+  finalDate?: string;
   grade?: string;
   description: string;
 }
 
-const { name, slug, grade, imgSrc, country, price, description } = Astro.props;
+const {
+  name,
+  currency,
+  finalDate,
+  initialDate,
+  slug,
+  grade,
+  imgSrc,
+  country,
+  price,
+  description,
+} = Astro.props;
 ---
 
 <article
