@@ -1,29 +1,30 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+// import Layout from "@/layouts/Layout.astro";
 
-import type Destination from "@/inferfaces/Destination";
-import { loadQuery } from "@/lib/loadQuery";
+// import type Destination from "@/inferfaces/Destination";
+// import { loadQuery } from "@/lib/loadQuery";
 
-const { slug } = Astro.params;
+// const { slug } = Astro.params;
 // const modSlug = slug?.toLocaleLowerCase().replace(/\s+/g, "-");
 // console.log("🚀 ~ slug:", modSlug);
 
-const destino = await loadQuery<Destination>({
-  query: `*[_type == "hotels" && slug.current == "${slug}"][0]
-  {name,
-  "slug" : slug.current,
-  price,
-  description,
-  "imgSrc": image.asset->url
-  }
-  `,
-});
+// const destino = await loadQuery<Destination>({
+//   query: `*[_type == "hotels" && slug.current == "${slug}"][0]
+//   {name,
+//   "slug" : slug.current,
+//   price,
+//   description,
+//   "imgSrc": image.asset->url
+//   }
+//   `,
+// });
 
-const { data } = destino;
-console.log("🚀 ~ data:", data);
-const { country, description, imgSrc, name, price } = data;
+// const { data } = destino;
+// console.log("🚀 ~ data:", data);
+// const { country, description, imgSrc, name, price } = data;
 ---
 
+<!-- 
 <Layout title={`Viaja por ${name}`}>
   <section class="mt-24 text-black">
     <div class="container">
@@ -44,4 +45,4 @@ const { country, description, imgSrc, name, price } = data;
       </article>
     </div>
   </section>
-</Layout>
+</Layout> -->

@@ -18,8 +18,8 @@ const { data } = hotels;
 console.log("🚀 ~ data:", data);
 ---
 
-<section id="content" class="w-full py-10 mb-10 text-black">
-  <div class="container mt-[60px] flex flex-col justify-center items-center">
+<section id="content" class="w-full text-black py-16">
+  <div class="container flex flex-col justify-center items-center">
     <h2 class="mb-10 h2">Hoteles en Ofertas</h2>
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
       {data.map((d) => <ResortCard {...d} />)}

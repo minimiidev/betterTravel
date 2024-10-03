@@ -1,26 +1,27 @@
 ---
-import ProductCard from "@/components/products/ProductCard.astro";
+// import ProductCard from "@/components/products/ProductCard.astro";
 
-import type Destination from "@/inferfaces/Destination";
-import Layout from "@/layouts/Layout.astro";
-import { loadQuery } from "@/lib/loadQuery";
+// import type Destination from "@/inferfaces/Destination";
+// import Layout from "@/layouts/Layout.astro";
+// import { loadQuery } from "@/lib/loadQuery";
 
-const destinations = await loadQuery<Destination[]>({
-  query: `*[_type == "destination"]
-  {name,
-  "slug": slug.current,
-  "country": country->name,
-  price,
-  description,
-  "imgSrc": image.asset->url
-  }
-  `,
-});
-const { data } = destinations;
+// const destinations = await loadQuery<Destination[]>({
+//   query: `*[_type == "destination"]
+//   {name,
+//   "slug": slug.current,
+//   "country": country->name,
+//   price,
+//   description,
+//   "imgSrc": image.asset->url
+//   }
+//   `,
+// });
+// const { data } = destinations;
 
-export const prerender = true;
+// export const prerender = true;
 ---
 
+<!-- 
 <Layout title="Todos los destinos">
   <section id="content" class="w-full py-10 mb-10 text-black">
     <div class="container mt-[60px] flex flex-col justify-center items-center">
@@ -30,4 +31,4 @@ export const prerender = true;
       </div>
     </div>
   </section>
-</Layout>
+</Layout> -->
