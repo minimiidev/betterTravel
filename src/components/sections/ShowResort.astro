@@ -1,0 +1,13 @@
+---
+import { getResorts, getPosts } from "@/utils/sanity";
+
+const resorts = await getResorts();
+console.log("🚀 ~ resorts:", resorts);
+---
+
+<section id="content" class="w-full text-black py-16">
+  <div class="container flex flex-col justify-center items-center">
+    <h2 class="mb-10 h2">Hoteles en Ofertas</h2>
+    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3"></div>
+  </div>
+</section>
