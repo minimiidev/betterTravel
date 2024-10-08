@@ -1,0 +1,23 @@
+---
+import ResortCard from "@/components/products/ResortCard.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getResortsAll } from "@/utils/sanity";
+
+const resorts = await getResortsAll();
+
+// todo: agregar nombre de la empresa para todas las paginas
+const { description } = Astro.props;
+---
+
+<Layout title=`Todos los Hoteles | ${description}`>
+  <section id="" class="w-full text-black py-16 mt-[50px]">
+    <div class="container flex flex-col items-center justify-center w-full">
+      <h2 class="mb-6 h1">Todos los Resorts</h2>
+      <div
+        class="grid grid-cols-1 place-items-center gap-12 w-full px-5 md:grid-cols-2"
+      >
+        {resorts.map((d) => <ResortCard {...d} />)}
+      </div>
+    </div>
+  </section>
+</Layout>

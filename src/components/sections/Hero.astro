@@ -4,18 +4,20 @@
 
 // import { beachBg } from "@/assets/videos";
 import Icon from "astro-iconify";
-import SlideShow from "../shared/SlideShow.astro";
+// import SlideShow from "../shared/SlideShow.astro";
 ---
 
 <section
   id="#home"
   class="w-full relative flex pt-20 pb-10 items-center justify-center m-auto"
 >
+  <!-- Filtro -->
   <div
     class="bg-[rgb(47,106,127)] w-full absolute top-0 bottom-0 mix-blend-hard-light z-[1]"
   >
   </div>
 
+  <!-- Video de fondo -->
   <!-- <video
     src={beachBg}
     autoplay
@@ -23,70 +25,66 @@ import SlideShow from "../shared/SlideShow.astro";
     muted
     class="w-full absolute h-full top-0 bottom-0 object-cover"></video> -->
 
+  <!-- Hero -->
   <div
-    class="text-white h-max w-full container flex flex-col gap-y-12 items-stretch justify-center m-auto
+    class="text-white py-10 gap-8 h-max w-full container flex flex-col items-stretch justify-center m-auto
     z-50"
   >
-    <article class="py-8">
+    <!-- Header -->
+    <article class="">
       <span class="text-sm uppercase">Nuestros Paquetes</span>
       <h1
         class="md:text-5xl font-poppins text-4xl font-bold tracking-wide w-full"
       >
         Planea tus Vacaciones
       </h1>
+    </article>
+    <!-- Form -->
+    <article class="">
+      <form
+        action=""
+        class="relative lg:h-max pb-10 flex flex-col md:flex-row md:justify-between lg:flex-row lg:justify-around w-full items-start [&>div]:w-full gap-4 justify-start bg-white p-4 rounded-md shadow-md"
+      >
+        <div>
+          <label for="option">Selecciona tu destino: </label>
+          <div>
+            <select name="option" id="option" class="text-black bg-inherit">
+              <option value="resort" selected>Resort</option>
+              <option value="hotel">Hotel</option>
+              <option value="tour">Tour</option>
+              <option value="hotel">Hotel</option>
+              <option value="hotel">Hotel</option>
+            </select>
 
-      <div class="mt-10">
-        <form
-          action=""
-          class="relative lg:h-max pb-10 flex flex-col md:flex-row md:justify-between lg:flex-row lg:justify-around w-full items-start [&>div]:w-full gap-4 justify-start bg-white p-4 rounded-md shadow-md"
+            <Icon
+              name="material-symbols:location-on-outline"
+              size="32px"
+              class="mr-2"
+            />
+          </div>
+        </div>
+        <div>
+          <label for="date">Selecciona la fecha: </label>
+
+          <div>
+            <input type="date" name="date" id="date" />
+          </div>
+        </div>
+        <div>
+          <label for="price">Precio Maximo: </label>
+
+          <div>
+            <input type="text" name="price" id="price" placeholder="$10000" />
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="px-5 font-bold inset-x-0 m-auto absolute -bottom-6 shadow-md tracking-wide rounded-xl mt-5 py-3 bg-sky-500 flex items-center justify-center w-[140px] gap-2"
         >
-          <div>
-            <label for="city">Selecciona tu destino: </label>
-            <div>
-              <select name="city" id="city" class="text-black bg-inherit">
-                <option value="hotel">Hotel</option>
-                <option value="hotel">Hotel</option>
-                <option value="hotel">Hotel</option>
-                <option value="hotel">Hotel</option>
-                <option value="hotel">Hotel</option>
-              </select>
-              <!-- <input
-                type="text"
-                name="city"
-                id="city"
-                placeholder="Tour, Resort u Hotel"
-              /> -->
-
-              <!-- <Icon
-                name="material-symbols:location-on-outline"
-                size="32px"
-                class="mr-2"
-              /> -->
-            </div>
-          </div>
-          <div>
-            <label for="date">Selecciona la fecha: </label>
-
-            <div>
-              <input type="date" name="date" id="date" />
-            </div>
-          </div>
-          <div>
-            <label for="price">Precio Maximo: </label>
-
-            <div>
-              <input type="text" name="price" id="price" placeholder="$10000" />
-            </div>
-          </div>
-          <button
-            type="submit"
-            class="px-5 font-bold inset-x-0 m-auto absolute -bottom-6 shadow-md tracking-wide rounded-xl mt-5 py-3 bg-sky-500 flex items-center justify-center w-[140px] gap-2"
-          >
-            Buscar
-            <Icon name="mdi:search" size="24px" class="tracking-wide" />
-          </button>
-        </form>
-      </div>
+          Buscar
+          <Icon name="mdi:search" size="24px" class="tracking-wide" />
+        </button>
+      </form>
     </article>
   </div>
 

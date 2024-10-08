@@ -1,0 +1,19 @@
+---
+import type { Props as $, ListItem } from "astro-portabletext/types";
+import { ListItem as DefaultListItem } from "astro-portabletext/components";
+
+export type Props = $<ListItem>;
+
+const props = Astro.props;
+const listItemIs = (listItem: string) => listItem === props.node.listItem;
+
+const Cmp = DefaultListItem;
+---
+
+<Cmp {...props}><slot /></Cmp>
+
+<style>
+  li {
+    @apply text-sm list-disc ml-5 mb-1;
+  }
+</style>

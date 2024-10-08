@@ -1,0 +1,122 @@
+---
+// export const prerender = true;
+---
+
+<form class="">
+  <div>
+    <label for="checkIn">Check In</label>
+    <input
+      type="date"
+      name="checkIn"
+      id="checkIn"
+      class="flatpickrCheckIn"
+      required
+    />
+  </div>
+  <div>
+    <label for="checkOut">Check Out</label>
+    <input
+      type="date"
+      name="checkOut"
+      id="checkOut"
+      class="flatpickrCheckOut"
+      required
+    />
+  </div>
+  <div>
+    <label for="adults">Adultos</label>
+    <select name="adults" id="adults" required>
+      <option value="1">1</option>
+      <option value="2" selected>2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+    </select>
+  </div>
+  <div>
+    <label for="kids">Ninos</label>
+    <select name="kids" id="kids" required>
+      <option value="0" selected>0</option>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+    </select>
+  </div>
+
+  <button type="submit">Reservar</button>
+</form>
+
+<style>
+  form {
+    @apply grid gap-4 grid-cols-2 justify-items-stretch py-10 border;
+
+    & div {
+      @apply border border-red-500 flex flex-col items-start justify-between rounded-sm;
+
+      & label {
+        @apply py-2 rounded-sm font-medium;
+      }
+
+      & input[type="date"] {
+        @apply px-5 py-2 min-w-full rounded-sm  cursor-pointer;
+      }
+
+      & select {
+        @apply px-5 py-2 rounded-sm cursor-pointer;
+      }
+    }
+
+    & button[type="submit"] {
+      @apply bg-blue-500 w-[200px] font-bold text-white px-5 py-2 rounded-sm
+      hover:bg-blue-700 mt-5 mx-auto col-span-2;
+    }
+  }
+
+  /* Cambiar el color de fondo del calendario */
+  /* .flatpickr-calendar {
+    width: 100%;
+    height: 48px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  } */
+</style>
+
+<script>
+  import flatpickr from "flatpickr";
+
+  flatpickr(".flatpickrCheckIn", {
+    dateFormat: "d-m-Y", // Formato de fecha
+    locale: "es", // Cambia a español
+    defaultDate: new Date(),
+    minDate: new Date(),
+  });
+
+  flatpickr(".flatpickrCheckOut", {
+    dateFormat: "d-m-Y", // Formato de fecha
+    locale: "es", // Cambia a español
+    defaultDate: new Date(),
+  });
+
+  // const today = new Date().toISOString().split("T")[0];
+  // document.getElementById("checkIn").value = today;
+
+  // function validateDates() {
+  //   const checkIn = document.getElementById("checkIn");
+  //   const checkOut = document.getElementById("checkOut");
+
+  //   if (checkIn && checkOut && checkIn > checkOut) {
+  //     alert("La fecha de Check Out debe ser posterior a la fecha de Check In.");
+  //     return false; // Evitar el envío del formulario
+  //   }
+  //   return true; // Permitir el envío del formulario
+  // }
+</script>

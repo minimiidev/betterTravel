@@ -4,16 +4,16 @@ export const links = [
     path: "/",
   },
   {
-    text: "Destinos",
-    path: "/destinos",
+    text: "Resorts",
+    path: "/resorts",
   },
   {
     text: "Hoteles",
-    path: "#",
+    path: "/hoteles",
   },
   {
-    text: "Resorts",
-    path: "#",
+    text: "Destinos",
+    path: "/destinos",
   },
 ];
 

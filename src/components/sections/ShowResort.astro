@@ -1,13 +1,17 @@
 ---
-import { getResorts, getPosts } from "@/utils/sanity";
+// import { loadQuery } from "@/utils/loadQuery";
+import { getResorts } from "@/utils/sanity";
+import ResortCard from "../products/ResortCard.astro";
 
 const resorts = await getResorts();
-console.log("🚀 ~ resorts:", resorts);
+// console.log("🚀 ~ resorts:", resorts);
 ---
 
-<section id="content" class="w-full text-black py-16">
-  <div class="container flex flex-col justify-center items-center">
-    <h2 class="mb-10 h2">Hoteles en Ofertas</h2>
-    <div class="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3"></div>
+<section id="content" class="w-full py-16 text-black">
+  <div class="container flex flex-col items-center justify-center">
+    <h2 class="mb-10 h2">Resorts en Ofertas</h2>
+    <div class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
+      {resorts.map((d) => <ResortCard {...d} />)}
+    </div>
   </div>
 </section>

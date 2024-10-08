@@ -3,15 +3,16 @@ import { links } from "@/data";
 import Icon from "astro-iconify";
 import ButtonCTA from "../shared/ButtonCTA.astro";
 
-export const prerender = true;
+// export const prerender = true;
 ---
 
 <nav
-  class="w-full z-30 flex items-center py-4 justify-center bg-transparent fixed top-0 right-0 shadow-md transition-all duration-300 ease-in-out"
+  transition:persist
+  class="fixed top-0 right-0 z-30 flex items-center justify-center w-full py-4 transition-all duration-300 ease-in-out bg-transparent shadow-md"
 >
   <div class="container flex items-center justify-between">
-    <h1 class="h2">Travel.</h1>
-    <ul class="hidden md:flex items-center h-full justify-center">
+    <a href={`/`} class="h2">Travel.</a>
+    <ul class="items-center justify-center hidden h-full md:flex">
       {
         links.map((link) => (
           <li class="font-medium">
@@ -27,16 +28,19 @@ export const prerender = true;
         >Contactanos</ButtonCTA
       >
     </div>
-    <div id="menuBtn" class="z-50 pointer block lg:hidden">
-      <!-- <Icon name="mage:dots-menu" size="48px" class="text-blue-500" /> -->
+    <div id="menuBtn" class="z-50 block pointer lg:hidden">
+      <Icon name="mage:dots-menu" size="48px" class="text-blue-500" />
     </div>
   </div>
 </nav>
 
 <script>
   import { isMenuOpen } from "@/stores";
+
   const nav = document.querySelector("nav") as Element;
   const menuBtn = document.querySelector("#menuBtn") as HTMLButtonElement;
+
+  // Manejo y escucha de estados
   menuBtn.addEventListener("click", () => {
     isMenuOpen.set(!isMenuOpen.value);
     isMenuOpen.subscribe((open) => {

@@ -1,14 +1,13 @@
 ---
-// import { ButtonCTA } from "@/components";
+import ButtonCTA from "@/components/shared/ButtonCTA.astro";
 import { links } from "@/data";
 import Icon from "astro-iconify";
-
-export const prerender = true;
 ---
 
 <div
+  transition:persist
   id="sideMenu"
-  class="transition-all duration-300 ease-in-out top-[2000px] fixed w-full h-full z-[100] opacity-0"
+  class="transition-all text-black duration-300 ease-in-out top-[2000px] fixed w-full h-full z-[100] opacity-0"
 >
   <div id="sideMenuBg" class="w-full h-full">
     <ul
@@ -22,7 +21,7 @@ export const prerender = true;
       />
       {
         links.map((link) => (
-          <li class="font-medium ">
+          <li class="font-medium">
             <a
               href={link.path}
               class="px-5 min-w-[150px] text-center py-3 block hover:bg-sky-500 "
@@ -32,10 +31,11 @@ export const prerender = true;
           </li>
         ))
       }
-      <!-- <ButtonCTA
-        class:list={`bg-gradient-to-r text-white from-blue-300 via-blue-500 to-blue-800 `}
+      <ButtonCTA
+        href={`/`}
+        class={`bg-gradient-to-r text-white from-blue-300 via-blue-500 to-blue-800 `}
         >Contactanos</ButtonCTA
-      > -->
+      >
     </ul>
   </div>
 </div>
@@ -45,7 +45,12 @@ export const prerender = true;
 
   const sideMenu = document.querySelector("#sideMenu") as Element;
   const closeBtn = document.querySelector("#closeBtn") as Element;
+  // const links = document.querySelectorAll("li");
 
+  // Al cargar la pagina, quita el menu
+  document.addEventListener("astro:page-load", () => isMenuOpen.set(false));
+
+  // Escucha y manejo de estado
   isMenuOpen.subscribe((open) => {
     if (open) {
       sideMenu.classList.remove("top-[2000px]", "opacity-0");
@@ -56,5 +61,10 @@ export const prerender = true;
     }
   });
 
+  // Cerrar a la X
   closeBtn.addEventListener("click", () => isMenuOpen.set(!isMenuOpen.value));
+
+  // links.forEach((link) => {
+  //   link.addEventListener("click", () => isMenuOpen.set(!isMenuOpen.value));
+  // });
 </script>

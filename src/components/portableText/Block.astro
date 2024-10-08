@@ -1,0 +1,34 @@
+---
+import type { Props as $, Block } from "astro-portabletext/types";
+import { Block as DefaultBlock } from "astro-portabletext/components";
+
+export type Props = $<Block>;
+
+const props = Astro.props;
+const styleIs = (style: string) => style === props.node.style;
+const Cmp = DefaultBlock;
+---
+
+<Cmp {...props}><slot /></Cmp>
+
+<style>
+  h1 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold tracking-wide font-poppins;
+  }
+  h2 {
+    @apply lg:text-3xl md:text-2xl text-xl font-bold tracking-wide font-poppins mb-5;
+  }
+  h3 {
+    @apply lg:text-2xl md:text-xl text-base font-bold tracking-wide font-poppins my-3;
+  }
+  p,
+  span {
+    @apply text-sm md:text-base;
+  }
+  blockquote {
+    border-left: 0.5rem solid #ccc;
+    margin-left: 0;
+    margin-right: 2rem;
+    padding-left: 2rem;
+  }
+</style>

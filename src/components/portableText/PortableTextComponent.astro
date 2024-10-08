@@ -1,0 +1,21 @@
+---
+import { PortableText } from "astro-portabletext";
+import { Block, List, ListItem, Mark } from "./index";
+import { mergeComponents } from "astro-portabletext/utils";
+
+const defaultComponents = {
+  block: Block,
+  list: List,
+  listItem: ListItem,
+  mark: Mark,
+};
+// console.log("🚀 ~ defaultComponents:", defaultComponents);
+const { value, components = {} } = Astro.props;
+
+const portableTextProps = {
+  value: value,
+  components: mergeComponents(defaultComponents, components),
+};
+---
+
+<PortableText {...portableTextProps} />
