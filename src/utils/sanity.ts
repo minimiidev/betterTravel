@@ -19,8 +19,9 @@ export async function getResortsAll(): Promise<Destinations[]> {
 
 export async function getResorts(): Promise<Destinations[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "resort" ][0...6]
+    groq`*[_type == "resort" ][0...6]  | order(_updatedAt desc)
   {
+    _updatedAt,
     name,
     "slug": slug.current ,
     location,

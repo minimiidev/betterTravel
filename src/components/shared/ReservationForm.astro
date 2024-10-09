@@ -9,7 +9,7 @@
       type="date"
       name="checkIn"
       id="checkIn"
-      class="flatpickrCheckIn"
+      class="flatpickrCheckIn flatpickr"
       required
     />
   </div>
@@ -19,7 +19,7 @@
       type="date"
       name="checkOut"
       id="checkOut"
-      class="flatpickrCheckOut"
+      class="flatpickrCheckOut flatpickr"
       required
     />
   </div>
@@ -38,8 +38,8 @@
   </div>
   <div>
     <label for="kids">Ninos</label>
-    <select name="kids" id="kids" required>
-      <option value="0" selected>0</option>
+    <select name="kids" id="kids">
+      <option value="0">0</option>
       <option value="1">1</option>
       <option value="2">2</option>
       <option value="3">3</option>
@@ -56,54 +56,55 @@
 
 <style>
   form {
-    @apply grid gap-4 grid-cols-2 justify-items-stretch py-10 border;
+    @apply grid grid-cols-1 place-content-stretch place-items-center gap-4 py-10 md:grid-cols-2	 lg:grid-cols-5;
 
     & div {
-      @apply border border-red-500 flex flex-col items-start justify-between rounded-sm;
+      @apply flex w-full flex-col items-start justify-between rounded-sm;
 
       & label {
         @apply py-2 rounded-sm font-medium;
       }
 
       & input[type="date"] {
-        @apply px-5 py-2 min-w-full rounded-sm  cursor-pointer;
+        @apply min-w-full cursor-pointer rounded-sm px-5 py-2  lg:min-w-[300px];
+      }
+
+      & .flatpickr {
+        @apply w-full px-5 py-3;
       }
 
       & select {
-        @apply px-5 py-2 rounded-sm cursor-pointer;
+        @apply cursor-pointer rounded-sm px-5 py-3;
       }
     }
 
     & button[type="submit"] {
-      @apply bg-blue-500 w-[200px] font-bold text-white px-5 py-2 rounded-sm
-      hover:bg-blue-700 mt-5 mx-auto col-span-2;
+      @apply mx-auto mt-5 w-[200px] rounded-sm bg-blue-500 px-5 py-3
+      font-bold text-white hover:bg-blue-700;
     }
   }
-
-  /* Cambiar el color de fondo del calendario */
-  /* .flatpickr-calendar {
-    width: 100%;
-    height: 48px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-  } */
 </style>
 
 <script>
   import flatpickr from "flatpickr";
 
+  //  CALENDARIO
+  const today = new Date();
+  const twoDaysLater = new Date();
+  twoDaysLater.setDate(today.getDate() + 2);
+
   flatpickr(".flatpickrCheckIn", {
     dateFormat: "d-m-Y", // Formato de fecha
-    locale: "es", // Cambia a español
-    defaultDate: new Date(),
-    minDate: new Date(),
+    //locale: "es", // Cambia a español
+    defaultDate: today,
+    minDate: today,
   });
 
   flatpickr(".flatpickrCheckOut", {
     dateFormat: "d-m-Y", // Formato de fecha
-    locale: "es", // Cambia a español
-    defaultDate: new Date(),
+    //locale: "es", // Cambia a español
+    defaultDate: twoDaysLater,
+    minDate: twoDaysLater,
   });
 
   // const today = new Date().toISOString().split("T")[0];
@@ -119,4 +120,31 @@
   //   }
   //   return true; // Permitir el envío del formulario
   // }
+
+  //  FORMULARIO
+  const form = document.querySelector("form") as HTMLFormElement;
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const checkIn = (document.getElementById("checkIn") as HTMLInputElement)
+      .value;
+    const checkOut = (document.getElementById("checkOut") as HTMLInputElement)
+      .value;
+    const adults = (document.getElementById("adults") as HTMLInputElement)
+      .value;
+    const kids = (document.getElementById("kids") as HTMLInputElement).value;
+
+    const {} = await action.
+
+    // if (checkIn === null || checkOut === null) {
+    //   alert("Debe seleccionar la fecha correctamente");
+    // }
+
+    // if (checkIn >= checkOut) {
+    //   alert("La fecha de CheckOut no puede ser anterior a la de CheckIn");
+    // }
+
+
+  });
 </script>
