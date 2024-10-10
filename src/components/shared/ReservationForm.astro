@@ -86,6 +86,7 @@
 </style>
 
 <script>
+  import { actions } from "astro:actions";
   import flatpickr from "flatpickr";
 
   //  CALENDARIO
@@ -124,7 +125,7 @@
   //  FORMULARIO
   const form = document.querySelector("form") as HTMLFormElement;
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const checkIn = (document.getElementById("checkIn") as HTMLInputElement)
@@ -135,16 +136,23 @@
       .value;
     const kids = (document.getElementById("kids") as HTMLInputElement).value;
 
-    const {} = await action.
+    if (!checkIn || !checkOut) {
+      alert("Debe seleccionar la fecha correctamente");
+      return;
+    }
+    // Validar que checkOut es posterior a checkIn
+    if (checkIn >= checkOut) {
+      alert("La fecha de CheckOut no puede ser anterior a la de CheckIn");
+      return;
+    }
 
-    // if (checkIn === null || checkOut === null) {
-    //   alert("Debe seleccionar la fecha correctamente");
-    // }
-
-    // if (checkIn >= checkOut) {
-    //   alert("La fecha de CheckOut no puede ser anterior a la de CheckIn");
-    // }
-
-
+    // TODO MOSTRAR ERRORES
+    try {
+      const formData = new FormData(form);
+      const { data, error } = await actions.getReservationDetails(formData);
+      console.log("🚀 ~ form.addEventListener ~ data:", data);
+    } catch (data) {
+      alert(data);
+    }
   });
 </script>
