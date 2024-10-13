@@ -3,7 +3,7 @@
 import "flatpickr/dist/flatpickr.min.css";
 ---
 
-<form class="">
+<form class="" transition:persist>
   <div>
     <label for="checkIn">Check In</label>
     <input
@@ -91,7 +91,7 @@ import "flatpickr/dist/flatpickr.min.css";
   import flatpickr from "flatpickr";
 
   //  CALENDARIO
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("astro:page-load", function () {
     const today = new Date();
     const twoDaysLater = new Date();
     twoDaysLater.setDate(today.getDate() + 2);
