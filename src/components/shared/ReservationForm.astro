@@ -1,5 +1,6 @@
 ---
 // export const prerender = true;
+import "flatpickr/dist/flatpickr.min.css";
 ---
 
 <form class="">
@@ -90,24 +91,25 @@
   import flatpickr from "flatpickr";
 
   //  CALENDARIO
-  const today = new Date();
-  const twoDaysLater = new Date();
-  twoDaysLater.setDate(today.getDate() + 2);
+  document.addEventListener("DOMContentLoaded", function () {
+    const today = new Date();
+    const twoDaysLater = new Date();
+    twoDaysLater.setDate(today.getDate() + 2);
 
-  flatpickr(".flatpickrCheckIn", {
-    dateFormat: "d-m-Y", // Formato de fecha
-    //locale: "es", // Cambia a español
-    defaultDate: today,
-    minDate: today,
+    flatpickr(".flatpickrCheckIn", {
+      dateFormat: "d-m-Y", // Formato de fecha
+      //locale: "es", // Cambia a español
+      defaultDate: today,
+      minDate: today,
+    });
+
+    flatpickr(".flatpickrCheckOut", {
+      dateFormat: "d-m-Y", // Formato de fecha
+      //locale: "es", // Cambia a español
+      defaultDate: twoDaysLater,
+      minDate: twoDaysLater,
+    });
   });
-
-  flatpickr(".flatpickrCheckOut", {
-    dateFormat: "d-m-Y", // Formato de fecha
-    //locale: "es", // Cambia a español
-    defaultDate: twoDaysLater,
-    minDate: twoDaysLater,
-  });
-
   // const today = new Date().toISOString().split("T")[0];
   // document.getElementById("checkIn").value = today;
 
