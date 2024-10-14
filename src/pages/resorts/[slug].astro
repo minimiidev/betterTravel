@@ -21,7 +21,7 @@ const {
 ---
 
 <Layout title={`Viaja por ${name}`}>
-  <section class="mt-24 text-black py-10 w-full">
+  <section class="w-full pt-24 pb-10 text-black">
     <div class="container">
       <button onclick="history.back()" class="pb-3 mb-2 opacity-70"
         >{`<--- Volver atras`}</button
@@ -30,9 +30,9 @@ const {
         <img src={imgSrc} class="object-cover w-full h-full rounded-xl" />
       </div>
       <article>
-        <div class="flex items-center flex-col justify-between my-5">
+        <div class="flex flex-col items-center justify-between my-5">
           <h1 class="h1">{name}</h1>
-          <div class="w-full flex items-center justify-between py-2">
+          <div class="flex items-center justify-between w-full py-2">
             <a
               href={`/zona/${location.toLocaleLowerCase()}`}
               class="hover:underline">{location}</a
@@ -46,31 +46,28 @@ const {
               </span>
             </p>
           </div>
-          <div class="w-full flex items-center justify-between py-2">
+          <div class="flex items-center justify-between w-full py-2">
             <p>{ageKids}</p>
             <p class="font-bold text-center">
               <span class="opacity-70">
                 {currency}$
               </span>
-              <span class="text-red-500 text-2xl">
+              <span class="text-2xl text-red-500">
                 {priceKids}
               </span>
             </p>
           </div>
         </div>
 
-        <div class="w-full flex items-center justify-center mb-5">
-          <ButtonCTA
-            href={`/reservar/${slug}`}
-            class={`text-white bg-blue-500 text-xl`}
-          >
+        <div class="flex items-center justify-center w-full mb-5">
+          <ButtonCTA class={`text-white bg-blue-500 text-xl`}>
             Reservar</ButtonCTA
           >
         </div>
 
         <PortableTextComponent value={description} />
 
-        <ReservationForm />
+        <ReservationForm slug={slug} />
       </article>
     </div>
   </section>

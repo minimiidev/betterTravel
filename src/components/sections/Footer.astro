@@ -12,7 +12,7 @@ const {
 
 <section
   id="#home"
-  class="w-full h-screen relative flex items-center justify-center m-auto"
+  class="relative flex items-center justify-center w-full h-screen m-auto"
 >
   <div
     class="bg-[rgb(47,106,127)] w-full absolute top-0 bottom-0 mix-blend-hard-light z-[1]"
@@ -24,17 +24,16 @@ const {
     autoplay
     loop
     muted
-    class="w-full absolute h-full top-0 bottom-0 object-cover"></video> -->
+    class="absolute top-0 bottom-0 object-cover w-full h-full"></video> -->
 
-  <div class="h-max w-full container
-    z-50">
-    <article class="py-8 w-full flex flex-col items-center justify-center">
+  <div class="container z-50 w-full h-max">
+    <article class="flex flex-col items-center justify-center w-full py-8">
       <div class="flex flex-col items-start justify-center">
-        <span class="text-sm uppercase mb-1">Mantente en contacto</span>
-        <h1 class="h2 w-full inline-block mb-5">Viaja con nosotros</h1>
+        <span class="mb-1 text-sm uppercase">Mantente en contacto</span>
+        <h1 class="inline-block w-full mb-5 h2">Viaja con nosotros</h1>
         <form
           action=""
-          class="w-full mx-auto flex flex-col items-center justify-center"
+          class="flex flex-col items-center justify-center w-full mx-auto"
         >
           <input
             type="text"
@@ -53,11 +52,11 @@ const {
     <!-- <article
         class="flex flex-col items-start justify-center min-w-[350px] [&>a:hover]:underline [&>a:hover]:text-sky-500"
       >
-        <h3 class="h3 w-full mb-10 text-center">Informacion de Contacto</h3>
+        <h3 class="w-full mb-10 text-center h3">Informacion de Contacto</h3>
 
         <a
           href={`https://wa.me/${tel}`}
-          class="p flex items-center justify-center gap-2"
+          class="flex items-center justify-center gap-2 p"
         >
           <Icon name="fa-brands:whatsapp" size="32px" class="text-green-500" />
           Whatsapp: {tel}
@@ -65,7 +64,7 @@ const {
 
         <a
           href=`mailto:${email}`
-          class="p flex items-center justify-center gap-2"
+          class="flex items-center justify-center gap-2 p"
         >
           <Icon
             name="heroicons-outline:mail"
@@ -75,7 +74,7 @@ const {
           Escribenos: {email}
         </a>
         <div class="w-full mx-auto">
-          <h4 class="text-center w-full mb-5 text-2xl font-medium">
+          <h4 class="w-full mb-5 text-2xl font-medium text-center">
             Redes Sociales
           </h4>
           <div class="flex items-center justify-center gap-4">
@@ -116,7 +115,7 @@ const {
       <textarea name="description" id="description"></textarea>
       <button
         type="submit"
-        class="bg-green-500 mt-5 font-bold px-10 mx-auto py-2">Enviar</button
+        class="px-10 py-2 mx-auto mt-5 font-bold bg-green-500">Enviar</button
       >
     </form> -->
   </div>

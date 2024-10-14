@@ -1,5 +1,9 @@
 ---
 // export const prerender = true;
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
 ---
 
 <form class="" transition:persist>
@@ -109,21 +113,8 @@
       minDate: twoDaysLater,
     });
   });
-  // const today = new Date().toISOString().split("T")[0];
-  // document.getElementById("checkIn").value = today;
 
-  // function validateDates() {
-  //   const checkIn = document.getElementById("checkIn");
-  //   const checkOut = document.getElementById("checkOut");
-
-  //   if (checkIn && checkOut && checkIn > checkOut) {
-  //     alert("La fecha de Check Out debe ser posterior a la fecha de Check In.");
-  //     return false; // Evitar el envío del formulario
-  //   }
-  //   return true; // Permitir el envío del formulario
-  // }
-
-  //  FORMULARIO
+  //*  FORMULARIO
   const form = document.querySelector("form") as HTMLFormElement;
 
   form.addEventListener("submit", async (e) => {
@@ -133,9 +124,6 @@
       .value;
     const checkOut = (document.getElementById("checkOut") as HTMLInputElement)
       .value;
-    const adults = (document.getElementById("adults") as HTMLInputElement)
-      .value;
-    const kids = (document.getElementById("kids") as HTMLInputElement).value;
 
     if (!checkIn || !checkOut) {
       alert("Debe seleccionar la fecha correctamente");
@@ -152,8 +140,9 @@
       const formData = new FormData(form);
       const { data, error } = await actions.getReservationDetails(formData);
       console.log("🚀 ~ form.addEventListener ~ data:", data);
+      window.location.href = `/reservar/`;
     } catch (data) {
-      alert(data);
+      alert(`Erro: ${data}`);
     }
   });
 </script>

@@ -10,7 +10,7 @@ const { currentPage } = Astro.props;
 const url = Astro.url;
 ---
 
-<div class="flex justify-between items-center py-10w-full">
+<div class="flex items-center justify-between py-10w-full">
   <a href={`${url}`}>Anterior</a>
   <span>Pagina {currentPage} de {currentPage}</span>
 </div>
