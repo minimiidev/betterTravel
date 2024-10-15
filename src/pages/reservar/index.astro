@@ -1,25 +1,24 @@
 ---
+import BackButton from "@/components/shared/BackButton.astro";
 import Layout from "@/layouts/Layout.astro";
 import { Resend } from "resend";
 
 const cookies = Astro.cookies;
 const reservationCookie = cookies.get("reservation");
 
-if (!reservationCookie) {
-    return Astro.redirect("/");
-}
+// if (!reservationCookie) {
+//     return Astro.redirect("/");
+// }
 
-const reservation = JSON.parse(reservationCookie.value);
-const { name, checkIn, checkOut, adults, kids } = reservation;
+const reservation = JSON.parse(reservationCookie!.value);
+const { product, checkIn, checkOut, adults, kids } = reservation;
 ---
 
 <Layout title="Reservation">
     <section
         class="pt-[140px] w-full flex items-center justify-center flex-col"
     >
-        <button onclick="history.back()" class="pb-3 mb-10 opacity-70">
-            &larr; Volver
-        </button>
+        <BackButton />
         <h1 class="text-center h1">Reservation</h1>
 
         <form method="post" action="?/sendEmail">
@@ -32,16 +31,16 @@ const { name, checkIn, checkOut, adults, kids } = reservation;
                 required
                 autofocus
             />
-            <label for="user_number">Telefono:</label>
+            <label for="user_number">Teléfono:</label>
             <input
                 type="tel"
                 name="user_number"
                 id="user_number"
-                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                 placeholder="8093334455"
                 required
             />
-            <label for="user_email">Correo Electronico:</label>
+            <label for="user_email">Correo Electrónico:</label>
             <input
                 type="email"
                 name="user_email"
@@ -49,17 +48,17 @@ const { name, checkIn, checkOut, adults, kids } = reservation;
                 placeholder="correo@gmail.com"
             />
 
-            <label for="user_desc">Description</label>
+            <label for="user_desc">Descripción</label>
             <textarea name="user_desc" id="user_desc" readonly>
                 {
-                    `Resort: ${name}
-                    CheckIn: ${checkIn} ${"\n"}
-                CheckOut: ${checkOut} ${"\n"}
-                Adultos: ${adults} ${"\n"}
+                    `${product}
+                CheckIn: ${checkIn}
+                CheckOut: ${checkOut}
+                Adultos: ${adults}
                 Niños: ${kids}`
                 }
             </textarea>
-            <label for="user_comment">Comment</label>
+            <label for="user_comment">Comentario</label>
             <input
                 type="text"
                 name="user_comment"
@@ -68,6 +67,7 @@ const { name, checkIn, checkOut, adults, kids } = reservation;
             />
             <button type="submit">Enviar</button>
         </form>
+        <small class="mt-3 font-medium">Verificar antes de enviar</small>
     </section>
 </Layout>
 
@@ -77,7 +77,7 @@ const { name, checkIn, checkOut, adults, kids } = reservation;
     }
 
     textarea {
-        @apply w-full h-[200px] resize-none overflow-hidden px-2 py-2;
+        @apply w-full h-[150px] resize-none overflow-hidden  py-3;
     }
 
     input {
@@ -131,9 +131,12 @@ const { name, checkIn, checkOut, adults, kids } = reservation;
                     `,
                 }),
             });
+
             const data = await res.json();
             alert("Correo Enviado !");
             console.log(data);
+
+            window.location.href = "/";
         } catch (err) {
             console.log(err);
             alert("Tuvimos un problema");

@@ -9,6 +9,7 @@ const { slug = "" } = Astro.params ?? "";
 const resort = await getResort(slug);
 
 const {
+  name,
   location,
   imgSrc,
   description,
@@ -16,8 +17,13 @@ const {
   currency,
   priceKids,
   ageKids,
-  name,
 } = resort;
+
+const url = Astro.url.pathname ?? "";
+let type = url.split("/").at(1) ?? "";
+if (type == "resorts") {
+  type = "Resort";
+}
 ---
 
 <Layout title={`Viaja por ${name}`}>
@@ -67,7 +73,7 @@ const {
 
         <PortableTextComponent value={description} />
 
-        <ReservationForm slug={slug} />
+        <ReservationForm type={type} name={name} />
       </article>
     </div>
   </section>

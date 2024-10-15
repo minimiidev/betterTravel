@@ -1,6 +1,10 @@
 ---
 import { Hero, ShowResort, Footer } from "@/components/sections";
 import Layout from "../layouts/Layout.astro";
+
+//* Borrar cookies
+const cookies = Astro.cookies;
+const reservationCookie = cookies.delete("reservation");
 ---
 
 <Layout

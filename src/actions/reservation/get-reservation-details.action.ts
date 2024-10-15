@@ -4,18 +4,18 @@ import { defineAction } from "astro:actions";
 export const getReservationDetails = defineAction({
   accept: "form",
   input: z.object({
-    name: z.string(),
+    product: z.string(),
     checkIn: z.string(),
     checkOut: z.string(),
     adults: z.number(),
     kids: z.number().optional(),
   }),
-  handler: async ({name, checkIn, checkOut, adults, kids}, {cookies}) => {
+  handler: async ({product, checkIn, checkOut, adults, kids}, {cookies}) => {
 
     try {
      
       const reservation = {
-        name,
+        product,
         checkIn,
         checkOut,
         adults,
@@ -27,6 +27,8 @@ export const getReservationDetails = defineAction({
       path: '/',
       maxAge: 60 * 30 // 30 minutos
     });
+
+    
 
     return  {
       success: true,

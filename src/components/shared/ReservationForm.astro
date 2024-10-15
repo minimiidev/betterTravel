@@ -1,13 +1,21 @@
 ---
 // export const prerender = true;
 interface Props {
-  slug: string;
+  name: string;
+  type: string;
 }
-const { slug } = Astro.props;
+const { name, type } = Astro.props;
 ---
 
 <form class="" transition:persist>
   <div>
+    <input
+      type="text"
+      name="product"
+      id="product"
+      class="hidden"
+      value={`${type}: ${name}`}
+    />
     <label for="checkIn">Check In</label>
     <input
       type="date"
@@ -138,6 +146,7 @@ const { slug } = Astro.props;
     // TODO MOSTRAR ERRORES
     try {
       const formData = new FormData(form);
+
       const { data, error } = await actions.getReservationDetails(formData);
       console.log("🚀 ~ form.addEventListener ~ data:", data);
       window.location.href = `/reservar/`;
