@@ -113,7 +113,7 @@ const { product, checkIn, checkOut, adults, kids } = reservation;
         ).value;
 
         try {
-            const res = await fetch("/api/sendEmail.json", {
+            const res = await fetch("./api/sendEmail.json", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
