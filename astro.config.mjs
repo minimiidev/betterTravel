@@ -24,9 +24,7 @@ export default defineConfig({
   ), react(), tailwind()],
 
   output: "server",
-  adapter: node({
-    mode: 'standalone',
-  }),
+  adapter: vercel(),
 
   vite: {
     ssr: {
