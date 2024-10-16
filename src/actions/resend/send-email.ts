@@ -2,7 +2,6 @@ import { z } from "astro/zod";
 import { defineAction } from "astro:actions";
 import { Resend } from 'resend';
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY)
 export const sendEmail = defineAction({
   accept: "form",
   input: z.object({
@@ -13,7 +12,8 @@ export const sendEmail = defineAction({
     userComment: z.string().optional(),
   }),
   handler: async ({userDesc, userEmail,userName,userNumber,userComment}) => {
-
+    
+    const resend = new Resend(import.meta.env.RESEND_API_KEY)
     
     if(!userComment) {
       userComment = ""
