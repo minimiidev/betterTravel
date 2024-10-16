@@ -24,7 +24,7 @@ export const getReservationDetails = defineAction({
 
     // Almacenar la reserva en una cookie
     cookies.set('reservation', JSON.stringify(reservation), {
-      path: '/',
+     // path: '/',
       maxAge: 60 * 30 // 30 minutos
     });
 

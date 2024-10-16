@@ -150,8 +150,8 @@ const { name, type } = Astro.props;
       const { data, error } = await actions.getReservationDetails(formData);
       console.log("🚀 ~ form.addEventListener ~ data:", data);
       window.location.href = `/reservar/`;
-    } catch (data) {
-      alert(`Erro: ${data}`);
+    } catch (error) {
+      alert(`Erro: ${error}`);
     }
   });
 </script>
