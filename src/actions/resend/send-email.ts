@@ -13,7 +13,8 @@ export const sendEmail = defineAction({
   }),
   handler: async ({userDesc, userEmail,userName,userNumber,userComment}) => {
     
-    const resend = new Resend(import.meta.env.RESEND_API_KEY)
+    const resend = new Resend(import.meta.env.SECRET_RESEND_API_KEY)
+    console.log("🚀 ~ handler: ~ resend:", resend)
     
     if(!userComment) {
       userComment = ""
@@ -40,7 +41,7 @@ export const sendEmail = defineAction({
       return console.error({ error });
     }
 
-    console.log(data)
+    //console.log(data)
 
     return data
 
