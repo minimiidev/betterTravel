@@ -106,6 +106,9 @@ const { product, checkIn, checkOut, adults, kids } = reservation;
             const formData = new FormData(form);
 
             const { data, error } = await actions.sendEmail(formData);
+            if (error) {
+                alert(error);
+            }
 
             alert("Correo Enviado !");
             console.log(data);
