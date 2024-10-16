@@ -1,5 +1,4 @@
 ---
-// export const prerender = true;
 interface Props {
   name: string;
   type: string;
@@ -128,26 +127,27 @@ const { name, type } = Astro.props;
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const checkIn = (document.getElementById("checkIn") as HTMLInputElement)
-      .value;
-    const checkOut = (document.getElementById("checkOut") as HTMLInputElement)
-      .value;
-
-    if (!checkIn || !checkOut) {
-      alert("Debe seleccionar la fecha correctamente");
-      return;
-    }
-    // Validar que checkOut es posterior a checkIn
-    if (checkIn >= checkOut) {
-      alert("La fecha de CheckOut no puede ser anterior a la de CheckIn");
-      return;
-    }
-
-    // TODO MOSTRAR ERRORES
     try {
+      const checkIn = (document.getElementById("checkIn") as HTMLInputElement)
+        .value;
+      const checkOut = (document.getElementById("checkOut") as HTMLInputElement)
+        .value;
+
+      if (!checkIn || !checkOut) {
+        alert("Debe seleccionar la fecha correctamente");
+        return;
+      }
+      // Validar que checkOut es posterior a checkIn
+      if (checkIn >= checkOut) {
+        alert("La fecha de CheckOut no puede ser anterior a la de CheckIn");
+        return;
+      }
       const formData = new FormData(form);
 
       const { data, error } = await actions.getReservationDetails(formData);
+      if (error) {
+        alert(error);
+      }
       console.log("🚀 ~ form.addEventListener ~ data:", data);
       window.location.href = `/reservar/`;
     } catch (error) {

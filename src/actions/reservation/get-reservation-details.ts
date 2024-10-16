@@ -28,7 +28,7 @@ export const getReservationDetails = defineAction({
       maxAge: 60 * 30 // 30 minutos
     });
 
-    
+    console.log(reservation)
 
     return  {
       success: true,

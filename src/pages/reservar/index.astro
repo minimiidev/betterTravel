@@ -4,10 +4,11 @@ import Layout from "@/layouts/Layout.astro";
 
 const cookies = Astro.cookies;
 const reservationCookie = cookies.get("reservation");
+console.log("🚀 ~ reservationCookie:", reservationCookie);
 
-if (!reservationCookie) {
-    return Astro.redirect("/");
-}
+// if (!reservationCookie) {
+//     return Astro.redirect("/");
+// }
 
 const reservation = JSON.parse(reservationCookie!.value);
 const { product, checkIn, checkOut, adults, kids } = reservation;
