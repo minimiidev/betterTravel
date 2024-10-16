@@ -1,14 +1,13 @@
 ---
 import BackButton from "@/components/shared/BackButton.astro";
 import Layout from "@/layouts/Layout.astro";
-import { Resend } from "resend";
 
 const cookies = Astro.cookies;
 const reservationCookie = cookies.get("reservation");
 
-// if (!reservationCookie) {
-//     return Astro.redirect("/");
-// }
+if (!reservationCookie) {
+    return Astro.redirect("/");
+}
 
 const reservation = JSON.parse(reservationCookie!.value);
 const { product, checkIn, checkOut, adults, kids } = reservation;
