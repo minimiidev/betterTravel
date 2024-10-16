@@ -106,10 +106,6 @@ const { product, checkIn, checkOut, adults, kids } = reservation;
 
             const { data, error } = await actions.sendEmail(formData);
 
-            if (error) {
-                console.warn(error);
-                return;
-            }
             alert("Correo Enviado !");
             console.log(data);
             // window.location.href = "/";
