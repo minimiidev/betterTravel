@@ -22,34 +22,32 @@ const { product, checkIn, checkOut, adults, kids } = reservation;
         <h1 class="text-center h1">Reservation</h1>
 
         <form method="post" action="?/sendEmail">
-            <label for="user_name">Nombre:</label>
+            <label for="userName">Nombre:</label>
             <input
                 type="text"
-                name="user_name"
-                id="user_name"
+                name="userName"
+                id="userName"
                 placeholder="Jose Perez"
-                required
                 autofocus
             />
-            <label for="user_number">Teléfono:</label>
+            <label for="userNumber">Teléfono:</label>
             <input
                 type="tel"
-                name="user_number"
-                id="user_number"
+                name="userNumber"
+                id="userNumber"
                 pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
                 placeholder="8093334455"
-                required
             />
-            <label for="user_email">Correo Electrónico:</label>
+            <label for="userEmail">Correo Electrónico:</label>
             <input
                 type="email"
-                name="user_email"
-                id="user_email"
+                name="userEmail"
+                id="userEmail"
                 placeholder="correo@gmail.com"
             />
 
-            <label for="user_desc">Descripción</label>
-            <textarea name="user_desc" id="user_desc" readonly>
+            <label for="userDesc">Descripción</label>
+            <textarea name="userDesc" id="userDesc" readonly>
                 {
                     `${product}
                 CheckIn: ${checkIn}
@@ -58,11 +56,11 @@ const { product, checkIn, checkOut, adults, kids } = reservation;
                 Niños: ${kids}`
                 }
             </textarea>
-            <label for="user_comment">Comentario</label>
+            <label for="userComment">Comentario</label>
             <input
                 type="text"
-                name="user_comment"
-                id="user_comment"
+                name="userComment"
+                id="userComment"
                 placeholder="Alguna inquetud? Cuentanos !"
             />
             <button type="submit">Enviar</button>
@@ -95,51 +93,31 @@ const { product, checkIn, checkOut, adults, kids } = reservation;
 </style>
 
 <script>
+    import { actions } from "astro:actions";
+
     const form = document.querySelector("form") as HTMLFormElement;
 
-    form?.addEventListener("submit", async () => {
-        const name = (document.getElementById("user_name") as HTMLInputElement)
-            .value;
-        const number = (
-            document.getElementById("user_number") as HTMLInputElement
-        ).value;
-        const email = (
-            document.getElementById("user_email") as HTMLInputElement
-        ).value;
-        const desc = (document.getElementById("user_desc") as HTMLInputElement)
-            .value;
-        const comment = (
-            document.getElementById("user_comment") as HTMLInputElement
-        ).value;
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
+        // const name = formData.get("userDesc");
+        // console.log(name);
         try {
-            const res = await fetch("./api/sendEmail.json", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    from: `Reserva <onboarding@resend.dev>`,
-                    to: "javiervitalioperalta@gmail.com",
-                    subject: "Nueva Reserva",
-                    html: `
-                        <h1>De: ${name}</h1>
-                        <h2>Telefono: ${number}</h2>
-                        <h2>Correo Electronico: ${email}</h2>
-                        <p>${desc}</p>
-                        <p>${comment}</p>
-                    `,
-                }),
-            });
+            const formData = new FormData(form);
 
-            const data = await res.json();
+            const { data, error } = await actions.sendEmail(formData);
+
+            if (error) {
+                console.warn(error);
+                return;
+            }
             alert("Correo Enviado !");
             console.log(data);
-
-            window.location.href = "/";
-        } catch (err) {
-            console.log(err);
-            alert("Tuvimos un problema");
+            // window.location.href = "/";
+        } catch (error) {
+            console.log(error);
+            alert(`Error: ${error}`);
+            // alert("Tuvimos un problema");
         }
     });
 </script>
