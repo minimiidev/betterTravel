@@ -44,7 +44,9 @@ export async function getResort(slug: string): Promise<Destinations> {
       ageKids,
       currency,
       "imgSrc": image.asset -> url,
-      description
+      description,
+      checkInTime,
+      checkOutTime
     }`,
     {
       slug,
@@ -62,8 +64,10 @@ export default interface Destinations {
   priceKids: number;
   ageKids: string;
   currency: string;
-  initialDate: string;
-  finalDate: string;
+  checkInDate: string;
+  checkoutDate: string;
+  checkInTime: string;
+  checkOutTime: string;
   days: string;
   nights: string;
   description: PortableTextBlock[];

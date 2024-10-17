@@ -69,13 +69,13 @@ export default {
     },
 
     {
-      name: "checkIn",
+      name: "checkInTime",
       title: "Check In",
       type: "string",
       description: "Hora del Check In",
     },
     {
-      name: "checkOut",
+      name: "checkOutTime",
       title: "Check Out",
       type: "string",
       description: "Hora del Check Out",

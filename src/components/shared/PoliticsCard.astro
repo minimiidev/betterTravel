@@ -1,0 +1,14 @@
+---
+interface Props {
+  checkInTime: string;
+  checkOutTime: string;
+}
+
+const { checkInTime, checkOutTime } = Astro.props;
+---
+
+<div class="bg-white border rounded-md border-slate-500 w-[250px] p-3">
+  <h3 class="h3 mb-5">Politicas</h3>
+  <p>Check In: <span class="font-bold">{checkInTime} am</span></p>
+  <p>Check Out: <span class="font-bold">{checkOutTime} pm</span></p>
+</div>

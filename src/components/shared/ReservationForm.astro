@@ -10,26 +10,33 @@ const { name, type } = Astro.props;
   <div>
     <input
       type="text"
-      name="product"
-      id="product"
+      name="productName"
+      id="productName"
       class="hidden"
-      value={`${type}: ${name}`}
+      value={`${name}`}
     />
-    <label for="checkIn">Check In</label>
+    <input
+      type="text"
+      name="productType"
+      id="productType"
+      class="hidden"
+      value={`${type}`}
+    />
+    <label for="checkInDate">Check In</label>
     <input
       type="date"
-      name="checkIn"
-      id="checkIn"
+      name="checkInDate"
+      id="checkInDate"
       class="flatpickrCheckIn flatpickr"
       required
     />
   </div>
   <div>
-    <label for="checkOut">Check Out</label>
+    <label for="checkOutDate">Check Out</label>
     <input
       type="date"
-      name="checkOut"
-      id="checkOut"
+      name="checkOutDate"
+      id="checkOutDate"
       class="flatpickrCheckOut flatpickr"
       required
     />
@@ -128,10 +135,12 @@ const { name, type } = Astro.props;
     e.preventDefault();
 
     try {
-      const checkIn = (document.getElementById("checkIn") as HTMLInputElement)
-        .value;
-      const checkOut = (document.getElementById("checkOut") as HTMLInputElement)
-        .value;
+      const checkIn = (
+        document.getElementById("checkInDate") as HTMLInputElement
+      ).value;
+      const checkOut = (
+        document.getElementById("checkOutDate") as HTMLInputElement
+      ).value;
 
       if (!checkIn || !checkOut) {
         alert("Debe seleccionar la fecha correctamente");

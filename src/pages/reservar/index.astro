@@ -1,122 +1,115 @@
 ---
+import ReservationEmail from "@/components/emails/EmailReservation";
 import BackButton from "@/components/shared/BackButton.astro";
 import Layout from "@/layouts/Layout.astro";
+import { render } from "@react-email/render";
 
 const cookies = Astro.cookies;
 const reservationCookie = cookies.get("reservation");
-// console.log("🚀 ~ reservationCookie:", reservationCookie);
 
 // if (!reservationCookie) {
 //     return Astro.redirect("/");
 // }
 
 const reservation = JSON.parse(reservationCookie!.value);
-const { product, checkIn, checkOut, adults, kids } = reservation;
+console.log("🚀 ~ reservation:", reservation);
+const { product, intialDate, finalDate, adults, kids } = reservation;
 ---
 
 <Layout title="Reservation">
-    <section
-        class="pt-[140px] w-full flex items-center justify-center flex-col"
-    >
-        <BackButton />
-        <h1 class="text-center h1">Reservation</h1>
+  <section class="pt-[140px] w-full flex items-center justify-center flex-col">
+    <BackButton />
+    <h1 class="text-center h1">Reservation</h1>
+    <ReservationEmail {...reservation} client:load />
 
-        <form method="post" action="?/sendEmail">
-            <label for="userName">Nombre:</label>
-            <input
-                type="text"
-                name="userName"
-                id="userName"
-                placeholder="Jose Perez"
-                autofocus
-            />
-            <label for="userNumber">Teléfono:</label>
-            <input
-                type="tel"
-                name="userNumber"
-                id="userNumber"
-                pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
-                placeholder="8093334455"
-            />
-            <label for="userEmail">Correo Electrónico:</label>
-            <input
-                type="email"
-                name="userEmail"
-                id="userEmail"
-                placeholder="correo@gmail.com"
-            />
+    <form method="post" action="?/sendEmail">
+      <label for="userName">Nombre:</label>
+      <input
+        type="text"
+        name="userName"
+        id="userName"
+        placeholder="Jose Perez"
+        autofocus
+      />
+      <label for="userNumber">Teléfono:</label>
+      <input
+        type="tel"
+        name="userNumber"
+        id="userNumber"
+        pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+        placeholder="8093334455"
+      />
+      <label for="userEmail">Correo Electrónico:</label>
+      <input
+        type="email"
+        name="userEmail"
+        id="userEmail"
+        placeholder="correo@gmail.com"
+      />
 
-            <label for="userDesc">Descripción</label>
-            <textarea name="userDesc" id="userDesc" readonly>
-                {
-                    `${product}
-                CheckIn: ${checkIn}
-                CheckOut: ${checkOut}
-                Adultos: ${adults}
-                Niños: ${kids}`
-                }
-            </textarea>
-            <label for="userComment">Comentario</label>
-            <input
-                type="text"
-                name="userComment"
-                id="userComment"
-                placeholder="Alguna inquetud? Cuentanos !"
-            />
-            <button type="submit">Enviar</button>
-        </form>
-        <small class="mt-3 font-medium">Verificar antes de enviar</small>
-    </section>
+      <label for="userDesc">Descripción</label>
+      <textarea name="userDesc" id="userDesc" readonly> </textarea>
+      <label for="userComment">Comentario</label>
+      <input
+        type="text"
+        name="userComment"
+        id="userComment"
+        placeholder="Alguna inquetud? Cuentanos !"
+      />
+      <button type="submit">Enviar</button>
+    </form>
+    <small class="mt-3 font-medium">Verificar antes de enviar</small>
+  </section>
 </Layout>
 
 <style>
-    form {
-        @apply w-[300px] flex items-center justify-center flex-col;
-    }
+  form {
+    @apply w-[300px] flex items-center justify-center flex-col;
+  }
 
-    textarea {
-        @apply w-full h-[150px] resize-none overflow-hidden  py-3;
-    }
+  textarea {
+    @apply w-full h-[150px] resize-none overflow-hidden  py-3;
+  }
 
-    input {
-        @apply w-full px-5 py-2;
-    }
+  input {
+    @apply w-full px-5 py-2;
+  }
 
-    label {
-        @apply py-2 rounded-sm font-medium;
-    }
+  label {
+    @apply py-2 rounded-sm font-medium;
+  }
 
-    button[type="submit"] {
-        @apply mx-auto mt-5 w-[200px] rounded-sm bg-blue-500 px-5 py-3
+  button[type="submit"] {
+    @apply mx-auto mt-5 w-[200px] rounded-sm bg-blue-500 px-5 py-3
     font-bold text-white hover:bg-blue-700;
-    }
+  }
 </style>
 
 <script>
-    import { actions } from "astro:actions";
+  import { actions } from "astro:actions";
 
-    const form = document.querySelector("form") as HTMLFormElement;
+  const form = document.querySelector("form") as HTMLFormElement;
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-        // const name = formData.get("userDesc");
-        // console.log(name);
-        try {
-            const formData = new FormData(form);
+    try {
+      const formData = new FormData(form);
 
-            const { data, error } = await actions.sendEmail(formData);
-            if (error) {
-                alert(error);
-            }
+      const { data, error } = await actions.sendEmail(formData);
+      //
+      if (error) {
+        alert(error);
+        return;
+      }
 
-            alert("Correo Enviado !");
-            console.log(data);
-            // window.location.href = "/";
-        } catch (error) {
-            console.log(error);
-            alert(`Error: ${error}`);
-            // alert("Tuvimos un problema");
-        }
-    });
+      alert("Correo Enviado !");
+      console.log(data);
+      window.location.href = "/";
+      //
+    } catch (error) {
+      console.log(error);
+      alert(`Error: ${error}`);
+    }
+  });
 </script>

@@ -4,6 +4,7 @@ import { getResort } from "@/utils/sanity";
 import PortableTextComponent from "@/components/portableText/PortableTextComponent.astro";
 import ButtonCTA from "@/components/shared/ButtonCTA.astro";
 import ReservationForm from "@/components/shared/ReservationForm.astro";
+import PoliticsCard from "@/components/shared/PoliticsCard.astro";
 
 const { slug = "" } = Astro.params ?? "";
 const resort = await getResort(slug);
@@ -17,6 +18,8 @@ const {
   currency,
   priceKids,
   ageKids,
+  checkInTime,
+  checkOutTime,
 } = resort;
 
 const url = Astro.url.pathname ?? "";
@@ -71,7 +74,10 @@ if (type == "resorts") {
           >
         </div>
 
-        <PortableTextComponent value={description} />
+        <div>
+          <PortableTextComponent value={description} />
+          <PoliticsCard checkInTime={checkInTime} checkOutTime={checkOutTime} />
+        </div>
 
         <ReservationForm type={type} name={name} />
       </article>
