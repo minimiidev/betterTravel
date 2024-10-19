@@ -1,7 +1,6 @@
 import { z } from "astro/zod";
 import { defineAction } from "astro:actions";
 import { Resend } from "resend";
-import ReservationEmail from "@/components/emails/EmailReservation";
 
 const API_KEY = import.meta.env.SECRET_RESEND_API_KEY;
 
@@ -33,8 +32,6 @@ export const sendEmail = defineAction({
   }) => {
     const resend = new Resend(API_KEY);
 
-    console.log("🚀 ~ handler: ~ resend:", resend);
-
     if (!userComment) {
       userComment = "";
     }
@@ -60,19 +57,15 @@ export const sendEmail = defineAction({
 
     const body = {
       from: "Better Travel <onboarding@resend.dev>",
-      html: html,
+      html: "",
       subject: "Reserva",
       to: "javiervitalioperalta@gmail.com",
     };
 
-    console.log(body);
-
     const { data, error } = await resend.emails.send(body);
     if (error) {
-      return console.error({ error });
+      return alert(error);
     }
-
-    //console.log(data)
 
     return data;
   },

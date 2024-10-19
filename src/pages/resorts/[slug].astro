@@ -79,7 +79,12 @@ if (type == "resorts") {
           <PoliticsCard checkInTime={checkInTime} checkOutTime={checkOutTime} />
         </div>
 
-        <ReservationForm type={type} name={name} />
+        <ReservationForm
+          type={type}
+          name={name}
+          checkInTime={checkInTime}
+          checkOutTime={checkOutTime}
+        />
       </article>
     </div>
   </section>

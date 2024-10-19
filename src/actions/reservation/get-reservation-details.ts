@@ -8,11 +8,22 @@ export const getReservationDetails = defineAction({
     productName: z.string(),
     checkInDate: z.string(),
     checkOutDate: z.string(),
+    checkInTime: z.string(),
+    checkOutTime: z.string(),
     adults: z.string(),
     kids: z.string().optional(),
   }),
   handler: async (
-    { adults, checkInDate, checkOutDate, productType, productName, kids },
+    {
+      adults,
+      checkInDate,
+      checkOutDate,
+      productType,
+      productName,
+      kids,
+      checkInTime,
+      checkOutTime,
+    },
     { cookies }
   ) => {
     try {
@@ -21,6 +32,8 @@ export const getReservationDetails = defineAction({
         productName,
         checkInDate,
         checkOutDate,
+        checkInTime,
+        checkOutTime,
         adults,
         kids: kids || 0,
       };

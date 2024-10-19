@@ -1,9 +1,14 @@
 ---
+import { callSafely } from "astro:actions";
+
 interface Props {
   name: string;
   type: string;
+  checkInTime: string;
+  checkOutTime: string;
 }
-const { name, type } = Astro.props;
+const { name, type, checkInTime, checkOutTime } = Astro.props;
+console.log("🚀 ~ checkInTime:", checkInTime);
 ---
 
 <form class="" transition:persist>
@@ -21,6 +26,20 @@ const { name, type } = Astro.props;
       id="productType"
       class="hidden"
       value={`${type}`}
+    />
+    <input
+      type="text"
+      name="checkInTime"
+      id="checkInTime"
+      class="hidden"
+      value={`${checkInTime}`}
+    />
+    <input
+      type="text"
+      name="checkOutTime"
+      id="checkOutTime"
+      class="hidden"
+      value={`${checkOutTime}`}
     />
     <label for="checkInDate">Check In</label>
     <input
@@ -157,7 +176,6 @@ const { name, type } = Astro.props;
       if (error) {
         alert(error);
       }
-      // console.log("🚀 ~ form.addEventListener ~ data:", data);
       window.location.href = `/reservar/`;
     } catch (error) {
       alert(`Error: ${error}`);
