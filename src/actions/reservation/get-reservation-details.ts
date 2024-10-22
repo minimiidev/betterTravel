@@ -12,17 +12,23 @@ export const getReservationDetails = defineAction({
     checkOutTime: z.string(),
     adults: z.string(),
     kids: z.string().optional(),
+    price: z.string(),
+    currency: z.string(),
+    productUrl: z.string(),
   }),
   handler: async (
     {
-      adults,
-      checkInDate,
-      checkOutDate,
       productType,
       productName,
-      kids,
+      checkInDate,
+      checkOutDate,
       checkInTime,
       checkOutTime,
+      adults,
+      kids,
+      price,
+      currency,
+      productUrl,
     },
     { cookies }
   ) => {
@@ -36,6 +42,9 @@ export const getReservationDetails = defineAction({
         checkOutTime,
         adults,
         kids: kids || 0,
+        price,
+        currency,
+        productUrl,
       };
 
       // Almacenar la reserva en una cookie
