@@ -24,11 +24,13 @@ import ButtonCTA from "../shared/ButtonCTA.astro";
       }
     </ul>
     <div class="hidden md:block">
-      <ButtonCTA href="#" class:list={`text-black bg-white rounded-3xl`}
+      <ButtonCTA
+        href="#"
+        class:list={`text-white hover:bg-orange-800 bg-orange-500 rounded-3xl`}
         >Contactanos</ButtonCTA
       >
     </div>
-    <div id="menuBtn" class="z-50 block pointer lg:hidden">
+    <div id="menuBtn" class="z-50 block pointer md:hidden">
       <Icon name="mage:dots-menu" size="48px" class="text-blue-500" />
     </div>
   </div>

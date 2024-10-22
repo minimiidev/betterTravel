@@ -4,7 +4,13 @@
 
 // import { beachBg } from "@/assets/videos";
 import Icon from "astro-iconify";
+import WhatsApp from "../shared/socials/WhatsApp.astro";
+import Instagram from "../shared/socials/Instagram.astro";
+import SocialContainer from "../shared/SocialContainer.astro";
 // import SlideShow from "../shared/SlideShow.astro";
+
+import { info } from "@/data";
+const { tel } = info;
 ---
 
 <section
@@ -27,7 +33,7 @@ import Icon from "astro-iconify";
 
   <!-- Hero -->
   <div
-    class="container z-50 flex flex-col items-stretch justify-center w-full gap-8 py-10 m-auto h-max"
+    class="container z-10 flex flex-col items-stretch justify-center w-full gap-8 py-10 m-auto h-max"
   >
     <!-- Header -->
     <article class="">
@@ -37,6 +43,11 @@ import Icon from "astro-iconify";
       >
         Planea tus Vacaciones
       </h1>
+      <!-- SOCIAL -->
+      <SocialContainer class:list={"mt-10"}>
+        <WhatsApp tel={tel} />
+        <Instagram />
+      </SocialContainer>
     </article>
     <!-- Form -->
     <!-- <article class="">

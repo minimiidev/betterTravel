@@ -53,6 +53,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.0
+      '@vercel/speed-insights':
+        specifier: ^1.0.13
+        version: 1.0.13(next@14.2.3(@babel/core@7.25.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       astro:
         specifier: ^4.15.11
         version: 4.15.12(@types/node@22.7.5)(rollup@4.24.0)(typescript@5.6.3)
@@ -2270,6 +2273,29 @@ packages:
     resolution: {integrity: sha512-Rioz3LJkEKicKCi9BSyc1RXZ5R6GmXosFMeBSThh6msWSOiArKhb7c75MiWwZEgPL7x0/l3TAfH/l0cxKNuUFA==}
     engines: {node: '>=16'}
     hasBin: true
+
+  '@vercel/speed-insights@1.0.13':
+    resolution: {integrity: sha512-3iuOMB/M0WE3Zeuoo2mnlD7Eo7fGH7RBGi92Vq4qO7Kp+BwNbpwFqkjuPQDEeBxoGQLJFRICrsx5/IluHZVCZA==}
+    peerDependencies:
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19
+      svelte: '>= 4'
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
 
   '@vercel/stega@0.1.2':
     resolution: {integrity: sha512-P7mafQXjkrsoyTRppnt0N21udKS9wUmLXHRyP9saLXLHw32j/FgUJ3FscSWgvSqRs4cj7wKZtwqJEvWJ2jbGmA==}
@@ -8488,6 +8514,11 @@ snapshots:
     transitivePeerDependencies:
       - encoding
       - supports-color
+
+  '@vercel/speed-insights@1.0.13(next@14.2.3(@babel/core@7.25.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)':
+    optionalDependencies:
+      next: 14.2.3(@babel/core@7.25.7)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      react: 18.3.1
 
   '@vercel/stega@0.1.2': {}
 

@@ -179,19 +179,36 @@ console.log("🚀 ~ productUrl:", productUrl);
     e.preventDefault();
 
     try {
-      const checkIn = (
+      const checkInInput = (
         document.getElementById("checkInDate") as HTMLInputElement
       ).value;
-      const checkOut = (
+      const checkOutInput = (
         document.getElementById("checkOutDate") as HTMLInputElement
       ).value;
 
-      if (!checkIn || !checkOut) {
+      if (!checkInInput || !checkOutInput) {
         alert("Debe seleccionar la fecha correctamente");
         return;
       }
+
+      // Convertir las fechas de formato "d-m-Y" a objetos Date
+      const [dayIn, monthIn, yearIn] = checkInInput.split("-");
+      const [dayOut, monthOut, yearOut] = checkOutInput.split("-");
+
+      const checkInDate = new Date(
+        parseInt(yearIn),
+        parseInt(monthIn) - 1, // Los meses en JS son 0-11
+        parseInt(dayIn)
+      );
+
+      const checkOutDate = new Date(
+        parseInt(yearOut),
+        parseInt(monthOut) - 1,
+        parseInt(dayOut)
+      );
+
       // Validar que checkOut es posterior a checkIn
-      if (checkIn >= checkOut) {
+      if (checkInDate >= checkOutDate) {
         alert("La fecha de CheckOut no puede ser anterior a la de CheckIn");
         return;
       }
