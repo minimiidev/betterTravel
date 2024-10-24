@@ -3,6 +3,17 @@ import type { PortableTextBlock } from "@portabletext/types";
 import groq from "groq";
 import { sanityClient } from "sanity:client";
 
+export async function getFlyers(): Promise<Destinations[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "resort" ]
+  {
+    "imgSrc": image.asset -> url,
+    name,
+    "slug": slug.current,
+  }`
+  );
+}
+
 export async function getResortsAll(): Promise<Destinations[]> {
   return await sanityClient.fetch(
     groq`*[_type == "resort" ]

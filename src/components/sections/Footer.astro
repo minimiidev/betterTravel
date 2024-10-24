@@ -15,7 +15,7 @@ const {
 
 <footer
   id="footer"
-  class="relative flex flex-col items-center justify-center w-full pt-20 pb-10"
+  class="relative flex flex-col items-center justify-center w-full pt-20 pb-20"
 >
   <div
     class="bg-[rgb(47,106,127)] w-full absolute top-0 bottom-0 mix-blend-hard-light z-[1]"
@@ -30,13 +30,13 @@ const {
     class="absolute top-0 bottom-0 object-cover w-full h-full"></video> -->
 
   <section
-    class="container z-10 flex items-start justify-between w-full h-max gap-14"
+    class="container z-10 flex items-start justify-center lg:items-start lg:justify-between w-full h-max gap-14 flex-wrap"
   >
-    <article class="min-w-[240px]">
-      <h1 class="border h1">Logo</h1>
+    <article class="min-w-[240px] order-1 lg:order-[0]">
+      <h2 class="border h1">Logo</h2>
     </article>
     <article
-      class="flex flex-col gap-4 [&>a:hover]:underline [&>a:hover]:text-orange-500 [&>a]:font-medium [&>a]:py-3 transition-all duration-300 ease-in-out"
+      class="flex flex-col gap-4 [&>a:hover]:underline [&>a:hover]:text-orange-500 [&>a]:font-medium [&>a]:py-3 transition-all duration-300 ease-in-out border"
     >
       <h3 class="h3">Menu</h3>
       <a href="#" class="p">Inicio</a>
@@ -45,7 +45,7 @@ const {
       <a href="#" class="p">Resorts</a>
     </article>
 
-    <article class="flex flex-col gap-4">
+    <article class="flex flex-col gap-4 max-w-[60%] border">
       <h3 class="h3">Informacion</h3>
       <SocialContainer class:list={"flex-col items-start justify-start  "}>
         <WhatsApp tel={tel} />
@@ -57,16 +57,22 @@ const {
         rel="noopener noreferrer"
         class="flex items-start justify-center p hover:underline gap-x-2"
       >
-        <Icon name="mdi:location" size="32px" class="inline" />{address}
+        <Icon name="mdi:location" size="32px" class="inline min-w-[32px]" />{
+          address
+        }
       </a>
     </article>
+    <article class="order-10 w-full text-center">
+      <p class="mt-10 p opacity-80 inline-block">
+        Better Travel ©{new Date().getFullYear()} | Desarrollado por
+      </p>
+      <a
+        href="https://painkillerdev.vercel.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="underline inline-block hover:cursor-pointer hover:no-underline hover:text-slate-600"
+        >PainDev</a
+      >
+    </article>
   </section>
-  <p class="mt-10 p opacity-80">
-    Better Travel ©{new Date().getFullYear()} | Desarrollado por <a
-      href="painkillerdev.vercel.app"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="underline hover:no-underline hover:text-slate-600">PainDev</a
-    >
-  </p>
 </footer>

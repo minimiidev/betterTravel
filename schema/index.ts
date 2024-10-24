@@ -1,7 +1,6 @@
 import blockContent from "./blockContent";
 import country from "./country";
-import hotels from "./hotel";
-import resort from "./resort";
-import tour from "./tour";
+import flyers from "./flyers";
+import product from "./product";
 
-export const schema = [resort, hotels, tour, country, blockContent];
+export const schema = [flyers, product, country, blockContent];

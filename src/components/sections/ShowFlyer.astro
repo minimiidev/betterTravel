@@ -1,0 +1,16 @@
+---
+import { getFlyers } from "@/utils/sanity";
+import FlyerCard from "../products/FlyerCard.astro";
+
+const flyers = await getFlyers();
+console.log("🚀 ~ flyers:", flyers);
+---
+
+<section class="bg-green-500 h-screen">
+  <h2 class="py-10 h2 text-center">Nuevas Ofertas</h2>
+  <div class="flex items-center justify-center gap-5">
+    <FlyerCard />
+    <FlyerCard />
+    <FlyerCard />
+  </div>
+</section>
