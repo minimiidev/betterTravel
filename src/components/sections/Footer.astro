@@ -13,6 +13,9 @@ const {
 } = info;
 
 import logo from "@/assets/logo.png";
+import Address from "../shared/socials/Address.astro";
+import Email from "../shared/socials/Email.astro";
+import Telephone from "../shared/socials/Telephone.astro";
 ---
 
 <footer
@@ -32,7 +35,7 @@ import logo from "@/assets/logo.png";
     class="absolute top-0 bottom-0 object-cover w-full h-full"></video> -->
 
   <section
-    class="container z-10 flex items-start justify-center lg:items-start lg:justify-between w-full h-max gap-x-12 gap-y-4 lg:gap-14 flex-wrap md:gap-x-20"
+    class="container z-10 flex flex-wrap items-start justify-center w-full lg:items-start lg:justify-between h-max gap-x-12 gap-y-4 lg:gap-14 md:gap-x-20"
   >
     <article
       class="md:mt-5 lg:mt-0 min-w-[240px] min-h-max order-1 lg:order-[0]"
@@ -44,7 +47,7 @@ import logo from "@/assets/logo.png";
       />
     </article>
     <article
-      class="flex flex-col gap-4 [&>a:hover]:underline [&>a:hover]:text-orange-500 [&>a]:font-medium [&>a]:py-3 transition-all duration-300 ease-in-out min-w-[120px]"
+      class="flex flex-col gap-4 [&>a:hover]:underline [&>a:hover]:text-orange-500 [&>a]:font-medium [&>a]:py-3 transition-all duration-300 ease-in-out lg:min-w-[120px]"
     >
       <h3 class="h3">Menu</h3>
       <a href="#" class="p">Inicio</a>
@@ -53,55 +56,30 @@ import logo from "@/assets/logo.png";
       <a href="#" class="p">Resorts</a>
     </article>
 
-    <article class="flex flex-col items-start justify-center gap-4 max-w-[60%]">
+    <article
+      class="flex flex-col items-start justify-center gap-4 lg:max-w-[40%] w-full flex-1"
+    >
       <h3 class="h3">Informacion</h3>
-      <SocialContainer class:list={"flex-col items-start justify-start  "}>
-        <WhatsApp whatsapp={whatsapp} />
-        <Instagram instagram={instagram} />
-      </SocialContainer>
-      <a
-        href="https://maps.app.goo.gl/AtMQtG4RMEiahtGi6"
-        target="_blank "
-        rel="noopener noreferrer"
-        class="flex items-start justify-center p hover:underline gap-x-2"
+
+      <WhatsApp class:list={" hover:bg-green-500 "} />
+      <Instagram class:list={" hover:bg-rose-500 "} />
+      <div
+        class="flex flex-col items-start justify-center max-w-full gap-4 pl-4"
       >
-        <Icon
-          name="mdi:location-outline"
-          size="32px"
-          class="inline min-w-[32px]"
-        />{address}
-      </a>
-      <a
-        href="mailto:{email}"
-        class="flex items-start justify-center p hover:underline gap-x-2"
-      >
-        <Icon
-          name="mdi:mail-outline"
-          size="32px"
-          class="inline min-w-[32px]"
-        />{email}</a
-      >
-      <a
-        href="tel:{tel}"
-        class="flex items-start justify-center p hover:underline gap-x-2"
-      >
-        <Icon
-          name="mdi:telephone-outline"
-          size="32px"
-          class="inline min-w-[32px]"
-        />
-        {tel}</a
-      >
+        <Address />
+        <Email />
+        <Telephone />
+      </div>
     </article>
     <article class="order-10 w-full text-center">
-      <p class="mt-10 p opacity-80 inline-block">
+      <p class="inline-block mt-10 p opacity-80">
         Better Travel ©{new Date().getFullYear()} | Desarrollado por
       </p>
       <a
         href="https://painkillerdev.vercel.app"
         target="_blank"
         rel="noopener noreferrer"
-        class="underline inline-block hover:cursor-pointer hover:no-underline hover:text-slate-600"
+        class="inline-block underline hover:cursor-pointer hover:no-underline hover:text-slate-600"
         >PainDev</a
       >
     </article>

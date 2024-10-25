@@ -1,14 +1,19 @@
 ---
-import { getFlyers } from "@/utils/sanity";
+import { getOffers } from "@/utils/sanity";
 import FlyerCard from "../products/FlyerCard.astro";
 
-const flyers = await getFlyers();
+const flyers = await getOffers();
 console.log("🚀 ~ flyers:", flyers);
 ---
 
-<section id="ofertas" class="py-10">
-  <h2 class="py-10 h2 text-center">Nuevas Ofertas</h2>
-  <div class="flex items-center justify-center gap-10 flex-wrap flex-shrink">
-    {flyers.map((d) => <FlyerCard {...d} />)}
+<section id="ofertas" class="w-full py-16 text-black">
+  <div class="container flex flex-col items-center justify-center">
+    <p class="mb-2 p">Descubre las mejores</p>
+    <h2 class="mb-10 h2">Ofertas</h2>
+    <div
+      class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3 justify-items-center"
+    >
+      {flyers.map((d) => <FlyerCard {...d} />)}
+    </div>
   </div>
 </section>

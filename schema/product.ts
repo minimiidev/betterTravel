@@ -4,15 +4,24 @@ export default {
   type: "document",
   fields: [
     {
+      name: "promotion",
+      title: "Promocion",
+      type: "boolean",
+      description: "Esta en promocion ?",
+    },
+    {
       name: "type",
       title: "Tipo de Producto",
       type: "string",
-      description: "Ej: Resort, Hotel, Tour",
+      description: "Ej: Resort, Hotel, Paq. Internacional",
       options: {
         list: [
           { title: "Resort", value: "Resort" },
           { title: "Hotel", value: "Hotel" },
-          { title: "Tour", value: "Tour" },
+          { title: "Excursiones", value: "Excursiones" },
+          { title: "Crucero", value: "Crucero" },
+          { title: "Paquete Internacional", value: "Paquete Internacional" },
+          { title: "Circuitos", value: "Circuitos" },
         ],
       },
       validation: (Rule: any) => Rule.required(),
@@ -39,7 +48,6 @@ export default {
       name: "location",
       title: "Ubicacion",
       type: "string",
-      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "image",
@@ -61,20 +69,6 @@ export default {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: "priceKids",
-      title: "Precio Niños",
-      type: "number",
-      description: "Coste de niños",
-      validation: (Rule: any) => Rule.required(),
-    },
-    {
-      name: "ageKids",
-      title: "Edad Niños",
-      type: "text",
-      description: "Edad de los niños",
-      validation: (Rule: any) => Rule.required(),
-    },
-    {
       name: "currency",
       title: "Moneda",
       type: "string",
@@ -87,20 +81,47 @@ export default {
       },
       validation: (Rule: any) => Rule.required(),
     },
+    {
+      name: "priceKids",
+      title: "Precio Niños",
+      type: "number",
+      description: "Coste de niños",
+    },
+    {
+      name: "ageKids",
+      title: "Edad Niños",
+      type: "text",
+      description: "Edad de los niños",
+    },
 
     {
       name: "checkInTime",
       title: "Check In",
       type: "string",
       description: "Hora del Check In",
-      validation: (Rule: any) => Rule.required(),
     },
     {
       name: "checkOutTime",
       title: "Check Out",
       type: "string",
       description: "Hora del Check Out",
-      validation: (Rule: any) => Rule.required(),
     },
   ],
+
+  preview: {
+    select: {
+      title: `name`,
+      media: "image",
+      promotion: "promotion",
+    },
+    prepare(selection: any) {
+      const title = `${selection.promotion ? "Promo" : ""}  | ${selection.title} `;
+      const promotion = selection.promotion;
+      return {
+        title,
+        subtitle: promotion ? "Promocion" : "No Promocion",
+        media: selection.media,
+      };
+    },
+  },
 };

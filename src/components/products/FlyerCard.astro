@@ -10,12 +10,12 @@ const { name, slug, imgSrc } = Astro.props;
 
 <a
   href={`ofertas/${slug}`}
-  class="block w-[320px] h-[350px] cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out overflow-hidden rounded-lg"
+  class="block w-[320px] h-[350px] cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out overflow-hidden rounded-lg relative"
 >
-  <img
-    transition:name=`{slug}-image`
-    src={imgSrc}
-    alt={name}
-    class="object-fill w-full h-full"
-  />
+  <img src={imgSrc} alt={name} class="object-fill w-full h-full" />
+  <div
+    class="absolute top-0 right-0 w-full h-full bg-gradient-to-t from-black to-transparent opacity-80"
+  >
+  </div>
+  <h3 class="absolute text-white h4 bottom-5 left-5">{name}</h3>
 </a>

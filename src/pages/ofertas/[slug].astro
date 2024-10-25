@@ -3,11 +3,11 @@ import PortableTextComponent from "@/components/portableText/PortableTextCompone
 import SocialContainer from "@/components/shared/SocialContainer.astro";
 import WhatsApp from "@/components/shared/socials/WhatsApp.astro";
 import Layout from "@/layouts/Layout.astro";
-import { getFlyer } from "@/utils/sanity";
+import { getOffer } from "@/utils/sanity";
 
 const { slug = "" } = Astro.params ?? "";
 // console.log("🚀 ~ slug:", slug);
-const flyer = await getFlyer(slug);
+const flyer = await getOffer(slug);
 // console.log("🚀 ~ flyer:", flyer);
 
 const { name, imgSrc, description } = flyer;
@@ -20,28 +20,28 @@ const { name, imgSrc, description } = flyer;
         >{`<--- Volver atras`}</button
       >
       <article
-        class="flex flex-col items-start justify-center w-full h-full gap-10 lg:justify-between md:flex-row"
+        class="flex flex-col items-center justify-center w-full h-full gap-10 md:items-start lg:justify-between md:flex-row"
       >
-        <div class="overflow-hidden md:w-[500px] lg:w-[600px]">
-          <img
-            transition:name=`{slug}-image`
-            src={imgSrc}
-            class="object-cover w-full h-full rounded-xl"
-          />
+        <!-- w-[300px] md:w-[400px] lg:min-w-[600px] -->
+        <div
+          class="overflow-hidden w-auto lg:min-w-[500px] h-[300px] md:h-[400px] md:min-w-[400px] lg:h-[500px]"
+        >
+          <img src={imgSrc} class="object-fill w-full h-full rounded-2xl" />
         </div>
         <div>
-          <!-- <div class="flex flex-col items-center justify-between my-5">
-            <h1 class="h1">{name}</h1>
-          </div> -->
-
           <div class="lg:pl-10">
+            <div class="flex flex-col items-center justify-between mb-5">
+              <h1 class="h1">{name}</h1>
+            </div>
             <PortableTextComponent value={description} />
           </div>
         </div>
       </article>
-      <SocialContainer class:list={"justify-center mt-10"}>
-        <WhatsApp />
-      </SocialContainer>
+      <div class="flex items-center justify-center mt-10">
+        <WhatsApp
+          class:list={`px-4 py-2 bg-green-500 hover:bg-green-800 text-white`}
+        />
+      </div>
     </div>
   </section>
 </Layout>

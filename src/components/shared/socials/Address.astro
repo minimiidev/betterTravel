@@ -1,0 +1,17 @@
+---
+import { info } from "@/data";
+import { Icon } from "astro-iconify";
+
+const { address } = info;
+---
+
+<a
+  href="https://maps.app.goo.gl/AtMQtG4RMEiahtGi6"
+  target="_blank "
+  rel="noopener noreferrer"
+  class="flex items-start justify-center p hover:underline gap-x-2"
+>
+  <Icon name="mdi:location-outline" size="32px" class="inline min-w-[32px]" />{
+    address
+  }
+</a>
