@@ -6,11 +6,9 @@ const flyers = await getFlyers();
 console.log("🚀 ~ flyers:", flyers);
 ---
 
-<section class="bg-green-500 h-screen">
+<section id="ofertas" class="py-10">
   <h2 class="py-10 h2 text-center">Nuevas Ofertas</h2>
-  <div class="flex items-center justify-center gap-5">
-    <FlyerCard />
-    <FlyerCard />
-    <FlyerCard />
+  <div class="flex items-center justify-center gap-10 flex-wrap flex-shrink">
+    {flyers.map((d) => <FlyerCard {...d} />)}
   </div>
 </section>

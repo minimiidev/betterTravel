@@ -1,10 +1,16 @@
 ---
 import Icon from "astro-iconify";
+
+interface Prop {
+  instagram: string;
+}
+
+const { instagram } = Astro.props;
 ---
 
 <a
-  href="https://www.instagram.com"
-  class="bg-rose-500 transition-all duration-300 ease-in-out hover:bg-red-800"
+  href={instagram}
+  class="bg-rose-500 p cursor-pointer transition-all duration-300 ease-in-out hover:bg-red-800 hover:scale-95"
 >
   <Icon name="mdi:instagram" size="32px" class="inline p" />
   Instagram

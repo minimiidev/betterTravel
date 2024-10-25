@@ -10,11 +10,17 @@ import SocialContainer from "../shared/SocialContainer.astro";
 // import SlideShow from "../shared/SlideShow.astro";
 
 import { info } from "@/data";
-const { tel } = info;
+
+const {
+  address,
+  email,
+  tel,
+  socials: { facebook, instagram, twitter, whatsapp },
+} = info;
 ---
 
 <section
-  id="#home"
+  id="home"
   class="relative flex items-center justify-center w-full pt-20 pb-10 m-auto"
 >
   <!-- Filtro -->
@@ -45,8 +51,8 @@ const { tel } = info;
       </h1>
       <!-- SOCIAL -->
       <SocialContainer class:list={"mt-10"}>
-        <WhatsApp tel={tel} />
-        <Instagram />
+        <WhatsApp whatsapp={whatsapp} />
+        <Instagram instagram={instagram} />
       </SocialContainer>
     </article>
     <!-- Form -->

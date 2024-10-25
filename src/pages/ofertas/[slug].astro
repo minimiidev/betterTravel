@@ -1,0 +1,47 @@
+---
+import PortableTextComponent from "@/components/portableText/PortableTextComponent.astro";
+import SocialContainer from "@/components/shared/SocialContainer.astro";
+import WhatsApp from "@/components/shared/socials/WhatsApp.astro";
+import Layout from "@/layouts/Layout.astro";
+import { getFlyer } from "@/utils/sanity";
+
+const { slug = "" } = Astro.params ?? "";
+// console.log("🚀 ~ slug:", slug);
+const flyer = await getFlyer(slug);
+// console.log("🚀 ~ flyer:", flyer);
+
+const { name, imgSrc, description } = flyer;
+---
+
+<Layout title={`Viaja por ${name}`}>
+  <section class="w-full pb-10 text-black pt-[120px]">
+    <div class="container">
+      <button onclick="history.back()" class="pb-3 mb-2 opacity-70"
+        >{`<--- Volver atras`}</button
+      >
+      <article
+        class="flex flex-col items-start justify-center w-full h-full gap-10 lg:justify-between md:flex-row"
+      >
+        <div class="overflow-hidden md:w-[500px] lg:w-[600px]">
+          <img
+            transition:name=`{slug}-image`
+            src={imgSrc}
+            class="object-cover w-full h-full rounded-xl"
+          />
+        </div>
+        <div>
+          <!-- <div class="flex flex-col items-center justify-between my-5">
+            <h1 class="h1">{name}</h1>
+          </div> -->
+
+          <div class="lg:pl-10">
+            <PortableTextComponent value={description} />
+          </div>
+        </div>
+      </article>
+      <SocialContainer class:list={"justify-center mt-10"}>
+        <WhatsApp />
+      </SocialContainer>
+    </div>
+  </section>
+</Layout>

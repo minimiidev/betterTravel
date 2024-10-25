@@ -28,5 +28,11 @@ export default {
       description: "Imagen del flyer",
       validation: (Rule: any) => Rule.required(),
     },
+    {
+      name: "description",
+      title: "Descripcion",
+      type: "blockContent",
+      validation: (Rule: any) => Rule.required(),
+    },
   ],
 };

@@ -4,29 +4,34 @@ export const links = [
     path: "/",
   },
   {
-    text: "Resorts",
-    path: "/resorts",
+    text: "Ofertas",
+    path: "/ofertas",
   },
-  {
-    text: "Hoteles",
-    path: "/hoteles",
-  },
-  {
-    text: "Destinos",
-    path: "/destinos",
-  },
+  // {
+  //   text: "Resorts",
+  //   path: "/resorts",
+  // },
+  // {
+  //   text: "Hoteles",
+  //   path: "/hoteles",
+  // },
+  // {
+  //   text: "Destinos",
+  //   path: "/destinos",
+  // },
 ];
 
 export const info = {
-  tel: "+1 (809)-555-3344",
+  tel: "+1 (809)-729-7396",
   address: "Santo Domingo Este, San Vicente de Paul, Plaza Mirador",
 
   socials: {
-    instagram: "https:instagram.com",
-    facebook: "https:facebook.com",
+    whatsapp: "https://wa.me/8097297396",
+    instagram: "https://www.instagram.com/bettertravel01/",
+    facebook: "https://www.facebook.com/bettertravelonline/?locale=es_LA",
     twitter: "https:twitter.com",
   },
-  email: "info@bettertravel.com",
+  email: "bettertravel1@gmail.com",
 };
 
 // import image1 from "@/assets/images/heroImages/airport.jpg";

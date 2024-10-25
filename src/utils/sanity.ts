@@ -5,12 +5,27 @@ import { sanityClient } from "sanity:client";
 
 export async function getFlyers(): Promise<Destinations[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "resort" ]
+    groq`*[_type == "flyer" ]
   {
     "imgSrc": image.asset -> url,
     name,
     "slug": slug.current,
   }`
+  );
+}
+
+export async function getFlyer(slug: string): Promise<Destinations> {
+  return await sanityClient.fetch(
+    groq`*[_type == "flyer" && slug.current == $slug ][0]
+    {
+      name,
+      "slug": slug.current ,
+      "imgSrc": image.asset -> url,
+      description,
+    }`,
+    {
+      slug,
+    }
   );
 }
 

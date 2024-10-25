@@ -1,16 +1,15 @@
 ---
 import Icon from "astro-iconify";
 
-interface Props {
-  tel: string;
-}
-
-const { tel = "8091114466" } = Astro.props;
+import { info } from "@/data";
+const {
+  socials: { whatsapp },
+} = info;
 ---
 
 <a
-  href="https://wa.me/${tel}"
-  class="bg-green-500 p hover:bg-green-800 transition-all duration-300 ease-in-out"
+  href={whatsapp}
+  class="transition-all duration-300 ease-in-out bg-green-500 cursor-pointer p hover:bg-green-800 hover:scale-95"
 >
   <Icon name="mdi:whatsapp" size="32px" class="inline" />
   WhatsApp

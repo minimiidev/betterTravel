@@ -1,7 +1,21 @@
 ---
+interface Props {
+  name: string;
+  slug: string;
+  imgSrc: string;
+}
 
+const { name, slug, imgSrc } = Astro.props;
 ---
 
-<a class="block w-auto h-[350px] cursor-pointer hover:scale-105 transit">
-  <img src="flyer.webp" alt="" class="w-full h-full object-contain" />
+<a
+  href={`ofertas/${slug}`}
+  class="block w-[320px] h-[350px] cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out overflow-hidden rounded-lg"
+>
+  <img
+    transition:name=`{slug}-image`
+    src={imgSrc}
+    alt={name}
+    class="object-fill w-full h-full"
+  />
 </a>

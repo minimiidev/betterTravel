@@ -5,7 +5,7 @@ export default {
   fields: [
     {
       name: "type",
-      title: "Tipo de Product",
+      title: "Tipo de Producto",
       type: "string",
       description: "Ej: Resort, Hotel, Tour",
       options: {
