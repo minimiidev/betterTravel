@@ -13,7 +13,12 @@ const flyer = await getOffer(slug);
 const { name, imgSrc, description } = flyer;
 ---
 
-<Layout title={`Viaja por ${name}`}>
+<Layout
+  title={`${name} | Better Travel`}
+  description="Reserva tus vacaciones con la mejor agencia de viajes"
+  image={imgSrc}
+  keywords=""
+>
   <section class="w-full pb-10 text-black pt-[120px]">
     <div class="container">
       <button onclick="history.back()" class="pb-3 mb-2 opacity-70"
