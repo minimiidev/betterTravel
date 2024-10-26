@@ -23,7 +23,9 @@ export default defineConfig({
   ), react(), tailwind()],
 
   output: "server",
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: { enabled: true }
+  }),
 
   vite: {
     ssr: {
