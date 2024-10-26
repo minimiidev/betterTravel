@@ -25,7 +25,7 @@ export default defineConfig({
       studioBasePath: "/admin"
     }
   ), react(), tailwind(), sitemap({
-    filter: (page) => page !== 'https://www.bettertravelrd.com/reservas',
+    filter: (page) => page !== 'https://www.bettertravelrd.com/reservar',
   })],
 
   output: "server",
