@@ -1,14 +1,16 @@
 ---
-import { callSafely } from "astro:actions";
-
 interface Props {
   name: string;
   type: string;
   checkInTime: string;
   checkOutTime: string;
+  price: number;
+  currency: string;
+  productUrl: string;
 }
-const { name, type, checkInTime, checkOutTime } = Astro.props;
-console.log("🚀 ~ checkInTime:", checkInTime);
+const { name, type, checkInTime, checkOutTime, price, currency, productUrl } =
+  Astro.props;
+console.log("🚀 ~ productUrl:", productUrl);
 ---
 
 <form class="" transition:persist>
@@ -40,6 +42,27 @@ console.log("🚀 ~ checkInTime:", checkInTime);
       id="checkOutTime"
       class="hidden"
       value={`${checkOutTime}`}
+    />
+    <input
+      type="text"
+      name="price"
+      id="price"
+      class="hidden"
+      value={`${price}`}
+    />
+    <input
+      type="text"
+      name="currency"
+      id="currency"
+      class="hidden"
+      value={`${currency}`}
+    />
+    <input
+      type="text"
+      name="productUrl"
+      id="productUrl"
+      class="hidden"
+      value={`${productUrl}`}
     />
     <label for="checkInDate">Check In</label>
     <input
@@ -93,7 +116,7 @@ console.log("🚀 ~ checkInTime:", checkInTime);
 
 <style>
   form {
-    @apply grid grid-cols-1 place-content-stretch place-items-center gap-4 py-10 md:grid-cols-2	 lg:grid-cols-5;
+    @apply grid grid-cols-2 place-content-stretch place-items-center gap-4 py-10 	 lg:grid-cols-5;
 
     & div {
       @apply flex w-full flex-col items-start justify-between rounded-sm;
@@ -111,13 +134,13 @@ console.log("🚀 ~ checkInTime:", checkInTime);
       }
 
       & select {
-        @apply cursor-pointer rounded-sm px-5 py-3;
+        @apply cursor-pointer rounded-sm w-full px-5 py-3;
       }
     }
 
     & button[type="submit"] {
       @apply mx-auto mt-5 w-[200px] rounded-sm bg-blue-500 px-5 py-3
-      font-bold text-white hover:bg-blue-700;
+      font-bold text-white hover:bg-blue-700 col-span-2 lg:col-span-1;
     }
   }
 </style>
@@ -137,6 +160,7 @@ console.log("🚀 ~ checkInTime:", checkInTime);
       //locale: "es", // Cambia a español
       defaultDate: today,
       minDate: today,
+      disableMobile: true,
     });
 
     flatpickr(".flatpickrCheckOut", {
@@ -144,6 +168,7 @@ console.log("🚀 ~ checkInTime:", checkInTime);
       //locale: "es", // Cambia a español
       defaultDate: twoDaysLater,
       minDate: twoDaysLater,
+      disableMobile: true,
     });
   });
 
@@ -154,19 +179,36 @@ console.log("🚀 ~ checkInTime:", checkInTime);
     e.preventDefault();
 
     try {
-      const checkIn = (
+      const checkInInput = (
         document.getElementById("checkInDate") as HTMLInputElement
       ).value;
-      const checkOut = (
+      const checkOutInput = (
         document.getElementById("checkOutDate") as HTMLInputElement
       ).value;
 
-      if (!checkIn || !checkOut) {
+      if (!checkInInput || !checkOutInput) {
         alert("Debe seleccionar la fecha correctamente");
         return;
       }
+
+      // Convertir las fechas de formato "d-m-Y" a objetos Date
+      const [dayIn, monthIn, yearIn] = checkInInput.split("-");
+      const [dayOut, monthOut, yearOut] = checkOutInput.split("-");
+
+      const checkInDate = new Date(
+        parseInt(yearIn),
+        parseInt(monthIn) - 1, // Los meses en JS son 0-11
+        parseInt(dayIn)
+      );
+
+      const checkOutDate = new Date(
+        parseInt(yearOut),
+        parseInt(monthOut) - 1,
+        parseInt(dayOut)
+      );
+
       // Validar que checkOut es posterior a checkIn
-      if (checkIn >= checkOut) {
+      if (checkInDate >= checkOutDate) {
         alert("La fecha de CheckOut no puede ser anterior a la de CheckIn");
         return;
       }

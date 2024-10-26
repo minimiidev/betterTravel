@@ -31,11 +31,13 @@ import Icon from "astro-iconify";
           </li>
         ))
       }
-      <ButtonCTA
-        href={`/`}
-        class={`bg-gradient-to-r text-white from-blue-300 via-blue-500 to-blue-800 `}
-        >Contactanos</ButtonCTA
-      >
+      <div id="btnCta" class="mt-2">
+        <ButtonCTA
+          href="#footer"
+          class={`bg-gradient-to-r text-white from-blue-300 via-blue-500 to-blue-800 `}
+          >Contactanos</ButtonCTA
+        >
+      </div>
     </ul>
   </div>
 </div>
@@ -45,7 +47,7 @@ import Icon from "astro-iconify";
 
   const sideMenu = document.querySelector("#sideMenu") as Element;
   const closeBtn = document.querySelector("#closeBtn") as Element;
-  // const links = document.querySelectorAll("li");
+  const btnCta = document.querySelector("#btnCta") as Element;
 
   // Al cargar la pagina, quita el menu
   document.addEventListener("astro:page-load", () => isMenuOpen.set(false));
@@ -64,7 +66,5 @@ import Icon from "astro-iconify";
   // Cerrar a la X
   closeBtn.addEventListener("click", () => isMenuOpen.set(!isMenuOpen.value));
 
-  // links.forEach((link) => {
-  //   link.addEventListener("click", () => isMenuOpen.set(!isMenuOpen.value));
-  // });
+  btnCta.addEventListener("click", () => isMenuOpen.set(!isMenuOpen.value));
 </script>

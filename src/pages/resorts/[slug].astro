@@ -1,4 +1,4 @@
----
+<!-- ---
 import Layout from "@/layouts/Layout.astro";
 import { getResort } from "@/utils/sanity";
 import PortableTextComponent from "@/components/portableText/PortableTextComponent.astro";
@@ -22,8 +22,10 @@ const {
   checkOutTime,
 } = resort;
 
-const url = Astro.url.pathname ?? "";
-let type = url.split("/").at(1) ?? "";
+const productUrl = Astro.url.href;
+
+const typeUrl = Astro.url.pathname ?? "";
+let type = typeUrl.split("/").at(1) ?? "";
 if (type == "resorts") {
   type = "Resort";
 }
@@ -84,8 +86,11 @@ if (type == "resorts") {
           name={name}
           checkInTime={checkInTime}
           checkOutTime={checkOutTime}
+          price={price}
+          currency={currency}
+          productUrl={productUrl}
         />
       </article>
     </div>
   </section>
-</Layout>
+</Layout> -->

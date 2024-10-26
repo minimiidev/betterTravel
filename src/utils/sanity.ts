@@ -3,50 +3,25 @@ import type { PortableTextBlock } from "@portabletext/types";
 import groq from "groq";
 import { sanityClient } from "sanity:client";
 
-export async function getResortsAll(): Promise<Destinations[]> {
+export async function getOffers(): Promise<Product[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "resort" ]
+    groq`*[_type == "product" && promotion == true] | order(_updatedAt desc)
   {
+    "imgSrc": image.asset -> url,
     name,
-    "slug": slug.current ,
-    location,
-    price,
-    currency,
-    "imgSrc": image.asset -> url
+    "slug": slug.current,
   }`
   );
 }
 
-export async function getResorts(): Promise<Destinations[]> {
+export async function getOffer(slug: string): Promise<Product> {
   return await sanityClient.fetch(
-    groq`*[_type == "resort" ][0...6]  | order(_updatedAt desc)
-  {
-    _updatedAt,
-    name,
-    "slug": slug.current ,
-    location,
-    price,
-    currency,
-    "imgSrc": image.asset -> url
-  }`
-  );
-}
-
-export async function getResort(slug: string): Promise<Destinations> {
-  return await sanityClient.fetch(
-    groq`*[_type == "resort" && slug.current == $slug ][0]
+    groq`*[_type == "product" && slug.current == $slug ][0]
     {
       name,
       "slug": slug.current ,
-      location,
-      price,
-      priceKids,
-      ageKids,
-      currency,
       "imgSrc": image.asset -> url,
       description,
-      checkInTime,
-      checkOutTime
     }`,
     {
       slug,
@@ -54,7 +29,60 @@ export async function getResort(slug: string): Promise<Destinations> {
   );
 }
 
-export default interface Destinations {
+// export async function getResortsAll(): Promise<Destinations[]> {
+//   return await sanityClient.fetch(
+//     groq`*[_type == "resort" ]
+//   {
+//     name,
+//     "slug": slug.current ,
+//     location,
+//     price,
+//     currency,
+//     "imgSrc": image.asset -> url
+//   }`
+//   );
+// }
+
+// export async function getResorts(): Promise<Destinations[]> {
+//   return await sanityClient.fetch(
+//     groq`*[_type == "resort" ][0...6]  | order(_updatedAt desc)
+//   {
+//     _updatedAt,
+//     name,
+//     "slug": slug.current ,
+//     location,
+//     price,
+//     currency,
+//     "imgSrc": image.asset -> url
+//   }`
+//   );
+// }
+
+// export async function getResort(slug: string): Promise<Destinations> {
+//   return await sanityClient.fetch(
+//     groq`*[_type == "resort" && slug.current == $slug ][0]
+//     {
+//       name,
+//       "slug": slug.current ,
+//       location,
+//       price,
+//       priceKids,
+//       ageKids,
+//       currency,
+//       "imgSrc": image.asset -> url,
+//       description,
+//       checkInTime,
+//       checkOutTime
+//     }`,
+//     {
+//       slug,
+//     }
+//   );
+// }
+
+export default interface Product {
+  promotion: boolean;
+  type: string;
   name: string;
   slug: string;
   location: string;

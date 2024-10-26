@@ -1,16 +1,15 @@
----
-import EmailReservation from "@/components/emails/EmailReservation";
+<!-- ---
 import BackButton from "@/components/shared/BackButton.astro";
-import Layout from "@/layouts/Layout.astro";
-import { render } from "@react-email/render";
-import EmailForm from "./EmailForm";
+
+import EmailForm from "../../components/emails/EmailForm";
+import ReservaLayout from "@/layouts/ReservaLayout.astro";
 
 const cookies = Astro.cookies;
 const reservationCookie = cookies.get("reservation");
 
-// if (!reservationCookie) {
-//     return Astro.redirect("/");
-// }
+if (!reservationCookie) {
+  return Astro.redirect("/");
+}
 
 const reservation = JSON.parse(reservationCookie!.value);
 const {
@@ -22,19 +21,25 @@ const {
   kids,
   checkInTime,
   checkOutTime,
+  price,
+  currency,
+  productUrl,
 } = reservation;
 ---
 
-<Layout title="Reservation">
-  <section class="pt-[140px] w-full flex items-center justify-center flex-col">
-    <BackButton />
-    <h1 class="text-center h1">Reservation</h1>
-    <!-- <EmailReservation client:only="react" {...reservation} /> -->
+<ReservaLayout title="Reservation">
+  <section class="pt-[100px] w-full">
+    <div
+      class="w-full container mx-auto flex items-center justify-center flex-col"
+    >
+      <BackButton />
+      <h1 class="text-center h1">Reservación</h1>
 
-    <EmailForm client:only="react" {...reservation} />
-    <small class="mt-3 font-medium">Verificar antes de enviar</small>
+      <EmailForm client:only="react" {...reservation} />
+      <small class="mt-3 font-medium">Verificar antes de enviar</small>
+    </div>
   </section>
-</Layout>
+</ReservaLayout>
 
 <style>
   form {
@@ -57,4 +62,4 @@ const {
     @apply mx-auto mt-5 w-[200px] rounded-sm bg-blue-500 px-5 py-3
     font-bold text-white hover:bg-blue-700;
   }
-</style>
+</style> -->

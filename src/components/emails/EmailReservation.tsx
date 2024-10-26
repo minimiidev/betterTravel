@@ -21,7 +21,7 @@ interface ReservationEmailProps {
   productName?: string;
   productType?: string;
   userName?: string;
-  userNumber?: number;
+  userNumber?: string;
   userEmail?: string;
   checkInDate?: string;
   checkOutDate?: string;
@@ -31,33 +31,39 @@ interface ReservationEmailProps {
   kids?: number;
   productDesc?: string;
   userComment?: string;
+  price?: number;
+  currency?: string;
+  productUrl: string;
 }
 
 export const ReservationEmail = ({
   productType,
   productName,
-  userName,
-  userEmail,
-  userNumber,
+  userName = "John Doe",
+  userEmail = "yLkZP@example.com",
+  userNumber = "123456789",
   userComment,
   checkInDate,
   checkOutDate,
   checkInTime,
   checkOutTime,
-  adults,
-  kids,
+  adults = 2,
+  kids = 0,
+  price = 8750,
+  currency = "EUR",
+  productUrl,
 }: ReservationEmailProps) => {
-  const previewText = `Join ${userName} on Vercel`;
+  const previewText = `Reserva ${productName} en Better Travel`;
 
   return (
     <Html lang="es">
       <Head />
       <Preview>{previewText}</Preview>
       <Tailwind>
-        <Body className="flex flex-col items-center justify-center px-2 mx-auto my-auto font-sans text-black bg-white border border-sky-500 ">
+        <Body className="flex flex-col items-center justify-center  mx-auto my-auto font-sans text-black bg-white w-full  ">
           <Container
             align="center"
-            className=" mx-auto my-[40px] max-w-[465px] rounded px-10 py-3 flex flex-col items-center justify-center"
+            className=" w-full mx-auto  max-w-[465px] p-10 rounded  flex flex-col items-center justify-center"
           >
             {/* IMAGEN */}
             <Section className="mt-[12px] ">
@@ -70,9 +76,9 @@ export const ReservationEmail = ({
             <div className="mx-0 my-[12px] h-[2px] w-full bg-orange-500" />
             {/* TITULO */}
             <Heading className="text-center text-black ">
-              <Text className="text-[16px] font-medium">Reservación</Text>
+              <p className="text-[16px]  font-medium">Reservación</p>
               <Text>
-                <p className="text-[22px] mb-2 text-sky-500 font-medium">
+                <p className="text-[20px]  mb-2 text-sky-500 font-medium">
                   {productType}
                   {": "}
                 </p>
@@ -115,7 +121,7 @@ export const ReservationEmail = ({
                 className="w-32 h-8 mb-3 text-center text-white rounded-full bg-sky-500"
               >
                 <Column className="">
-                  RD$ <span className="font-bold">9900</span>
+                  {currency}$ <span className="font-bold">{price}</span>
                 </Column>
               </Row>
               <Row
@@ -151,20 +157,22 @@ export const ReservationEmail = ({
               </Row>
             </Section>
 
-            <Text className="text-[12px] leading-[24px] text-black/80">
-              <h3>Comentario:</h3>
-              {userComment}
-            </Text>
+            {userComment && (
+              <Text className="text-[12px] leading-[24px] text-black/80">
+                <h3>Comentario:</h3>
+                {userComment}
+              </Text>
+            )}
 
             {/* BOTON */}
-            {/* <Section className="mb-[32px] mt-[32px] text-center">
+            <Section className="text-center mt-5">
               <Button
                 className="rounded bg-orange-500 px-5 py-3 text-center text-[12px] font-semibold text-white no-underline"
-                href={``}
+                href={productUrl}
               >
                 Ver detalles
               </Button>
-            </Section> */}
+            </Section>
           </Container>
         </Body>
       </Tailwind>
@@ -172,16 +180,20 @@ export const ReservationEmail = ({
   );
 };
 
-//   ReservationEmail.PreviewProps = {
-//     username: "alanturing",
-//     userImage: `https://i.postimg.cc/J0J1FKXS/logo-better.jpg`,
-//     invitedByUsername: "Alan",
-//     userEmail: "alan.turing@example.com",
-//     teamName: "Enigma",
-//     teamImage: `https://i.postimg.cc/J0J1FKXS/logo-better.jpg`,
-//     inviteLink: "https://vercel.com/teams/invite/foo",
-//     inviteFromIp: "204.13.186.218",
-//     inviteFromLocation: "São Paulo, Brazil",
-//   } as ReservationEmailProps;
+// ReservationEmail.previewProps = {
+//   productName: "",
+//   productType: "",
+//   userName: "",
+//   userNumber: "",
+//   userEmail: "",
+//   checkInDate: "",
+//   checkOutDate: "",
+//   checkInTime: "",
+//   checkOutTime: "",
+//   adults: 0,
+//   kids: 0,
+//   productDesc: "",
+//   userComment: "",
+// } as ReservationEmailProps;
 
 export default ReservationEmail;

@@ -1,0 +1,19 @@
+---
+import Icon from "astro-iconify";
+
+import { info } from "@/data";
+const {
+  socials: { whatsapp },
+} = info;
+---
+
+<a
+  href={whatsapp}
+  class:list={[
+    "transition-all duration-300 ease-in-out cursor-pointer p hover:scale-95 rounded-3xl px-4 py-2",
+    Astro.props.class,
+  ]}
+>
+  <Icon name="mdi:whatsapp" size="32px" class="inline" />
+  WhatsApp
+</a>

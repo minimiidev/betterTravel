@@ -1,18 +1,26 @@
 ---
 import { info } from "@/data";
 import { Icon } from "astro-iconify";
+import SocialContainer from "../shared/SocialContainer.astro";
+import WhatsApp from "../shared/socials/WhatsApp.astro";
+import Instagram from "../shared/socials/Instagram.astro";
 // import { beachBg } from "@/assets/videos";
 const {
   address,
   email,
   tel,
-  socials: { facebook, instagram, twitter },
+  socials: { facebook, instagram, twitter, whatsapp },
 } = info;
+
+import logo from "@/assets/logo.png";
+import Address from "../shared/socials/Address.astro";
+import Email from "../shared/socials/Email.astro";
+import Telephone from "../shared/socials/Telephone.astro";
 ---
 
-<section
-  id="#home"
-  class="relative flex items-center justify-center w-full h-screen m-auto"
+<footer
+  id="footer"
+  class="relative flex flex-col items-center justify-center w-full pt-32 pb-20"
 >
   <div
     class="bg-[rgb(47,106,127)] w-full absolute top-0 bottom-0 mix-blend-hard-light z-[1]"
@@ -26,97 +34,54 @@ const {
     muted
     class="absolute top-0 bottom-0 object-cover w-full h-full"></video> -->
 
-  <div class="container z-50 w-full h-max">
-    <article class="flex flex-col items-center justify-center w-full py-8">
-      <div class="flex flex-col items-start justify-center">
-        <span class="mb-1 text-sm uppercase">Mantente en contacto</span>
-        <h1 class="inline-block w-full mb-5 h2">Viaja con nosotros</h1>
-        <form
-          action=""
-          class="flex flex-col items-center justify-center w-full mx-auto"
-        >
-          <input
-            type="text"
-            placeholder="Escribe tu correo"
-            class="bg-transparent border min-w-[250px] border-gray-400 rounded-3xl px-4 py-2 mb-5"
-          />
-          <button
-            type="submit"
-            class="px-5 py-2 bg-green-500 font-bold min-w-[140px]"
-            >Enviar</button
-          >
-        </form>
+  <section
+    class="container z-10 flex flex-wrap items-start justify-center w-full lg:items-start lg:justify-between h-max gap-x-12 gap-y-4 lg:gap-14 md:gap-x-20"
+  >
+    <article
+      class="md:mt-5 lg:mt-0 min-w-[240px] min-h-max order-1 lg:order-[0]"
+    >
+      <img
+        src={logo.src}
+        alt="Better Travel Logo"
+        class="w-full h-[150px] object-cover md:w-[400px] md:h-[200px]"
+      />
+    </article>
+    <article
+      class="flex flex-col gap-4 [&>a:hover]:underline [&>a:hover]:text-orange-500 [&>a]:font-medium [&>a]:py-3 transition-all duration-300 ease-in-out lg:min-w-[120px]"
+    >
+      <h3 class="h3">Menu</h3>
+      <a href="#" class="p">Inicio</a>
+      <a href="#" class="p">Resorts</a>
+      <a href="#" class="p">Hoteles</a>
+      <a href="#" class="p">Resorts</a>
+    </article>
+
+    <article
+      class="flex flex-col items-start justify-center gap-4 lg:max-w-[40%] w-full flex-1"
+    >
+      <h3 class="h3">Informacion</h3>
+
+      <WhatsApp class:list={" hover:bg-green-500 "} />
+      <Instagram class:list={" hover:bg-rose-500 "} />
+      <div
+        class="flex flex-col items-start justify-center max-w-full gap-4 pl-4"
+      >
+        <Address />
+        <Email />
+        <Telephone />
       </div>
     </article>
-    <!-- INFORMACION -->
-    <!-- <article
-        class="flex flex-col items-start justify-center min-w-[350px] [&>a:hover]:underline [&>a:hover]:text-sky-500"
+    <article class="order-10 w-full text-center">
+      <p class="inline-block mt-10 p opacity-80">
+        Better Travel ©{new Date().getFullYear()} | Desarrollado por
+      </p>
+      <a
+        href="https://painkillerdev.vercel.app"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block underline hover:cursor-pointer hover:no-underline hover:text-slate-600"
+        >PainDev</a
       >
-        <h3 class="w-full mb-10 text-center h3">Informacion de Contacto</h3>
-
-        <a
-          href={`https://wa.me/${tel}`}
-          class="flex items-center justify-center gap-2 p"
-        >
-          <Icon name="fa-brands:whatsapp" size="32px" class="text-green-500" />
-          Whatsapp: {tel}
-        </a>
-
-        <a
-          href=`mailto:${email}`
-          class="flex items-center justify-center gap-2 p"
-        >
-          <Icon
-            name="heroicons-outline:mail"
-            size="32px"
-            class="text-slate-300"
-          />
-          Escribenos: {email}
-        </a>
-        <div class="w-full mx-auto">
-          <h4 class="w-full mb-5 text-2xl font-medium text-center">
-            Redes Sociales
-          </h4>
-          <div class="flex items-center justify-center gap-4">
-            <a href={instagram}>
-              <Icon name="fa6-brands:instagram" size="48px" />
-            </a>
-            <a href={facebook}>
-              <Icon name="fa:facebook-official" size="42px" />
-            </a>
-            <a href={twitter}
-              ><Icon name="fa6-brands:square-x-twitter" size="48px" /></a
-            >
-          </div>
-        </div>
-      </article>
-    </div> -->
-    <!-- FORMULARIO -->
-    <!-- <form
-      action=""
-      class="flex flex-col w-[400px] items-start [&>*]:rounded [&>textarea]:w-full [&>textarea]:h-[120px] [&>input]:w-full justify-center [&>label]:py-2 [&>label]:pl-3 [&>label]:text-gray-300 [&>input]:px-2 [&>input]:py-2"
-    >
-      <label for="name">Nombre</label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Escribe tu nombre"
-      />
-      <label for="email">Correo Electronico</label>
-      <input
-        type="email"
-        name="email"
-        id="email"
-        placeholder="Escriba su correo electronico"
-      />
-
-      <label for="description">Detalles</label>
-      <textarea name="description" id="description"></textarea>
-      <button
-        type="submit"
-        class="px-10 py-2 mx-auto mt-5 font-bold bg-green-500">Enviar</button
-      >
-    </form> -->
-  </div>
-</section>
+    </article>
+  </section>
+</footer>

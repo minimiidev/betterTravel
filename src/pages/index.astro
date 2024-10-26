@@ -2,6 +2,7 @@
 import { Hero, ShowResort, Footer } from "@/components/sections";
 import Layout from "../layouts/Layout.astro";
 import EmailReservation from "@/components/emails/EmailReservation";
+import ShowFlyer from "@/components/sections/ShowFlyer.astro";
 
 //* Borrar cookies
 // const cookies = Astro.cookies;
@@ -9,16 +10,11 @@ import EmailReservation from "@/components/emails/EmailReservation";
 ---
 
 <Layout
-  title="Agencia de viajes"
+  title="Better Travel | Your Best Choice"
   description="Reservas de hoteles, resorts o vuelos"
 >
-  <!-- <section class="flex gap-8 flex-col items-center justify-center">
-    <button id="submit" class="px-5 mt-20 py2 bg-green-500 text-white font-bold"
-      >Send Email</button
-    >
-    <EmailReservation client:load />
-  </section> -->
   <Hero />
-  <ShowResort />
+  <ShowFlyer />
+  <!-- <ShowResort /> -->
   <Footer />
 </Layout>

@@ -1,0 +1,14 @@
+---
+import Icon from "astro-iconify";
+import { info } from "@/data";
+const { email } = info;
+---
+
+<a
+  href="mailto:{email}"
+  class="flex items-start justify-center p hover:underline gap-x-2"
+>
+  <Icon name="mdi:mail-outline" size="32px" class="inline min-w-[32px]" />{
+    email
+  }</a
+>

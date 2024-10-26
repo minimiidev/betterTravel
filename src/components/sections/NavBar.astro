@@ -3,15 +3,22 @@ import { links } from "@/data";
 import Icon from "astro-iconify";
 import ButtonCTA from "../shared/ButtonCTA.astro";
 
+import logo from "@/assets/logo.png";
 // export const prerender = true;
 ---
 
 <nav
   transition:persist
-  class="fixed top-0 right-0 z-30 flex items-center justify-center w-full py-4 transition-all duration-300 ease-in-out bg-transparent shadow-md backdrop-blur-md"
+  class="fixed top-0 right-0 z-30 flex items-center justify-center w-full transition-all duration-300 ease-in-out bg-transparent shadow-md backdrop-blur-md"
 >
   <div class="container flex items-center justify-between">
-    <a href={`/`} class="h2">Travel.</a>
+    <a href={`/`} class="h-full w-[300px]">
+      <img
+        src={logo.src}
+        alt="Better Travel Logo"
+        class="w-[200px] h-[100px] object-cover"
+      />
+    </a>
     <ul class="items-center justify-center hidden h-full md:flex">
       {
         links.map((link) => (
@@ -23,12 +30,14 @@ import ButtonCTA from "../shared/ButtonCTA.astro";
         ))
       }
     </ul>
-    <div class="hidden md:block">
-      <ButtonCTA href="#" class:list={`text-black bg-white rounded-3xl`}
+    <div id="btnCta" class="hidden md:block">
+      <ButtonCTA
+        href="#footer"
+        class:list={`text-white hover:bg-orange-800 bg-orange-500 rounded-3xl`}
         >Contactanos</ButtonCTA
       >
     </div>
-    <div id="menuBtn" class="z-50 block pointer lg:hidden">
+    <div id="menuBtn" class="z-50 block pointer md:hidden">
       <Icon name="mage:dots-menu" size="48px" class="text-blue-500" />
     </div>
   </div>

@@ -1,0 +1,14 @@
+---
+import Icon from "astro-iconify";
+import { info } from "@/data";
+
+const { tel } = info;
+---
+
+<a
+  href="tel:{tel}"
+  class="flex items-start justify-center p hover:underline gap-x-2"
+>
+  <Icon name="mdi:telephone-outline" size="32px" class="inline min-w-[32px]" />
+  {tel}</a
+>
