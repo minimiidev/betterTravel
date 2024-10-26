@@ -1,6 +1,7 @@
 ---
 import { getOffers } from "@/utils/sanity";
 import ProductCard from "./ProductCard.astro";
+import ButtonLink from "../shared/ButtonLink.astro";
 
 const offers = await getOffers();
 ---
@@ -14,5 +15,11 @@ const offers = await getOffers();
     >
       {offers.map((d) => <ProductCard {...d} />)}
     </div>
+
+    <ButtonLink
+      href="/ofertas"
+      text="Ver todas las ofertas"
+      class="mt-10 bg-orange-500 hover:bg-orange-800"
+    />
   </div>
 </section>
