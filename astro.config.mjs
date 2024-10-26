@@ -10,8 +10,12 @@ import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel/serverless';
 
 
+import sitemap from '@astrojs/sitemap';
+
+
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.bettertravelrd.com/',
   integrations: [sanity(
     {
       projectId: 'oajovp2j',
@@ -20,7 +24,9 @@ export default defineConfig({
       useCdn: true, // VER???
       studioBasePath: "/admin"
     }
-  ), react(), tailwind()],
+  ), react(), tailwind(), sitemap({
+    filter: (page) => page !== 'https://www.bettertravelrd.com/reservas',
+  })],
 
   output: "server",
   adapter: vercel({
