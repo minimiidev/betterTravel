@@ -1,15 +1,16 @@
-<!-- ---
+---
 import { getResorts } from "@/utils/sanity";
-import ResortCard from "../products/ResortCard.astro";
+import ProductCard from "./ProductCard.astro";
 
 const resorts = await getResorts();
 ---
 
 <section id="content" class="w-full py-16 text-black">
   <div class="container flex flex-col items-center justify-center">
-    <h2 class="mb-10 h2">Resorts en Ofertas</h2>
+    <p class="mb-2 p">Fin de semana</p>
+    <h2 class="mb-10 h2">Resorts</h2>
     <div class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3">
-      {resorts.map((d) => <ResortCard {...d} />)}
+      {resorts.map((d) => <ProductCard {...d} />)}
     </div>
   </div>
-</section> -->
+</section>

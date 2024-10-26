@@ -1,8 +1,12 @@
 ---
-import { Hero, ShowResort, Footer } from "@/components/sections";
+import { Hero, Footer } from "@/components/sections";
 import Layout from "../layouts/Layout.astro";
-import EmailReservation from "@/components/emails/EmailReservation";
-import ShowFlyer from "@/components/sections/ShowFlyer.astro";
+import ShowOffer from "@/components/products/ShowOffer.astro";
+import ShowHotels from "@/components/products/ShowHotels.astro";
+import ShowExcursion from "@/components/products/ShowExcursion.astro";
+import ShowResort from "@/components/products/ShowResort.astro";
+
+const image = "";
 
 //* Borrar cookies
 // const cookies = Astro.cookies;
@@ -11,10 +15,14 @@ import ShowFlyer from "@/components/sections/ShowFlyer.astro";
 
 <Layout
   title="Better Travel | Your Best Choice"
-  description="Reservas de hoteles, resorts o vuelos"
+  description="Encuentra las mejores ofertas en viajes personalizados y paquetes todo incluido desde Santo Domingo. Descubre el Caribe con nosotros."
+  keywords=""
+  image=""
 >
   <Hero />
-  <ShowFlyer />
-  <!-- <ShowResort /> -->
+  <ShowOffer />
+  <ShowExcursion />
+  <ShowResort />
+  <ShowHotels />
   <Footer />
 </Layout>

@@ -1,9 +1,8 @@
 ---
 import { getOffers } from "@/utils/sanity";
-import FlyerCard from "../products/FlyerCard.astro";
+import ProductCard from "./ProductCard.astro";
 
-const flyers = await getOffers();
-console.log("🚀 ~ flyers:", flyers);
+const offers = await getOffers();
 ---
 
 <section id="ofertas" class="w-full py-16 text-black">
@@ -13,7 +12,7 @@ console.log("🚀 ~ flyers:", flyers);
     <div
       class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3 justify-items-center"
     >
-      {flyers.map((d) => <FlyerCard {...d} />)}
+      {offers.map((d) => <ProductCard {...d} />)}
     </div>
   </div>
 </section>

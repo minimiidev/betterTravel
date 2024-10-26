@@ -4,5 +4,4 @@ export { default as Hero } from "./Hero.astro"
 export { default as NavBar } from "./NavBar.astro"
 export { default as SideMenu } from "./SideMenu.astro"
 
-export { default as ShowResort } from "./ShowResort.astro"
 export { default as Footer } from "./Footer.astro"

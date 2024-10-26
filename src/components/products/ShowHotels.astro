@@ -1,0 +1,18 @@
+---
+import { getHotels } from "@/utils/sanity";
+import ProductCard from "./ProductCard.astro";
+
+const hotels = await getHotels();
+---
+
+<section id="ofertas" class="w-full py-16 text-black">
+  <div class="container flex flex-col items-center justify-center">
+    <p class="mb-2 p">Para hospedarte</p>
+    <h2 class="mb-10 h2">Hoteles</h2>
+    <div
+      class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3 justify-items-center"
+    >
+      {hotels.map((d) => <ProductCard {...d} />)}
+    </div>
+  </div>
+</section>

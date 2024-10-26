@@ -31,7 +31,7 @@ export const info = {
     "Av. San Vicente de Paul #152, Plaza Jayson 2do Piso, Alma Rosa II, Santo Domingo Este",
 
   socials: {
-    whatsapp: "https://wa.me/8097297396",
+    whatsapp: "https://wa.me/18097297396",
     instagram: "https://www.instagram.com/bettertravel01/",
     facebook: "https://www.facebook.com/bettertravelonline/?locale=es_LA",
     twitter: "https:twitter.com",

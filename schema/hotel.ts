@@ -1,6 +1,6 @@
 export default {
-  name: "product",
-  title: "Productos",
+  name: "hotel",
+  title: "Hotel",
   type: "document",
   fields: [
     {
@@ -18,10 +18,10 @@ export default {
         list: [
           { title: "Resort", value: "Resort" },
           { title: "Hotel", value: "Hotel" },
-          { title: "Excursion", value: "Excursion" },
+          { title: "Excursiones", value: "Excursiones" },
           { title: "Crucero", value: "Crucero" },
           { title: "Paquete Internacional", value: "Paquete Internacional" },
-          { title: "Circuito", value: "Circuito" },
+          { title: "Circuitos", value: "Circuitos" },
         ],
       },
       validation: (Rule: any) => Rule.required(),

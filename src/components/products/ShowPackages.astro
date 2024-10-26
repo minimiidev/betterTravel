@@ -1,0 +1,18 @@
+---
+import { getTours } from "@/utils/sanity";
+import ProductCard from "./ProductCard.astro";
+
+const tours = await getTours();
+---
+
+<section id="ofertas" class="w-full py-16 text-black">
+  <div class="container flex flex-col items-center justify-center">
+    <p class="mb-2 p">Para conocer el mundo</p>
+    <h2 class="mb-10 h2">Paquetes Internacionales</h2>
+    <div
+      class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3 justify-items-center"
+    >
+      {tours.map((d) => <ProductCard {...d} />)}
+    </div>
+  </div>
+</section>

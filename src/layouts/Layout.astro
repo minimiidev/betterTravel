@@ -4,16 +4,107 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { NavBar, SideMenu } from "@/components/sections";
 import { ViewTransitions } from "astro:transitions";
 
+import { SEO } from "astro-seo";
+
+import { info } from "@/data";
+const { address, email, tel, socials } = info;
+
 interface Props {
   title: string;
-  description?: string;
+  description: string;
+  keywords: string;
+  image?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, keywords, image } = Astro.props;
 ---
 
 <html lang="es">
   <head>
+    <!-- SEO -->
+    <SEO
+      title={title}
+      description={description}
+      keywords={[
+        keywords,
+        "agencia de viajes",
+        "santo domingo este",
+        "santo domingo",
+        "republica dominicana",
+        "paquetes internacionales",
+        "circuitos",
+        "reservas de hoteles",
+        "resorts",
+        "boletos de avion",
+        "viajar",
+        "turismo",
+        "viajes",
+        "hoteles",
+        "resorts",
+        "aviones",
+        "boletos",
+        "reservas",
+        "paquetes",
+        "circuitos internacionales",
+        "viajes internacionales",
+        "viajar al extranjero",
+        "turismo internacional",
+        "agencias de viajes",
+        "viajes a medida",
+        "viajes de negocios",
+        "viajes de placer",
+        "viajes de lujo",
+        "viajes economicos",
+        "viajes en grupo",
+        "viajes en familia",
+        "viajes en parejas",
+        "viajes en grupo",
+        "viajes de cultura",
+        "viajes de historia",
+      ]}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: `${image}`,
+        },
+        optional: {
+          description: description,
+        },
+      }}
+      twitter={{
+        card: "summary_large_image",
+        title: title,
+        description: description,
+        image: `${image}`,
+      }}
+      extend={{
+        link: [{ rel: "icon", href: "/favicon.png" }],
+      }}
+    />
+
+    <!-- SCHEMA JSON LD -->
+
+    <!-- <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "Agencia de Viajes",
+        // REVISAR IMAGEN
+        "image": "https://bettertravelrd.com/logo.png",
+        "description": "Agencia de viajes en Santo Domingo que ofrece paquetes todo incluido, tours guiados y viajes personalizados en el Caribe.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. San Vicente de Paul #152, Plaza Jayson 2do Piso",
+          "addressLocality": "Santo Domingo Este",
+          "addressRegion": "Santo Domingo",
+          "addressCountry": "DO"
+        },
+        "telephone": "+18295972494",
+        "url": "https://bettertravelrd.com"
+      }
+    </script> -->
+
     <!-- FLAT PICKR CSS -->
     <link
       rel="stylesheet"

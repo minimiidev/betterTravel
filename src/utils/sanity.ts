@@ -29,6 +29,50 @@ export async function getOffer(slug: string): Promise<Product> {
   );
 }
 
+export async function getHotels(): Promise<Product[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "product" && type == "Hotel"]
+  {
+    "imgSrc": image.asset -> url,
+    name,
+    "slug": slug.current,
+  }`
+  );
+}
+
+export async function getTours(): Promise<Product[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "product" && type == "Excursion"]
+  {
+    "imgSrc": image.asset -> url,
+    name,
+    "slug": slug.current,
+  }`
+  );
+}
+
+export async function getResorts(): Promise<Product[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "product" && type == "Resort"]
+  {
+    "imgSrc": image.asset -> url,
+    name,
+    "slug": slug.current,
+  }`
+  );
+}
+
+export async function getPackages(): Promise<Product[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "product" && type == "Paquete Internacional"]
+  {
+    "imgSrc": image.asset -> url,
+    name,
+    "slug": slug.current,
+  }`
+  );
+}
+
 // export async function getResortsAll(): Promise<Destinations[]> {
 //   return await sanityClient.fetch(
 //     groq`*[_type == "resort" ]

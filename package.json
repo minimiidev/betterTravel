@@ -20,18 +20,6 @@
     "@sanity/astro": "^3.1.6",
     "@sanity/client": "^6.22.2",
     "@sanity/image-url": "^1.0.2",
-<<<<<<< HEAD
-    "@sanity/types": "^3.61.0",
-    "@sanity/vision": "^3.61.0",
-    "@sanity/visual-editing": "^2.1.10",
-    "@types/react": "^18.3.11",
-    "@types/react-dom": "^18.3.1",
-    "astro": "^4.16.6",
-    "astro-iconify": "^1.2.0",
-    "astro-portabletext": "^0.10.0",
-    "flatpickr": "^4.6.13",
-    "groq": "^3.61.0",
-=======
     "@sanity/types": "^3.62.0",
     "@sanity/vision": "^3.62.0",
     "@sanity/visual-editing": "^2.3.1",
@@ -41,19 +29,15 @@
     "astro": "^4.16.7",
     "astro-iconify": "^1.2.0",
     "astro-portabletext": "^0.10.0",
+    "astro-seo": "^0.8.4",
     "flatpickr": "^4.6.13",
     "groq": "^3.62.0",
->>>>>>> 943a62218355c3d2027200709be4fee7675cf642
     "nanostores": "^0.11.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-email": "^3.0.1",
     "resend": "^4.0.0",
-<<<<<<< HEAD
-    "sanity": "^3.61.0",
-=======
     "sanity": "^3.62.0",
->>>>>>> 943a62218355c3d2027200709be4fee7675cf642
     "tailwindcss": "^3.4.14",
     "typescript": "^5.6.3"
   }
