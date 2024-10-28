@@ -1,15 +1,18 @@
 ---
 interface Props {
   name: string;
+  type: string;
   slug: string;
   imgSrc: string;
 }
 
-const { name, slug, imgSrc } = Astro.props;
+const { name, type, slug, imgSrc } = Astro.props;
+
+let urlType = type.toLocaleLowerCase();
 ---
 
 <a
-  href={`ofertas/${slug}`}
+  href={`/${urlType}/${slug}`}
   class="block w-[320px] h-[350px] cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out overflow-hidden rounded-lg relative"
 >
   <img src={imgSrc} alt={name} class="object-fill w-full h-full" />

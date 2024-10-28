@@ -5,27 +5,25 @@ import { sanityClient } from "sanity:client";
 
 export async function getOffers(): Promise<Product[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "product" && promotion == true] | order(_updatedAt desc)
+    groq`*[_type == "product" && promotion == true][0...5] | order(_updatedAt desc)
   {
-    "imgSrc": image.asset -> url,
     name,
+    type,
     "slug": slug.current,
+    "imgSrc": image.asset -> url,
   }`
   );
 }
 
-export async function getOffer(slug: string): Promise<Product> {
+export async function getAllOffers(): Promise<Product[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "product" && slug.current == $slug ][0]
+    groq`*[_type == "product" && slug.current == $slug ] | ordere(_updatedAt desc)
     {
       name,
+      type,
       "slug": slug.current ,
       "imgSrc": image.asset -> url,
-      description,
-    }`,
-    {
-      slug,
-    }
+    }`
   );
 }
 
@@ -33,9 +31,10 @@ export async function getHotels(): Promise<Product[]> {
   return await sanityClient.fetch(
     groq`*[_type == "product" && type == "Hotel"]
   {
-    "imgSrc": image.asset -> url,
     name,
+    type,
     "slug": slug.current,
+    "imgS rc": image.asset -> url,
   }`
   );
 }
@@ -44,9 +43,10 @@ export async function getTours(): Promise<Product[]> {
   return await sanityClient.fetch(
     groq`*[_type == "product" && type == "Excursion"]
   {
-    "imgSrc": image.asset -> url,
     name,
+    type,
     "slug": slug.current,
+    "imgSrc": image.asset -> url,
   }`
   );
 }
@@ -55,9 +55,10 @@ export async function getResorts(): Promise<Product[]> {
   return await sanityClient.fetch(
     groq`*[_type == "product" && type == "Resort"]
   {
-    "imgSrc": image.asset -> url,
     name,
+    type,
     "slug": slug.current,
+    "imgSrc": image.asset -> url,
   }`
   );
 }
