@@ -2,7 +2,8 @@
 import ProductCard from "@/components/products/ProductCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getAllResorts } from "@/utils/sanity";
-const allOffers = await getAllResorts();
+const allResorts = await getAllResorts();
+console.log("🚀 ~ allResorts:", allResorts);
 ---
 
 <Layout
@@ -17,7 +18,7 @@ const allOffers = await getAllResorts();
       <div
         class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3 justify-items-center"
       >
-        {allOffers.map((d) => <ProductCard {...d} />)}
+        {allResorts.map((d) => <ProductCard {...d} />)}
       </div>
     </div>
   </section>

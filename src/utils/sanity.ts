@@ -34,7 +34,7 @@ export async function getHotels(): Promise<Product[]> {
     name,
     type,
     "slug": slug.current,
-    "imgS rc": image.asset -> url,
+    "imgSrc": image.asset -> url,
   }`
   );
 }
@@ -46,7 +46,7 @@ export async function getAllHotels(): Promise<Product[]> {
     name,
     type,
     "slug": slug.current,
-    "imgS rc": image.asset -> url,
+    "imgSrc": image.asset -> url,
   }`
   );
 }
@@ -84,6 +84,29 @@ export async function getResorts(): Promise<Product[]> {
     "slug": slug.current,
     "imgSrc": image.asset -> url,
   }`
+  );
+}
+
+export async function getResort(slug: string): Promise<Product> {
+  return await sanityClient.fetch(
+    groq`*[_type == "product" && slug.current == $slug ][0]
+    {
+      name,
+      "slug": slug.current ,
+      location,
+      price,
+      priceKids,
+      ageKids,
+      currency,
+      "imgSrc": image.asset -> url,
+      description,
+      requerements,
+      checkInTime,
+      checkOutTime
+    }`,
+    {
+      slug,
+    }
   );
 }
 
@@ -155,6 +178,29 @@ export async function getPackages(): Promise<Product[]> {
     "slug": slug.current,
     "imgSrc": image.asset -> url,
   }`
+  );
+}
+
+export async function getPackage(slug: string): Promise<Product> {
+  return await sanityClient.fetch(
+    groq`*[_type == "product" && slug.current == $slug ][0]
+    {
+      name,
+      "slug": slug.current ,
+      location,
+      price,
+      priceKids,
+      ageKids,
+      currency,
+      "imgSrc": image.asset -> url,
+      description,
+      requerements,
+      checkInTime,
+      checkOutTime
+    }`,
+    {
+      slug,
+    }
   );
 }
 
@@ -240,5 +286,5 @@ export default interface Product {
   days: string;
   nights: string;
   description: PortableTextBlock[];
-  requerements: PortableTextBlock[];
+  requirements: PortableTextBlock[];
 }
