@@ -20,7 +20,7 @@ export default {
           { title: "Hotel", value: "Hoteles" },
           { title: "Excursion", value: "Excursiones" },
           { title: "Crucero", value: "Cruceros" },
-          { title: "Paquete Internacional", value: "Paquetes" },
+          { title: "Paquete Internacional", value: "Paquetes-Internacionales" },
           { title: "Tour", value: "Tours" },
         ],
       },
