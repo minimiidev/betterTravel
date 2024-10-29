@@ -4,47 +4,75 @@ import Icon from "astro-iconify";
 import ButtonCTA from "../shared/ButtonCTA.astro";
 
 import logo from "@/assets/logo.png";
+import { Image } from "astro:assets";
 // export const prerender = true;
 ---
 
 <nav
   transition:persist
-  class="fixed top-0 right-0 z-30 flex items-center justify-center w-full transition-all duration-300 ease-in-out bg-transparent shadow-md backdrop-blur-sm"
+  class="fixed top-0 right-0 z-30 flex items-center justify-center w-full transition-all duration-300 ease-in-out bg-transparent shadow-md backdrop-blur-md"
 >
-  <script>
-    const nav = document.querySelector("nav") as Element;
-
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 50) {
-        nav.classList.add("shadow-md");
-        nav.classList.add("bg-white");
-        nav.classList.remove("backdrop-blur-sm");
-      } else {
-        nav.classList.remove("shadow-md");
-        nav.classList.remove("bg-white");
-        nav.classList.add("backdrop-blur-sm");
-      }
-    });
-  </script>
   <div class="container flex items-center justify-between">
     <a href={`/`} class="h-full w-[300px]">
-      <img
-        src={logo.src}
+      <Image
+        width={300}
+        height={100}
+        src={logo}
         alt="Better Travel Logo"
         class="w-[200px] h-[100px] object-cover"
       />
     </a>
-    <ul class="items-center justify-center hidden h-full md:flex">
-      {
-        links.map((link) => (
-          <li class="font-medium">
-            <a href={link.path} class="px-5 py-5 hover:bg-sky-500 ">
-              {link.text}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
+    {
+      links.slice(0, 2).map((link) => (
+        <li class="font-medium list-none hidden md:block">
+          <a
+            href={link.path}
+            class=" block px-5 py-2 hover:bg-sky-500 w-full text-center"
+          >
+            {link.text}
+          </a>
+        </li>
+      ))
+    }
+
+    {
+      links.slice(2).map((link) => (
+        <li class="font-medium list-none hidden lg:block ">
+          <a
+            href={link.path}
+            class=" block px-5 py-2 hover:bg-sky-500 w-full text-center"
+          >
+            {link.text}
+          </a>
+        </li>
+      ))
+    }
+    <div
+      class="min-w-[120px] [&>ul]:hidden hidden md:block lg:hidden [&:hover>span]:bg-sky-500 [&:hover>ul]:flex relative font-medium"
+    >
+      <span
+        class="flex px-4 py-2 items-center justify-center gap-2 transition-all duration-300 ease-in-out"
+      >
+        Productos
+        <Icon name="gridicons:dropdown" size="24px" class="" />
+      </span>
+      <ul
+        class="flex-col transform absolute translate-x-1/2 right-1/2 -bottom-[220px] items-center justify-center w-[200px] h-full md:flex bg-sky-300 min-h-max"
+      >
+        {
+          links.slice(2).map((link) => (
+            <li class="w-full font-medium">
+              <a
+                href={link.path}
+                class=" block px-5 py-2 hover:bg-sky-500 w-full text-center"
+              >
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
     <div id="btnCta" class="hidden md:block">
       <ButtonCTA
         href="#footer"

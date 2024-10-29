@@ -1,19 +1,19 @@
 ---
 import ProductCard from "@/components/products/ProductCard.astro";
 import Layout from "@/layouts/Layout.astro";
-import { getAllOffers } from "@/utils/sanity";
-const allOffers = await getAllOffers();
+import { getAllPackages } from "@/utils/sanity";
+const allOffers = await getAllPackages();
 ---
 
 <Layout
   title="Ofertas"
   description="Descubre las mejores ofertas en viajes personalizados y paquetes todo incluido desde Santo Domingo. Descubre el Caribe con nosotros."
-  keywords={["ofertas"]}
+  keywords={["paquetes internacionales"]}
 >
   <section id="ofertas" class="w-full pt-[150px] pb-10 text-black">
     <div class="container flex flex-col items-center justify-center">
-      <p class="mb-2 p">Descubre las mejores</p>
-      <h1 class="mb-10 h1">Ofertas</h1>
+      <p class="mb-2 p">Nuestros</p>
+      <h1 class="mb-10 h1 text-center">Paquetes Internacionales</h1>
       <div
         class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3 justify-items-center"
       >

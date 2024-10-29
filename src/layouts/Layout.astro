@@ -1,7 +1,7 @@
 ---
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import { NavBar, SideMenu } from "@/components/sections";
+import { Footer, NavBar, SideMenu } from "@/components/sections";
 import { ViewTransitions } from "astro:transitions";
 
 import { SEO } from "astro-seo";
@@ -12,7 +12,7 @@ const { address, email, tel, socials } = info;
 interface Props {
   title: string;
   description: string;
-  keywords: string;
+  keywords: string[];
   image?: string;
 }
 
@@ -31,46 +31,49 @@ const { title, description, keywords, image } = Astro.props;
       content="LUVjeCa9J5WRJoppo_yh7otoSLTxRBsSEU0BynUdZWM"
     />
     <!-- SEO -->
+
+    <meta
+      name="keywords"
+      content=` ${keywords},
+      agencia de viajes santo domingo,
+        agencia de viajes,
+        santo domingo este,
+        santo domingo,
+        republica dominicana,
+        paquetes internacionales,
+        circuitos,
+        reservas de hoteles,
+        resorts,
+        boletos de avion,
+        viajar,
+        turismo,
+        viajes,
+        hoteles,
+        resorts,
+        aviones,
+        boletos,
+        reservas,
+        paquetes,
+        circuitos internacionales,
+        viajes internacionales,
+        viajar al extranjero,
+        turismo internacional,
+        agencias de viajes,
+        viajes a medida,
+        viajes de negocios,
+        viajes de placer,
+        viajes de lujo,
+        viajes economicos,
+        viajes en grupo,
+        viajes en familia,
+        viajes en parejas,
+        viajes en grupo,
+        viajes de cultura,
+        viajes de historia,`
+    />
     <SEO
       title={title}
       description={description}
-      keywords={[
-        keywords,
-        "agencia de viajes",
-        "santo domingo este",
-        "santo domingo",
-        "republica dominicana",
-        "paquetes internacionales",
-        "circuitos",
-        "reservas de hoteles",
-        "resorts",
-        "boletos de avion",
-        "viajar",
-        "turismo",
-        "viajes",
-        "hoteles",
-        "resorts",
-        "aviones",
-        "boletos",
-        "reservas",
-        "paquetes",
-        "circuitos internacionales",
-        "viajes internacionales",
-        "viajar al extranjero",
-        "turismo internacional",
-        "agencias de viajes",
-        "viajes a medida",
-        "viajes de negocios",
-        "viajes de placer",
-        "viajes de lujo",
-        "viajes economicos",
-        "viajes en grupo",
-        "viajes en familia",
-        "viajes en parejas",
-        "viajes en grupo",
-        "viajes de cultura",
-        "viajes de historia",
-      ]}
       openGraph={{
         basic: {
           title: title,
@@ -146,6 +149,7 @@ const { title, description, keywords, image } = Astro.props;
     <main>
       <slot />
     </main>
+    <!-- <Footer /> -->
   </body>
 </html>
 

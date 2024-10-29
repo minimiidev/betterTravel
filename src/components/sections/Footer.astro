@@ -1,7 +1,7 @@
 ---
+import { Image } from "astro:assets";
+
 import { info, links } from "@/data";
-import { Icon } from "astro-iconify";
-import SocialContainer from "../shared/SocialContainer.astro";
 import WhatsApp from "../shared/socials/WhatsApp.astro";
 import Instagram from "../shared/socials/Instagram.astro";
 const {
@@ -32,10 +32,12 @@ import Telephone from "../shared/socials/Telephone.astro";
     <article
       class="md:mt-5 lg:mt-0 min-w-[220px] min-h-max lg:order-[0] order-10 md:w-[300px] md:h-[300px]"
     >
-      <img
-        src={logo.src}
+      <Image
+        width={300}
+        height={100}
+        src={logo}
         alt="Better Travel Logo"
-        class="object-cover w-full h-full"
+        class="w-[200px] h-[100px] object-cover"
       />
     </article>
     <article

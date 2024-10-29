@@ -6,19 +6,23 @@ import ButtonLink from "../shared/ButtonLink.astro";
 const resorts = await getResorts();
 ---
 
-<section id="content" class="w-full py-16 text-black">
-  <div class="container flex flex-col items-center justify-center">
-    <p class="mb-2 p">Fin de semana</p>
-    <h2 class="mb-10 h2">Resorts</h2>
-    <div
-      class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3 justify-items-center"
-    >
-      {resorts.map((d) => <ProductCard {...d} />)}
-    </div>
-    <ButtonLink
-      href="/ofertas"
-      text="Ver todos los resorts"
-      class="mt-10 bg-orange-500 hover:bg-orange-800"
-    />
-  </div>
-</section>
+{
+  resorts && resorts.length > 0 && (
+    <section id="content" class="w-full py-16 text-black">
+      <div class="container flex flex-col items-center justify-center">
+        <p class="mb-2 p">Fin de semana</p>
+        <h2 class="mb-10 h2">Resorts</h2>
+        <div class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3 justify-items-center">
+          {resorts.map((d) => (
+            <ProductCard {...d} />
+          ))}
+        </div>
+        <ButtonLink
+          href="/resorts"
+          text="Ver todos los resorts"
+          class="mt-10 bg-orange-500 hover:bg-orange-800"
+        />
+      </div>
+    </section>
+  )
+}

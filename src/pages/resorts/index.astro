@@ -1,23 +1,24 @@
-<!-- ---
-import ResortCard from "@/components/products/ResortCard.astro";
+---
+import ProductCard from "@/components/products/ProductCard.astro";
 import Layout from "@/layouts/Layout.astro";
-import { getResortsAll } from "@/utils/sanity";
-
-const resorts = await getResortsAll();
-
-// todo: agregar nombre de la empresa para todas las paginas
-const { description } = Astro.props;
+import { getAllResorts } from "@/utils/sanity";
+const allOffers = await getAllResorts();
 ---
 
-<Layout title=`Todos los Hoteles | ${description}`>
-  <section id="" class="w-full text-black py-16 mt-[50px]">
-    <div class="container flex flex-col items-center justify-center w-full">
-      <h2 class="mb-6 h1">Todos los Resorts</h2>
+<Layout
+  title="Ofertas"
+  description="Descubre las mejores ofertas en viajes personalizados y paquetes todo incluido desde Santo Domingo. Descubre el Caribe con nosotros."
+  keywords={["resorts"]}
+>
+  <section id="ofertas" class="w-full pt-[150px] pb-10 text-black">
+    <div class="container flex flex-col items-center justify-center">
+      <p class="mb-2 p">Nuestros</p>
+      <h1 class="mb-10 h1">Resorts</h1>
       <div
-        class="grid w-full grid-cols-1 gap-12 px-5 place-items-center md:grid-cols-2"
+        class="grid w-full grid-cols-1 gap-12 md:grid-cols-2 xl:grid-cols-3 justify-items-center"
       >
-        {resorts.map((d) => <ResortCard {...d} />)}
+        {allOffers.map((d) => <ProductCard {...d} />)}
       </div>
     </div>
   </section>
-</Layout> -->
+</Layout>

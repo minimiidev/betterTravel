@@ -8,6 +8,10 @@ export const links = [
     path: "/ofertas",
   },
   {
+    text: "Resorts",
+    path: "/resorts",
+  },
+  {
     text: "Hoteles",
     path: "/hoteles",
   },
@@ -20,8 +24,8 @@ export const links = [
     path: "/paquetes-internacionales",
   },
   {
-    text: "Circuitos",
-    path: "/circuitos",
+    text: "Tours",
+    path: "/tours",
   },
 ];
 

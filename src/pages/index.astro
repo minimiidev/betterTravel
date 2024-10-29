@@ -3,8 +3,9 @@ import { Hero, Footer } from "@/components/sections";
 import Layout from "../layouts/Layout.astro";
 import ShowOffer from "@/components/products/ShowOffer.astro";
 import ShowHotels from "@/components/products/ShowHotels.astro";
-import ShowExcursion from "@/components/products/ShowExcursion.astro";
+import ShowTours from "@/components/products/ShowTours.astro";
 import ShowResort from "@/components/products/ShowResort.astro";
+import ShowCruises from "@/components/products/showCruises.astro";
 
 const image = "";
 
@@ -16,13 +17,13 @@ const image = "";
 <Layout
   title="Better Travel | Your Best Choice"
   description="Encuentra las mejores ofertas en viajes personalizados y paquetes todo incluido desde Santo Domingo. Descubre el Caribe con nosotros."
-  keywords=""
+  keywords={[""]}
   image=""
 >
   <Hero />
   <ShowOffer />
-  <ShowExcursion />
+  <ShowTours />
   <ShowResort />
   <ShowHotels />
-  <Footer />
+  <ShowCruises />
 </Layout>

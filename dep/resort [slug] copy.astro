@@ -1,0 +1,96 @@
+<!-- ---
+import Layout from "@/layouts/Layout.astro";
+import { getResort } from "@/utils/sanity";
+import PortableTextComponent from "@/components/portableText/PortableTextComponent.astro";
+import ButtonCTA from "@/components/shared/ButtonCTA.astro";
+import ReservationForm from "@/components/shared/ReservationForm.astro";
+import PoliticsCard from "@/components/shared/PoliticsCard.astro";
+
+const { slug = "" } = Astro.params ?? "";
+const resort = await getResort(slug);
+
+const {
+  name,
+  location,
+  imgSrc,
+  description,
+  price,
+  currency,
+  priceKids,
+  ageKids,
+  checkInTime,
+  checkOutTime,
+} = resort;
+
+const productUrl = Astro.url.href;
+
+const typeUrl = Astro.url.pathname ?? "";
+let type = typeUrl.split("/").at(1) ?? "";
+if (type == "resorts") {
+  type = "Resort";
+}
+---
+
+<Layout title={`Viaja por ${name}`}>
+  <section class="w-full pt-24 pb-10 text-black">
+    <div class="container">
+      <button onclick="history.back()" class="pb-3 mb-2 opacity-70"
+        >{`<--- Volver atras`}</button
+      >
+      <div class="h-48 overflow-hidden">
+        <img src={imgSrc} class="object-cover w-full h-full rounded-xl" />
+      </div>
+      <article>
+        <div class="flex flex-col items-center justify-between my-5">
+          <h1 class="h1">{name}</h1>
+          <div class="flex items-center justify-between w-full py-2">
+            <a
+              href={`/zona/${location.toLocaleLowerCase()}`}
+              class="hover:underline">{location}</a
+            >
+            <p class="font-bold text-center">
+              <span class="opacity-70">
+                {currency}$
+              </span>
+              <span class="text-2xl text-red-500">
+                {price}
+              </span>
+            </p>
+          </div>
+          <div class="flex items-center justify-between w-full py-2">
+            <p>{ageKids}</p>
+            <p class="font-bold text-center">
+              <span class="opacity-70">
+                {currency}$
+              </span>
+              <span class="text-2xl text-red-500">
+                {priceKids}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-center w-full mb-5">
+          <ButtonCTA class={`text-white bg-blue-500 text-xl`}>
+            Reservar</ButtonCTA
+          >
+        </div>
+
+        <div>
+          <PortableTextComponent value={description} />
+          <PoliticsCard checkInTime={checkInTime} checkOutTime={checkOutTime} />
+        </div>
+
+        <ReservationForm
+          type={type}
+          name={name}
+          checkInTime={checkInTime}
+          checkOutTime={checkOutTime}
+          price={price}
+          currency={currency}
+          productUrl={productUrl}
+        />
+      </article>
+    </div>
+  </section>
+</Layout> -->

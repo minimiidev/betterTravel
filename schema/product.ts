@@ -16,12 +16,12 @@ export default {
       description: "Ej: Resort, Hotel, Paq. Internacional",
       options: {
         list: [
-          { title: "Resort", value: "Resort" },
-          { title: "Hotel", value: "Hotel" },
-          { title: "Excursion", value: "Excursion" },
-          { title: "Crucero", value: "Crucero" },
-          { title: "Paquete Internacional", value: "Paquete Internacional" },
-          { title: "Circuito", value: "Circuito" },
+          { title: "Resort", value: "Resorts" },
+          { title: "Hotel", value: "Hoteles" },
+          { title: "Excursion", value: "Excursiones" },
+          { title: "Crucero", value: "Cruceros" },
+          { title: "Paquete Internacional", value: "Paquetes" },
+          { title: "Tour", value: "Tours" },
         ],
       },
       validation: (Rule: any) => Rule.required(),
@@ -30,12 +30,14 @@ export default {
       name: "name",
       title: "Nombre",
       type: "string",
+      description: "Nombre del producto",
       validation: (Rule: any) => Rule.required(),
     },
     {
       name: "slug",
       title: "Slug",
       type: "slug",
+      description: "Dar click en generar luego de escribir el titulo",
       options: {
         source: "name",
         maxLength: 200,
@@ -48,6 +50,7 @@ export default {
       name: "location",
       title: "Ubicacion",
       type: "string",
+      description: "EN CASO DE SER NECESARIO?",
     },
     {
       name: "image",
@@ -59,7 +62,14 @@ export default {
       name: "description",
       title: "Descripcion",
       type: "blockContent",
+      description: "Descripcion del producto",
       validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: "requirements",
+      title: "Requisitos",
+      type: "blockContent",
+      description: "Requisitos del producto",
     },
     {
       name: "price",
@@ -85,13 +95,13 @@ export default {
       name: "priceKids",
       title: "Precio Niños",
       type: "number",
-      description: "Coste de niños",
+      description: "Coste de niños para resorts",
     },
     {
       name: "ageKids",
       title: "Edad Niños",
-      type: "text",
-      description: "Edad de los niños",
+      type: "string",
+      description: "Edad de los niños para resorts",
     },
 
     {

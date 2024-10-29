@@ -1,0 +1,82 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getCruise } from "@/utils/sanity";
+import PortableTextComponent from "@/components/portableText/PortableTextComponent.astro";
+import { Image } from "astro:assets";
+
+const { slug = "" } = Astro.params ?? "";
+const cruise = await getCruise(slug);
+
+const {
+  name,
+  location,
+  imgSrc,
+  description,
+  price,
+  currency,
+  priceKids,
+  ageKids,
+  checkInTime,
+  checkOutTime,
+} = cruise;
+
+const productUrl = Astro.url.href;
+
+const typeUrl = Astro.url.pathname ?? "";
+let type = typeUrl.split("/").at(1) ?? "";
+// if (type == "resorts") {
+//   type = "Resort";
+// }
+---
+
+<Layout
+  title={`Viaja por ${name}`}
+  description={`Viaja por ${name}`}
+  keywords={["cruceros"]}
+>
+  <section class="w-full pt-[150px] pb-10 text-black">
+    <div class="container">
+      <div class="w-auto aspect-[16/9] h-[120px] md:h-[200px] lg:h-[300px]">
+        <Image
+          src={imgSrc}
+          alt={name}
+          width={1000}
+          height={500}
+          class="rounded-xl"
+        />
+      </div>
+      <!-- <article class="block">
+        <div class="flex flex-col items-center justify-between my-5">
+          <h1 class="h1">{name}</h1>
+          <div class="flex items-center justify-between w-full py-2">
+            <a href={`#`} class="hover:underline">{type}</a>
+            <p class="font-bold text-center">
+              <span class="opacity-70">
+                {currency}$
+              </span>
+              <span class="text-2xl text-red-500">
+                {price}
+              </span>
+            </p>
+          </div>
+          <div class="flex items-center justify-between w-full py-2">
+            <p>{ageKids}</p>
+            <p class="font-bold text-center">
+              <span class="opacity-70">
+                {currency}$
+              </span>
+              <span class="text-2xl text-red-500">
+                {priceKids}
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <PortableTextComponent value={description} />
+        </div>
+        <PoliticsCard checkInTime={checkInTime} checkOutTime={checkOutTime} /> 
+    </article> -->
+    </div>
+  </section>
+</Layout>
