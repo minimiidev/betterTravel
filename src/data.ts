@@ -11,10 +11,7 @@ export const links = [
     text: "Resorts",
     path: "/resorts",
   },
-  {
-    text: "Hoteles",
-    path: "/hoteles",
-  },
+  
   {
     text: "Cruceros",
     path: "/cruceros",
