@@ -14,7 +14,6 @@ const {
   location,
   imgSrc,
   description,
-  requirements,
   price,
   currency,
   priceKids,
@@ -25,9 +24,9 @@ const {
 ---
 
 <Layout
-  title={`Viaja ${name} con este paquete `}
-  description={`Preparate para viajar ${name}`}
-  keywords={["paquetes", "internacionales"]}
+  title={`Tour ${name} `}
+  description={`Tour ${name}`}
+  keywords={["tours"]}
 >
   <section class="w-full mt-[120px] md:pt-[0px] pb-10 text-black">
     <div
@@ -57,14 +56,6 @@ const {
 
         <p class="p mb-5 font-medium">Informacion:</p>
         <PortableTextComponent value={description} />
-
-        <div
-          class="bg-white border rounded-md border-slate-500 w-[250px] p-3 mt-10"
-        >
-          <h4 class="h4 mb-5">Requisitos</h4>
-
-          <PortableTextComponent value={requirements} />
-        </div>
       </article>
       <WhatsApp
         class:list={"bg-green-500 mt-10 col-span-2 hover:bg-green-800"}

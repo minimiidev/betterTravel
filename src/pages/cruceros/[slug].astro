@@ -1,82 +1,75 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getCruise } from "@/utils/sanity";
+import { getProduct } from "@/utils/sanity";
 import PortableTextComponent from "@/components/portableText/PortableTextComponent.astro";
 import { Image } from "astro:assets";
+import BackButton from "@/components/shared/BackButton.astro";
+import WhatsApp from "@/components/shared/socials/WhatsApp.astro";
 
 const { slug = "" } = Astro.params ?? "";
-const cruise = await getCruise(slug);
+const product = await getProduct(slug);
 
 const {
   name,
   location,
   imgSrc,
   description,
+  requirements,
   price,
   currency,
   priceKids,
   ageKids,
   checkInTime,
   checkOutTime,
-} = cruise;
-
-const productUrl = Astro.url.href;
-
-const typeUrl = Astro.url.pathname ?? "";
-let type = typeUrl.split("/").at(1) ?? "";
-// if (type == "resorts") {
-//   type = "Resort";
-// }
+} = product;
+console.log("🚀 ~ Requisitos:", product.requirements);
 ---
 
 <Layout
-  title={`Viaja por ${name}`}
-  description={`Viaja por ${name}`}
-  keywords={["cruceros"]}
+  title={`Crucero ${name} `}
+  description={`Disfruta del mar con ${name}`}
+  keywords={["crucero"]}
 >
-  <section class="w-full pt-[150px] pb-10 text-black">
-    <div class="container">
-      <div class="w-auto aspect-[16/9] h-[120px] md:h-[200px] lg:h-[300px]">
+  <section class="w-full mt-[120px] md:pt-[0px] pb-10 text-black">
+    <div
+      class="container grid grid-cols-1 lg:grid-cols-2 justify-items-center lg:gap-x-20"
+    >
+      <div
+        class="overflow-hidden flex flex-col items-start justify-start col-span-2 lg:col-span-1"
+      >
+        <BackButton />
+        <!-- Image -->
         <Image
           src={imgSrc}
           alt={name}
-          width={1000}
+          widths={[240, 450, 600]}
           height={500}
-          class="rounded-xl"
+          inferSize={true}
+          class="object-contain rounded-xl mx-auto w-full lg:max-w-[600px] md:max-w-[550px] h-full"
         />
       </div>
-      <!-- <article class="block">
-        <div class="flex flex-col items-center justify-between my-5">
-          <h1 class="h1">{name}</h1>
-          <div class="flex items-center justify-between w-full py-2">
-            <a href={`#`} class="hover:underline">{type}</a>
-            <p class="font-bold text-center">
-              <span class="opacity-70">
-                {currency}$
-              </span>
-              <span class="text-2xl text-red-500">
-                {price}
-              </span>
-            </p>
-          </div>
-          <div class="flex items-center justify-between w-full py-2">
-            <p>{ageKids}</p>
-            <p class="font-bold text-center">
-              <span class="opacity-70">
-                {currency}$
-              </span>
-              <span class="text-2xl text-red-500">
-                {priceKids}
-              </span>
-            </p>
-          </div>
+      <article
+        class="flex lg:mt-[30px] flex-col items-center justify-start lg:items-start"
+      >
+        <div class="flex flex-col justify-start items-start py-5 gap-4">
+          <h1 class="h2">{name}</h1>
+          <p><span>{currency}</span>$ <span class="h4">{price}</span></p>
         </div>
 
-        <div>
-          <PortableTextComponent value={description} />
+        <p class="p mb-5 font-medium">Informacion:</p>
+        <PortableTextComponent value={description} />
+        <!-- Requisitos -->
+        <div
+          class="bg-white border rounded-md border-slate-500 w-[250px] p-3 mt-10"
+        >
+          <h4 class="h4 mb-5">Requisitos</h4>
+
+          <PortableTextComponent value={requirements} />
         </div>
-        <PoliticsCard checkInTime={checkInTime} checkOutTime={checkOutTime} /> 
-    </article> -->
+      </article>
+      <WhatsApp
+        class:list={"bg-green-500 mt-10 col-span-2 hover:bg-green-800"}
+      />
     </div>
   </section>
 </Layout>

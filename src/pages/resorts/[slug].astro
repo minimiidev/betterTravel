@@ -1,13 +1,13 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { getResort } from "@/utils/sanity";
+import { getProduct } from "@/utils/sanity";
 import PortableTextComponent from "@/components/portableText/PortableTextComponent.astro";
 import { Image } from "astro:assets";
 import BackButton from "@/components/shared/BackButton.astro";
 import WhatsApp from "@/components/shared/socials/WhatsApp.astro";
 
 const { slug = "" } = Astro.params ?? "";
-const resort = await getResort(slug);
+const product = await getProduct(slug);
 
 const {
   name,
@@ -20,21 +20,13 @@ const {
   ageKids,
   checkInTime,
   checkOutTime,
-} = resort;
-
-const productUrl = Astro.url.href;
-
-const typeUrl = Astro.url.pathname ?? "";
-let type = typeUrl.split("/").at(1) ?? "";
-// if (type == "resorts") {
-//   type = "Resort";
-// }
+} = product;
 ---
 
 <Layout
-  title={`Viaja por ${name}`}
-  description={`Viaja por ${name}`}
-  keywords={["cruceros"]}
+  title={`Resort ${name} `}
+  description={`Resort ${name}`}
+  keywords={["resorts"]}
 >
   <section class="w-full mt-[120px] md:pt-[0px] pb-10 text-black">
     <div
@@ -51,7 +43,7 @@ let type = typeUrl.split("/").at(1) ?? "";
           widths={[240, 450, 600]}
           height={500}
           inferSize={true}
-          class="object-contain rounded-xl mx-auto min-w-[240px] md:min-w-[450px] lg:min-w-[600px] h-full"
+          class="object-contain rounded-xl mx-auto min-w-[240px] md:min-w-[450px] lg:min-w-[600px] md:max-w-[450px] h-full"
         />
       </div>
       <article
