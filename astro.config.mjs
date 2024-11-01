@@ -15,7 +15,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://www.bettertravelrd.com/',
+  site: 'https://www.bettertravelrd.com',
   integrations: [sanity(
     {
       projectId: 'oajovp2j',
@@ -26,6 +26,9 @@ export default defineConfig({
     }
   ), react(), tailwind(),
   sitemap({
+    changefreq: 'weekly',
+    priority: 1,
+    lastmod: new Date('2024-11-1'),
     // filter: (page) => page !== 'https://www.bettertravelrd.com/reservar',
   })],
 
