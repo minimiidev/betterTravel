@@ -1,0 +1,27 @@
+---
+import { actions } from "astro:actions";
+
+// const cookie = Astro.cookies.get("hotelCode");
+
+// const hotelCode = JSON.parse(cookie!.value);
+// console.log("🚀 ~ hotelCode:", hotelCode);
+
+const hotelCode = 7;
+
+const getHotel = await actions.getHotel({ number: hotelCode });
+const { data, error } = getHotel;
+if (error) console.log("🚀 ~ error:", error);
+// console.log("🚀 ~ data:", data);
+---
+
+<h1>Nombre: {data.name.content}</h1>
+<p>Descripcion: {data.description.content}</p>
+<p>Pais: {data.coutnry.description.content}</p>
+<p>Destino / Ciudad: {data.destination.name.content}</p>
+<p>
+  Tags: {
+    data.boards.map((tag: any) => {
+      <small>tag.description.content</small>;
+    })
+  }
+</p>

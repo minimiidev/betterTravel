@@ -2,6 +2,7 @@ import type { PortableTextBlock } from "@portabletext/types";
 // import type { ImageAsset, Slug } from "@sanity/types";
 import groq from "groq";
 import { sanityClient } from "sanity:client";
+import type Product from "./interfaces";
 
 export async function getProduct(slug: string): Promise<Product> {
   return await sanityClient.fetch(
@@ -266,25 +267,3 @@ export async function getAllPackages(): Promise<Product[]> {
 //     }
 //   );
 // }
-
-export default interface Product {
-  promotion: boolean;
-  type: string;
-  name: string;
-  slug: string;
-  location: string;
-  imgSrc: string;
-  country: string;
-  price: number;
-  priceKids: number;
-  ageKids: string;
-  currency: string;
-  checkInDate: string;
-  checkoutDate: string;
-  checkInTime: string;
-  checkOutTime: string;
-  days: string;
-  nights: string;
-  description: PortableTextBlock[];
-  requirements: PortableTextBlock[];
-}
