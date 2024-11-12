@@ -1,11 +1,11 @@
 export default {
-  name: "flyer",
-  title: "Flyers",
+  name: "blog",
+  title: "Blog",
   type: "document",
   fields: [
     {
       name: "name",
-      title: "Nombre",
+      title: "Titulo",
       type: "string",
       validation: (Rule: any) => Rule.required(),
     },
@@ -22,16 +22,31 @@ export default {
       validation: (Rule: any) => Rule.required(),
     },
     {
-      name: "image",
-      title: "Imagen",
-      type: "image",
-      description: "Imagen del flyer",
+      name: "descriptionMeta",
+      title: "Descripcion para meta",
+      description: "DESCRIPCION BREVE DE LA PUBLICACION",
+      type: "text",
       validation: (Rule: any) => Rule.required(),
     },
     {
       name: "description",
       title: "Descripcion",
       type: "blockContent",
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: "image",
+      title: "Imagen Principal",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
+      name: "publishedAt",
+      title: "Fecha de publicacion",
+      type: "date",
       validation: (Rule: any) => Rule.required(),
     },
   ],

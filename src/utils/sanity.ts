@@ -3,6 +3,37 @@ import type { PortableTextBlock } from "@portabletext/types";
 import groq from "groq";
 import { sanityClient } from "sanity:client";
 
+//  BLOG
+
+export async function getAllBlogs(): Promise<Blog[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "blog"] | order(_updatedAt desc)
+    {
+      name,
+      "slug": slug.current,
+      "imgSrc": image.asset -> url,
+    }`
+  );
+}
+
+export async function getBlog(slug: string): Promise<Blog> {
+  return await sanityClient.fetch(
+    groq`*[_type == "blog" && slug.current == $slug ][0]
+    {
+      name,
+      "slug": slug.current,
+      "imgSrc": image.asset -> url,
+      description,
+      descriptionMeta
+    }`,
+    {
+      slug,
+    }
+  );
+}
+
+//  PRODUCTOS
+
 export async function getProduct(slug: string): Promise<Product> {
   return await sanityClient.fetch(
     groq`*[_type == "product" && slug.current == $slug ][0]
@@ -267,7 +298,7 @@ export async function getAllPackages(): Promise<Product[]> {
 //   );
 // }
 
-export default interface Product {
+export interface Product {
   promotion: boolean;
   type: string;
   name: string;
@@ -287,4 +318,12 @@ export default interface Product {
   nights: string;
   description: PortableTextBlock[];
   requirements: PortableTextBlock[];
+}
+
+export interface Blog {
+  name: string;
+  slug: string;
+  imgSrc: string;
+  description: PortableTextBlock[];
+  descriptionMeta: string;
 }

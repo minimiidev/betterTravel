@@ -1,0 +1,34 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import { getAllBlogs } from "@/utils/sanity";
+import { Image } from "astro:assets";
+
+const allBlogs = await getAllBlogs();
+console.log("🚀 ~ allBlogs:", allBlogs);
+---
+
+<Layout title="Blog" description="Blog de viajes" keywords={[""]}>
+  <section class="mt-[150px] flex items-center justify-center">
+    <div class="container">
+      <h1 class="h1 text-center mb-10">Blog</h1>
+      {
+        allBlogs.map((d) => (
+          <a
+            href={`/blog/faq/${d.slug}`}
+            class="relative block rounded-xl overflow-hidden [&:hover>div]:bg-opacity-100 hover:scale-95 transition-all duration-300 ease-in-out cursor-pointer shadow-lg shadow-sky-300"
+          >
+            <Image src={d.imgSrc} width={1200} height={1200} alt="" />
+
+            <div
+              class="absolute bottom-0 left-0 w-full h-20 flex items-center justify-center bg-black bg-opacity-80 
+            trasition-all duration-300 ease-in-out"
+            >
+              <h2 class="h2 text-orange-500">{d.name}</h2>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
