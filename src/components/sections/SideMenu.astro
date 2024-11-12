@@ -10,35 +10,43 @@ import Icon from "astro-iconify";
   class="fixed top-[2000px] z-[100] h-full w-full text-black opacity-0 transition-all duration-300 ease-in-out"
 >
   <div id="sideMenuBg" class="w-full h-full">
-    <ul
-      class="flex-col relative flex w-[320px] mx-auto bg-white shadow-2xl rounded-2xl h-[60%] items-center justify-center"
+    <div
+      class="relative mx-auto flex h-[60%] w-[320px] flex-col items-center justify-center rounded-2xl bg-white shadow-2xl"
     >
       <Icon
         id="closeBtn"
         name="ic:baseline-close"
         size="42px"
-        class="absolute right-[20px] top-[20px] p-2 bg-blue-500 rounded-full text-white"
+        class="absolute right-[20px] top-[20px] p-2 bg-red-400 rounded-full text-white"
       />
-      {
-        links.map((link) => (
-          <li class="font-medium">
-            <a
-              href={link.path}
-              class="px-5 min-w-[150px] text-center py-3 block hover:bg-sky-500 "
-            >
-              {link.text}
-            </a>
-          </li>
-        ))
-      }
-      <div id="btnCta" class="mt-2">
+      <ul>
+        {
+          links.slice(0, 6).map((link) => (
+            <li class="font-medium">
+              <a
+                href={link.path}
+                class="px-5 min-w-[150px] text-center py-3 block hover:bg-sky-500 "
+              >
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-3">
+        <ButtonCTA
+          href="/blog"
+          class={`  text-white bg-sky-500 hover:bg-sky-800`}>Blog</ButtonCTA
+        >
+      </div>
+      <div id="btnCta" class="mt-4">
         <ButtonCTA
           href="#footer"
-          class={`bg-gradient-to-r text-white from-blue-300 via-blue-500 to-blue-800 `}
+          class={` text-white bg-orange-500 hover:bg-orange-800`}
           >Contactanos</ButtonCTA
         >
       </div>
-    </ul>
+    </div>
   </div>
 </div>
 

@@ -11,18 +11,21 @@ export const links = [
     text: "Resorts",
     path: "/resorts",
   },
-  
-  {
-    text: "Cruceros",
-    path: "/cruceros",
-  },
   {
     text: "Paquetes Internacionales",
     path: "/paquetes-internacionales",
   },
   {
+    text: "Cruceros",
+    path: "/cruceros",
+  },
+  {
     text: "Tours",
     path: "/tours",
+  },
+  {
+    text: "Blog",
+    path: "/blog",
   },
 ];
 

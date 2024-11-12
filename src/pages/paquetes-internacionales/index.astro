@@ -3,12 +3,11 @@ import ProductCard from "@/components/products/ProductCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getAllPackages } from "@/utils/sanity";
 const allPackages = await getAllPackages();
-console.log("🚀 ~ allPackages:", allPackages);
 ---
 
 <Layout
-  title="Ofertas"
-  description="Descubre las mejores ofertas en viajes personalizados y paquetes todo incluido desde Santo Domingo. Descubre el Caribe con nosotros."
+  title="Paquetes Internacionales | Viajes Todo Incluido"
+  description="Explora nuestros paquetes internacionales desde Santo Domingo. Viajes todo incluido a Europa, America y el Caribe. Ofertas irresistibles. ¡Reserva tu aventura ahora!"
   keywords={["paquetes internacionales"]}
 >
   <section id="ofertas" class="w-full pt-[150px] pb-10 text-black">

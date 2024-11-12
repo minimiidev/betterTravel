@@ -3,15 +3,14 @@ import ProductCard from "@/components/products/ProductCard.astro";
 import Layout from "@/layouts/Layout.astro";
 import { getAllResorts } from "@/utils/sanity";
 const allResorts = await getAllResorts();
-console.log("🚀 ~ allResorts:", allResorts);
 ---
 
 <Layout
-  title="Ofertas"
-  description="Descubre las mejores ofertas en viajes personalizados y paquetes todo incluido desde Santo Domingo. Descubre el Caribe con nosotros."
+  title="Resorts Todo Incluido | Ofertas Exclusivas"
+  description="Disfruta de descuentos únicos en estancias prolongadas, promociones de temporada, y paquetes todo incluido que combinan alojamiento de lujo, experiencias gastronómicas, y actividades emocionantes. Ya sea que estés planeando una escapada romántica, unas vacaciones familiares, o un retiro relajante, nuestras ofertas están diseñadas para brindarte el máximo valor."
   keywords={["resorts"]}
 >
-  <section id="ofertas" class="w-full pt-[150px] pb-10 text-black">
+  <section id="resorts" class="w-full pt-[150px] pb-10 text-black">
     <div class="container flex flex-col items-center justify-center">
       <p class="mb-2 p">Nuestros</p>
       <h1 class="mb-10 h1">Resorts</h1>
