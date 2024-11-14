@@ -25,7 +25,7 @@ import Icon from "astro-iconify";
             <li class="font-medium">
               <a
                 href={link.path}
-                class="px-5 min-w-[150px] text-center py-3 block hover:bg-sky-500 "
+                class="px-5 min-w-[100px] text-center py-3 block hover:bg-sky-500 "
               >
                 {link.text}
               </a>
@@ -33,16 +33,17 @@ import Icon from "astro-iconify";
           ))
         }
       </ul>
-      <div class="mt-3">
+      <div class="mt-3 min-w-[150px]">
         <ButtonCTA
           href="/blog"
-          class={`  text-white bg-sky-500 hover:bg-sky-800`}>Blog</ButtonCTA
+          class={`  text-white  w-full block bg-sky-500 hover:bg-sky-800`}
+          >Blog</ButtonCTA
         >
       </div>
-      <div id="btnCta" class="mt-4">
+      <div id="btnCta" class="my-2 min-w-[150px]">
         <ButtonCTA
           href="#footer"
-          class={` text-white bg-orange-500 hover:bg-orange-800`}
+          class={` text-white block w-full bg-orange-500 hover:bg-orange-800`}
           >Contactanos</ButtonCTA
         >
       </div>
