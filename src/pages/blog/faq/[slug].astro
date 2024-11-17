@@ -1,28 +1,64 @@
 ---
 import PortableTextComponent from "@/components/portableText/PortableTextComponent.astro";
+import ButtonCTA from "@/components/shared/ButtonCTA.astro";
+import Instagram from "@/components/shared/socials/Instagram.astro";
+import WhatsApp from "@/components/shared/socials/WhatsApp.astro";
 import Layout from "@/layouts/Layout.astro";
+import { formatDate } from "@/utils/formatDate";
 
 import { getBlog } from "@/utils/sanity";
+import Icon from "astro-iconify";
 import { Image } from "astro:assets";
 
 const { slug = "" } = Astro.params ?? "";
 const blog = await getBlog(slug);
-console.log("🚀 ~ Blog:", blog);
 ---
 
-<Layout title={blog.name} description={blog.descriptionMeta} keywords={[""]}>
+<Layout
+  title={`${blog.name} | Better Travel`}
+  description={blog.descriptionMeta}
+  keywords={[""]}
+>
   <section class="mt-[150px] flex items-center justify-center flex-col">
     <div class="container flex flex-col items-center justify-center gap-10">
       <h1 class="h2 text-center">{blog.name}</h1>
       <Image
+        transition:name={blog.name}
         src={blog.imgSrc}
         width={1200}
         height={1200}
         alt={`Pareja preguntando ${blog.name}`}
         class="object-contain rounded-xl mx-auto w-full lg:max-w-[600px] md:max-w-[550px] h-full"
       />
+      <p>{formatDate(blog.publishedAt)}</p>
       <div>
         <PortableTextComponent value={blog.description} />
+      </div>
+      <!-- BOTONES -->
+      <div class="flex items-center justify-between w-full">
+        <ButtonCTA
+          href="/resorts"
+          class:list={"bg-yellow-500 hover:bg-yellow-800 flex items-center gap-2"}
+        >
+          <Icon name="icon-park-outline:hotel" size="32px" />
+          Resorts</ButtonCTA
+        >
+        <ButtonCTA
+          href="/paquetes-internacionales"
+          class:list={"bg-blue-500 hover:bg-blue-800 flex items-center gap-2"}
+        >
+          <Icon name="mdi:airplane" size="32px" />
+          Paquetes Internacionales</ButtonCTA
+        >
+        <ButtonCTA
+          href="/cruceros"
+          class:list={"bg-purple-500 hover:bg-purple-800 flex items-center  gap-2"}
+        >
+          <Icon name="icon-park-outline:cruise" size="32px" />
+          Cruceros</ButtonCTA
+        >
+        <WhatsApp class:list={"bg-green-500 hover:bg-green-800 "} />
+        <Instagram class:list={" bg-rose-500 hover:bg-rose-800"} />
       </div>
     </div>
   </section>

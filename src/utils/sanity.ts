@@ -7,11 +7,13 @@ import { sanityClient } from "sanity:client";
 
 export async function getAllBlogs(): Promise<Blog[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "blog"] | order(_updatedAt desc)
+    groq`*[_type == "blog"] | order(_publishedAt desc)
     {
       name,
       "slug": slug.current,
       "imgSrc": image.asset -> url,
+      publishedAt,
+      descriptionMeta
     }`
   );
 }
@@ -23,8 +25,9 @@ export async function getBlog(slug: string): Promise<Blog> {
       name,
       "slug": slug.current,
       "imgSrc": image.asset -> url,
+      publishedAt,
       description,
-      descriptionMeta
+      descriptionMeta,
     }`,
     {
       slug,
@@ -205,4 +208,5 @@ export interface Blog {
   imgSrc: string;
   description: PortableTextBlock[];
   descriptionMeta: string;
+  publishedAt: string;
 }

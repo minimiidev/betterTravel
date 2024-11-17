@@ -4,6 +4,21 @@ export default {
   type: "document",
   fields: [
     {
+      name: "type",
+      title: "Tipo de Blog",
+      type: "string",
+      description: "Ej: FAQs, Blog, Noticias",
+      options: {
+        list: [
+          { title: "FAQs", value: "faq" },
+          { title: "Blog", value: "Blog" },
+          { title: "Noticias", value: "Noticias" },
+          { title: "Destinos", value: "Destinos" },
+        ],
+      },
+      validation: (Rule: any) => Rule.required(),
+    },
+    {
       name: "name",
       title: "Titulo",
       type: "string",
