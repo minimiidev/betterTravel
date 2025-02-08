@@ -1,6 +1,5 @@
 import { z } from "astro/zod";
 import { defineAction } from "astro:actions";
-import hotel from "schema/hotel";
 
 export const saveHotelCode = defineAction({
   accept: "json",
