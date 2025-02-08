@@ -2,18 +2,18 @@ import { z } from "astro/zod";
 import { defineAction } from "astro:actions";
 import crypto from "crypto";
 
-export const getHotel = defineAction({
-  accept: "json",
+export const searchHotel = defineAction({
+  accept: "form",
   input: z.object({
-    number: z.number(),
+    country: z.string(),
+    city: z.string().optional(),
   }),
-  handler: async ({ number }) => {
-    const hotelCode = number;
-
+  handler: async () => {
     const apiKey = import.meta.env.SECRET_BEDSONLINE_API_KEY;
     const secret = import.meta.env.SECRET_BEDSONLINE_API_SECRET;
     const timestamp = Math.floor(Date.now() / 1000);
-    const BEDSONLINE_API_URL = `https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels/${hotelCode}/details?language=CAS`;
+    const BEDSONLINE_API_URL =
+      "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=CAS&from=1&to=10";
     const signature = crypto
       .createHash("sha256")
       .update(apiKey + secret + timestamp)
@@ -29,9 +29,8 @@ export const getHotel = defineAction({
         },
       });
       const json = await resp.json();
-
-      const hotel = json.hotel;
-
+      // console.log("🚀 ~ data:", data);
+      const hotels = json.hotels;
       // console.log("🚀 ~ hotels:", hotels);
       // const hotelsName = hotels.name.content;
       // console.log("🚀 ~ hotelsName:", hotelsName);
@@ -43,7 +42,8 @@ export const getHotel = defineAction({
       // console.log("🚀 ~ hotelsCountry:", hotelsCountry);
       // const hotelsStars = hotels.S2C;
       // console.log("🚀 ~ hotelsStarts:", hotelsStars);
-      return hotel;
+
+      return hotels;
     } catch (error) {
       console.log(error);
       return {

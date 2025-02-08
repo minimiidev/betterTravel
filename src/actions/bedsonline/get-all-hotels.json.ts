@@ -10,7 +10,7 @@ export const getAllHotels = defineAction({
     const secret = import.meta.env.SECRET_BEDSONLINE_API_SECRET;
     const timestamp = Math.floor(Date.now() / 1000);
     const BEDSONLINE_API_URL =
-      "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=ENG&from=1&to=10";
+      "https://api.test.hotelbeds.com/hotel-content-api/1.0/hotels?fields=all&language=CAS&from=1&to=10";
     const signature = crypto
       .createHash("sha256")
       .update(apiKey + secret + timestamp)
@@ -23,6 +23,7 @@ export const getAllHotels = defineAction({
           Accept: "application/json",
           "Api-key": apiKey,
           "X-Signature": signature,
+          "Accept-Encoding": "gzip",
         },
       });
       const json = await resp.json();

@@ -1,4 +1,5 @@
 ---
+import Layout from "@/layouts/Layout.astro";
 import { actions } from "astro:actions";
 
 // const cookie = Astro.cookies.get("hotelCode");
@@ -11,17 +12,56 @@ const hotelCode = 7;
 const getHotel = await actions.getHotel({ number: hotelCode });
 const { data, error } = getHotel;
 if (error) console.log("🚀 ~ error:", error);
-// console.log("🚀 ~ data:", data);
+
+const sharedFacilicities = data.facilities.filter(
+  (f: any) => f.facilityGroupCode == 60 && f.indLogic == true
+);
+console.log("🚀 ~ facilicities:", sharedFacilicities);
 ---
 
-<h1>Nombre: {data.name.content}</h1>
-<p>Descripcion: {data.description.content}</p>
-<p>Pais: {data.coutnry.description.content}</p>
-<p>Destino / Ciudad: {data.destination.name.content}</p>
-<p>
-  Tags: {
-    data.boards.map((tag: any) => {
-      <small>tag.description.content</small>;
-    })
-  }
-</p>
+<Layout title="API TEST" description="" keywords={[""]}>
+  <section class="pt-[150px] container">
+    <h1>Nombre: {data.name.content}</h1>
+    <p>Descripcion: {data.description.content}</p>
+    <p>Pais: {data.country.description.content}</p>
+    <p>Ciudad: {data.destination.name.content}</p>
+    <p>
+      Tags: {
+        data.boards.map((tag: any) => {
+          <small>tag.description.content</small>;
+        })
+      }
+    </p>
+
+    <div class="border grid grid-cols-2 gap-5">
+      <h3>Habitaciones</h3>
+      {
+        data.rooms.map((room: any) => (
+          <div class="border-2 border-slate-500">
+            <h4>{room.description}</h4>
+            <p>Adultos: {room.minPax}</p>
+            <p>Ninos: {room.maxChildred}</p>
+            <p>Ocupacion: {room.type.description.content}</p>
+            <p>Caracteristica: {room.characteristic.description.content}</p>(
+            <p>Facilidades Comunes: </p>
+            {sharedFacilicities.map((fal: any) => (
+              <p>{fal.description.content}</p>
+            ))}
+            )
+          </div>
+        ))
+      }
+    </div>
+
+    {
+      data.images
+        .slice(0, 12)
+        .map((image: any) => (
+          <img
+            src={`http://photos.hotelbeds.com/giata/bigger/${image.path}`}
+            alt={""}
+          />
+        ))
+    }
+  </section>
+</Layout>

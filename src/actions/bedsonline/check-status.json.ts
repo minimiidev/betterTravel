@@ -16,25 +16,25 @@ export const checkStatus = defineAction({
       .update(apiKey + secret + timestamp)
       .digest("hex");
 
-    try {
-      const resp = await fetch(BEDSONLINE_API_URL, {
-        method: "GET",
-        headers: {
-          Accept: "application/json",
-          "Api-key": apiKey,
-          "X-Signature": signature,
-        },
-      });
-      const data = await resp.json();
-      return {
-        body: JSON.stringify(data),
-      };
-    } catch (error) {
-      console.log(error);
-    }
-    return {
-      Status: "error",
-      Message: "Something went wrong",
-    };
+    //   try {
+    //     const resp = await fetch(BEDSONLINE_API_URL, {
+    //       method: "GET",
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Api-key": apiKey,
+    //         "X-Signature": signature,
+    //       },
+    //     });
+    //     const data = await resp.json();
+    //     return {
+    //       body: JSON.stringify(data),
+    //     };
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    //   return {
+    //     Status: "error",
+    //     Message: "Something went wrong",
+    //   };
   },
 });
