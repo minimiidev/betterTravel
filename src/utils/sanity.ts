@@ -2,6 +2,7 @@ import type { PortableTextBlock } from "@portabletext/types";
 // import type { ImageAsset, Slug } from "@sanity/types";
 import groq from "groq";
 import { sanityClient } from "sanity:client";
+import type Product from "./interfaces";
 
 //  BLOG
 
@@ -210,3 +211,4 @@ export interface Blog {
   descriptionMeta: string;
   publishedAt: string;
 }
+

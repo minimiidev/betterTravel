@@ -1,0 +1,67 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { actions } from "astro:actions";
+
+const { data, error } = await actions.getAllHotels("");
+if (error) console.log("🚀 ~ error:", error);
+---
+
+<Layout title="API TEST" description="" keywords={[""]}>
+  {
+    data.map((hotel: any) => (
+      <article class="my-5 border border-slate-800 w-full flex gap-4 h-[400px]">
+        <div class="w-[250px] h-[250px] overflow-hidden">
+          <img
+            src={`http://photos.hotelbeds.com/giata/bigger/${hotel.images[0].path}`}
+            alt={hotel.name.content}
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <div class="max-w-[400px] flex flex-col gap-4 items-start justify-start">
+          <p id="hotelCode" data-code={hotel.code}>
+            {hotel.code}
+          </p>
+          <h3 class="h3 ">{hotel.name.content}</h3>
+          {/* <p class="overflow-hidden inden">{hotel.description.content}</p> */}
+          <small>Pais: {hotel.countryCode}</small>
+          <small>Estrellas: {hotel.S2C}</small>
+          <button id="btn" class="px-5 py-2 bg-green-500 ">
+            Ver mas
+          </button>
+        </div>
+      </article>
+    ))
+  }
+</Layout>
+
+<script>
+  import { actions } from "astro:actions";
+
+  const btns = document.querySelectorAll("#btn");
+  // console.log(btns);
+
+  btns.forEach((btn) => {
+    btn?.addEventListener("click", async () => {
+      const hotelCode = Number(
+        btn.parentElement?.querySelector("#hotelCode")?.textContent
+      );
+
+      try {
+        await actions.saveHotelCode({ hotelCode });
+        location.href = `/api/hotelCode/`;
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  });
+
+  // btn?.addEventListener("click", async () => {
+  //   console.log(hotelCode);
+  //   try {
+  //     await actions.saveHotelCode({ hotelCode });
+  //     location.href = `/api/hotelCode/`;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // });
+</script>
