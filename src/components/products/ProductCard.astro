@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
   name: string;
   type: string;
@@ -13,9 +15,17 @@ let urlType = type.toLocaleLowerCase();
 
 <a
   href={`/${urlType}/${slug}`}
-  class="block w-[320px] h-[350px] cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out overflow-hidden rounded-lg relative"
+  class="block w-[320px] h-[350px] cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out overflow-hidden rounded-lg relative shadow-xl"
 >
-  <img src={imgSrc} alt={name} class="object-fill w-full h-full" />
+  <Image
+    src={imgSrc}
+    alt={name}
+    width={800}
+    height={800}
+    quality={10}
+    format="webp"
+    class="object-fill w-full h-full"
+  />
   <div
     class="absolute top-0 right-0 w-full h-full bg-gradient-to-t from-black to-transparent opacity-80"
   >

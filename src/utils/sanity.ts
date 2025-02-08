@@ -4,6 +4,40 @@ import groq from "groq";
 import { sanityClient } from "sanity:client";
 import type Product from "./interfaces";
 
+//  BLOG
+
+export async function getAllBlogs(): Promise<Blog[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "blog"] | order(_publishedAt desc)
+    {
+      name,
+      "slug": slug.current,
+      "imgSrc": image.asset -> url,
+      publishedAt,
+      descriptionMeta
+    }`
+  );
+}
+
+export async function getBlog(slug: string): Promise<Blog> {
+  return await sanityClient.fetch(
+    groq`*[_type == "blog" && slug.current == $slug ][0]
+    {
+      name,
+      "slug": slug.current,
+      "imgSrc": image.asset -> url,
+      publishedAt,
+      description,
+      descriptionMeta,
+    }`,
+    {
+      slug,
+    }
+  );
+}
+
+//  PRODUCTOS
+
 export async function getProduct(slug: string): Promise<Product> {
   return await sanityClient.fetch(
     groq`*[_type == "product" && slug.current == $slug ][0]
@@ -51,57 +85,9 @@ export async function getAllOffers(): Promise<Product[]> {
   );
 }
 
-export async function getHotels(): Promise<Product[]> {
-  return await sanityClient.fetch(
-    groq`*[_type == "product" && type == "Hoteles"][0...5]
-  {
-    name,
-    type,
-    "slug": slug.current,
-    "imgSrc": image.asset -> url,
-  }`
-  );
-}
-
-export async function getAllHotels(): Promise<Product[]> {
-  return await sanityClient.fetch(
-    groq`*[_type == "product" && type == "Hoteles"]
-  {
-    name,
-    type,
-    "slug": slug.current,
-    "imgSrc": image.asset -> url,
-  }`
-  );
-}
-
-export async function getTours(): Promise<Product[]> {
-  return await sanityClient.fetch(
-    groq`*[_type == "product" && type == "Excursiones"][0...5]
-  {
-    name,
-    type,
-    "slug": slug.current,
-    "imgSrc": image.asset -> url,
-  }`
-  );
-}
-
-export async function getAllTours(): Promise<Product[]> {
-  return await sanityClient.fetch(
-    groq`*[_type == "product" && type == "Excursiones"]
-  {
-    name,
-    type,
-    "slug": slug.current,
-    "imgSrc": image.asset -> url,
-  }`
-  );
-}
-
 export async function getResorts(): Promise<Product[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "product" && type == "Resorts"][0...5]
+    groq`*[_type == "product" && type == "Resorts"] | order(_updatedAt desc) [0...5]
   {
     name,
     type,
@@ -113,54 +99,7 @@ export async function getResorts(): Promise<Product[]> {
 
 export async function getAllResorts(): Promise<Product[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "product" && type == "Resorts"]
-  {
-    name,
-    type,
-    "slug": slug.current,
-    "imgSrc": image.asset -> url,
-  }`
-  );
-}
-
-export async function getCruises(): Promise<Product[]> {
-  return await sanityClient.fetch(
-    groq`*[_type == "product" && type == "Cruceros"][0...5]
-  {
-    name,
-    type,
-    "slug": slug.current,
-    "imgSrc": image.asset -> url,
-  }`
-  );
-}
-
-// export async function getCruise(slug: string): Promise<Product> {
-//   return await sanityClient.fetch(
-//     groq`*[_type == "product" && slug.current == $slug ][0]
-//     {
-//       name,
-//       "slug": slug.current ,
-//       location,
-//       price,
-//       priceKids,
-//       ageKids,
-//       currency,
-//       "imgSrc": image.asset -> url,
-//       description,
-//       requirements,
-//       checkInTime,
-//       checkOutTime
-//     }`,
-//     {
-//       slug,
-//     }
-//   );
-// }
-
-export async function getAllCruises(): Promise<Product[]> {
-  return await sanityClient.fetch(
-    groq`*[_type == "product" && type == "Cruceros"]
+    groq`*[_type == "product" && type == "Resorts"] | order(_updatedAt desc)
   {
     name,
     type,
@@ -172,7 +111,7 @@ export async function getAllCruises(): Promise<Product[]> {
 
 export async function getPackages(): Promise<Product[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "product" && type == "Paquete Internacional"][0...5]
+    groq`*[_type == "product" && type == "Paquetes-Internacionales"] | order(_updatedAt desc) [0...5]
   {
     name,
     type,
@@ -181,33 +120,10 @@ export async function getPackages(): Promise<Product[]> {
   }`
   );
 }
-
-// export async function getPackage(slug: string): Promise<Product> {
-//   return await sanityClient.fetch(
-//     groq`*[_type == "product" && slug.current == $slug ][0]
-//     {
-//       name,
-//       "slug": slug.current ,
-//       location,
-//       price,
-//       priceKids,
-//       ageKids,
-//       currency,
-//       "imgSrc": image.asset -> url,
-//       description,
-//       requerements,
-//       checkInTime,
-//       checkOutTime
-//     }`,
-//     {
-//       slug,
-//     }
-//   );
-// }
 
 export async function getAllPackages(): Promise<Product[]> {
   return await sanityClient.fetch(
-    groq`*[_type == "product" && type == "Paquetes-Internacionales"]
+    groq`*[_type == "product" && type == "Paquetes-Internacionales"] | order(_updatedAt desc)
   {
     name,
     type,
@@ -217,53 +133,82 @@ export async function getAllPackages(): Promise<Product[]> {
   );
 }
 
-// export async function getResortsAll(): Promise<Destinations[]> {
-//   return await sanityClient.fetch(
-//     groq`*[_type == "resort" ]
-//   {
-//     name,
-//     "slug": slug.current ,
-//     location,
-//     price,
-//     currency,
-//     "imgSrc": image.asset -> url
-//   }`
-//   );
-// }
+export async function getCruises(): Promise<Product[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "product" && type == "Cruceros"] | order(_updatedAt desc) [0...5]
+  {
+    name,
+    type,
+    "slug": slug.current,
+    "imgSrc": image.asset -> url,
+  }`
+  );
+}
 
-// export async function getResorts(): Promise<Destinations[]> {
-//   return await sanityClient.fetch(
-//     groq`*[_type == "resort" ][0...6]  | order(_updatedAt desc)
-//   {
-//     _updatedAt,
-//     name,
-//     "slug": slug.current ,
-//     location,
-//     price,
-//     currency,
-//     "imgSrc": image.asset -> url
-//   }`
-//   );
-// }
+export async function getAllCruises(): Promise<Product[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "product" && type == "Cruceros"] | order(_updatedAt desc)
+  {
+    name,
+    type,
+    "slug": slug.current,
+    "imgSrc": image.asset -> url,
+  }`
+  );
+}
 
-// export async function getResort(slug: string): Promise<Destinations> {
-//   return await sanityClient.fetch(
-//     groq`*[_type == "resort" && slug.current == $slug ][0]
-//     {
-//       name,
-//       "slug": slug.current ,
-//       location,
-//       price,
-//       priceKids,
-//       ageKids,
-//       currency,
-//       "imgSrc": image.asset -> url,
-//       description,
-//       checkInTime,
-//       checkOutTime
-//     }`,
-//     {
-//       slug,
-//     }
-//   );
-// }
+export async function getTours(): Promise<Product[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "product" && type == "Excursiones"] | order(_updatedAt desc) [0...5]
+  {
+    name,
+    type,
+    "slug": slug.current,
+    "imgSrc": image.asset -> url,
+  }`
+  );
+}
+
+export async function getAllTours(): Promise<Product[]> {
+  return await sanityClient.fetch(
+    groq`*[_type == "product" && type == "Excursiones"] | order(_updatedAt desc)
+  {
+    name,
+    type,
+    "slug": slug.current,
+    "imgSrc": image.asset -> url,
+  }`
+  );
+}
+
+export interface Product {
+  promotion: boolean;
+  type: string;
+  name: string;
+  slug: string;
+  location: string;
+  imgSrc: string;
+  country: string;
+  price: number;
+  priceKids: number;
+  ageKids: string;
+  currency: string;
+  checkInDate: string;
+  checkoutDate: string;
+  checkInTime: string;
+  checkOutTime: string;
+  days: string;
+  nights: string;
+  description: PortableTextBlock[];
+  requirements: PortableTextBlock[];
+}
+
+export interface Blog {
+  name: string;
+  slug: string;
+  imgSrc: string;
+  description: PortableTextBlock[];
+  descriptionMeta: string;
+  publishedAt: string;
+}
+

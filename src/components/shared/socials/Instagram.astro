@@ -1,11 +1,10 @@
 ---
 import Icon from "astro-iconify";
 
-interface Prop {
-  instagram: string;
-}
-
-const { instagram } = Astro.props;
+import { info } from "@/data";
+const {
+  socials: { instagram },
+} = info;
 ---
 
 <a
@@ -17,6 +16,6 @@ const { instagram } = Astro.props;
     Astro.props.class,
   ]}
 >
-  <Icon name="mdi:instagram" size="32px" class="inline p" />
+  <Icon name="mdi:instagram" size="32px" class="p inline" />
   Instagram
 </a>

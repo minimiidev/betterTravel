@@ -15,6 +15,9 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  image: {
+    remotePatterns: [{ protocol: "https" }],
+  },
   site: 'https://www.bettertravelrd.com',
   integrations: [sanity(
     {

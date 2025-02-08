@@ -11,40 +11,43 @@ import SocialContainer from "../shared/SocialContainer.astro";
 
 import { info } from "@/data";
 import bgHero from "@/assets/bgHero.webp";
+import bgHero2 from "@/assets/4129.webp";
 import Image from "astro/components/Image.astro";
+
+// class ="relative m-auto mb-[20px] flex w-full items-center justify-center pt-[120px] md:-mt-[100px] md:mb-[60px] md:pt-[200px] lg:pt-[350px] lg:mb-[160px] border border-red-500 parallax"
 ---
 
-<section
-  id="home"
-  class="relative z-10 m-auto mb-[80px] flex w-full items-center justify-center pt-24 md:mb-20 md:pb-16 lg:mb-[210px] lg:pb-[10px] lg:pt-[150px]"
->
+<section id="home" class="z-10 h-[600px] flex items-center justify-center">
   <!-- Filtro -->
-  <Image
-    loading="eager"
-    src={bgHero}
-    alt=""
-    widths={[1200, 1920]}
-    height={1080}
-    quality={"max"}
-    class="absolute bottom-0 top-0 -z-30 aspect-[16/9] h-[120%] w-full overflow-hidden object-cover object-left-bottom shadow-sky-500 md:bottom-[500px] md:h-[500px] md:object-fill lg:h-[160%] lg:object-cover lg:object-bottom"
-  />
+  <!-- <Image
+  loading="eager"
+  src={bgHero2}
+  alt=""
+  widths={[1200, 1920]}
+  height={1080}
+  quality={"max"}
+  class="absolute bottom-0 -top-[200px] -z-30 aspect-[16/9] min-h-[160%] object-left w-full overflow-hidden object-cover md:object-left-bottom shadow-sky-500 md:bottom-[500px] md:h-[500px] md:object-fill lg:h-[160%] lg:object-cover lg:object-bottom"
+  /> -->
 
   <!-- Video de fondo -->
   <!-- <video
-    src={beachBg}
-    autoplay
-    loop
-    muted
-    class="absolute top-0 bottom-0 object-cover w-full h-full"></video> -->
+  src={beachBg}
+  autoplay
+  loop
+  muted
+  class="absolute top-0 bottom-0 object-cover w-full h-full"></video> -->
 
+  <div class="absolute top-0 bottom-0 w-full -z-10 parallax"></div>
   <!-- Hero -->
   <div
-    class="container z-10 flex flex-col items-stretch justify-center w-full gap-8 py-10 m-auto h-max"
+    class="container flex flex-col items-stretch justify-center w-full gap-8 py-10 m-auto h-max"
   >
     <!-- Header -->
     <article class="">
-      <span class="text-sm uppercase">Nuestros Paquetes</span>
-      <h1 class="h1">Planea tus Vacaciones</h1>
+      <h1 class="text-sm uppercase">
+        Nuestros Paquetes, tu agencia de viajes santo domingo mas cerca de ti
+      </h1>
+      <h2 class="h1">Planea tus Vacaciones</h2>
       <!-- SOCIAL -->
       <SocialContainer class:list={"mt-10"}>
         <WhatsApp class:list={"bg-green-500 hover:bg-green-800 text-white"} />
@@ -102,6 +105,15 @@ import Image from "astro/components/Image.astro";
 </section>
 
 <style>
+  .parallax {
+    background-image: url("/src/assets/4129.webp");
+    min-height: 800px;
+    background-attachment: fixed;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   form div div {
     @apply flex lg:w-[320px] rounded-xl  items-center justify-center  w-full bg-sky-500;
   }
@@ -115,3 +127,13 @@ import Image from "astro/components/Image.astro";
     @apply text-black;
   }
 </style>
+
+<!-- <script>
+  const hero = document.querySelector("#home") as Element;
+
+  window.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    console.log(scrollY);
+    hero.sty;
+  });
+</script> -->

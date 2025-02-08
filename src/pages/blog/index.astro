@@ -1,0 +1,46 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { formatDate } from "@/utils/formatDate";
+
+import { getAllBlogs } from "@/utils/sanity";
+import { Image } from "astro:assets";
+
+const allBlogs = await getAllBlogs();
+---
+
+<Layout title="Blog" description="Blog de viajes" keywords={[""]}>
+  <section class="mt-[150px] flex items-center justify-center">
+    <div class="container">
+      <h1 class="h1 mb-10 text-center">Blog</h1>
+      {
+        allBlogs.map((d) => (
+          <div>
+            <a
+              href={`/blog/faq/${d.slug}`}
+              class="relative block rounded-xl overflow-hidden [&:hover>div]:bg-opacity-100 hover:scale-95 transition-all duration-300   ease-in-out cursor-pointer shadow-lg shadow-sky-300 [&:hover~div>h2]:underline"
+            >
+              <Image
+                transition:name={d.name}
+                src={d.imgSrc}
+                width={1200}
+                height={1200}
+                quality={"high"}
+                alt=""
+                class="h-[300px] w-full object-cover"
+              />
+            </a>
+            <div class=" flex flex-col gap-4 p-5">
+              <p>{formatDate(d.publishedAt)}</p>
+              <h2 class="h2">
+                <a href={`/blog/faq/${d.slug}`} class="hover:underline">
+                  {d.name}
+                </a>
+              </h2>
+              <p>{d.descriptionMeta}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

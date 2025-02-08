@@ -1,6 +1,6 @@
 ---
 interface Props {
-  href?: string;
+  href: string;
   class?: string;
 }
 
@@ -10,7 +10,7 @@ const { href } = Astro.props;
 <a
   href={href}
   class:list={[
-    "min-w-[150px] rounded-xl px-5 py-2 text-center  font-medium transition-all duration-300 ease-in-out",
+    "min-w-[150px] px-5 py-2 text-center  font-medium transition-all duration-300 ease-in-out  cursor-pointer p hover:scale-95 rounded-3xl ",
     Astro.props.class,
   ]}
 >

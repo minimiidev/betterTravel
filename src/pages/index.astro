@@ -5,23 +5,21 @@ import ShowOffer from "@/components/products/ShowOffer.astro";
 import ShowTours from "@/components/products/ShowTours.astro";
 import ShowResort from "@/components/products/ShowResort.astro";
 import ShowCruises from "@/components/products/showCruises.astro";
+import ShowPackages from "@/components/products/ShowPackages.astro";
 
 const image = "";
-
-//* Borrar cookies
-// const cookies = Astro.cookies;
-// const reservationCookie = cookies.delete("reservation");
 ---
 
 <Layout
-  title="Better Travel | Your Best Choice"
-  description="Encuentra las mejores ofertas en viajes personalizados y paquetes todo incluido desde Santo Domingo. Descubre el Caribe con nosotros."
+  title="Agencia De Viajes Santo Domingo | Better Travel"
+  description="Encuentra las mejores ofertas exclusivas con actividades, lujo y comodidad. ¡Reserva hoy y vive la experiencia perfecta!. Agencia de viajes en Santo Domingo Este"
   keywords={[""]}
   image=""
 >
   <Hero />
   <ShowOffer />
-  <ShowTours />
   <ShowResort />
+  <ShowPackages />
   <ShowCruises />
+  <ShowTours />
 </Layout>

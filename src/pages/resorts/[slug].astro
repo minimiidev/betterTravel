@@ -24,9 +24,10 @@ const {
 ---
 
 <Layout
-  title={`Resort ${name} `}
-  description={`Resort ${name}`}
+  title={`${name} | Better Travel`}
+  description={`Reserva ahora y déjate consentir en un paraíso que lo tiene todo, al mejor precio posible. ¡Tu aventura comienza aquí, en ${name}! `}
   keywords={["resorts"]}
+  image={imgSrc}
 >
   <section class="w-full mt-[120px] md:pt-[0px] pb-10 text-black">
     <div
@@ -39,7 +40,7 @@ const {
         <!-- Image -->
         <Image
           src={imgSrc}
-          alt={name}
+          alt={name + " " + location}
           widths={[240, 450, 600]}
           height={500}
           inferSize={true}
